@@ -8,9 +8,10 @@
 
         <div>
             @foreach ($users as $user)
-                <p>°{{$user}}</p>
+                <div class="btn btn-warning w-9">
+                    <p>{{$user->prenomUtilisateur." ".$user->nomUtilisateur }}</p>
+                </div> 
             @endforeach
         </div>
     </div>
-    @include('layouts.footer')
 @endsection

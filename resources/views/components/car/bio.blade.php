@@ -9,12 +9,12 @@
             <span class="btn">{{$car->kilometrage}}km</span>
         </div>
         <div class="m-2">
-            <img src="{{ asset("images/$car->image") }}" alt="">
+            <img src="{{ asset("images").'/'}}@php echo$car->image== null ? 'car.png':$car->image @endphp" alt="">
         </div>
     </div>
     <div class="m-2">
         <a href="{{ asset('cars').'/'.$car->id.'/edit' }}" class="btn btn-success">Editer</a>
-        <a href="/" class="btn btn-danger">delete</a>
+        <a href="/cars/{{$car->id}}/delete" class="btn btn-danger">delete</a>
 
     </div>
 </div>

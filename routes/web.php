@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\UserController;
+use App\Models\Voiture;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +22,16 @@ Route::get('/login', [UserController::class, 'index']);
 Route::get('/cars', [VoitureController::class, 'index']);
 Route::get('/cars/{id}', [VoitureController::class, 'view']);
 Route::get('/cars/{id}/edit', [VoitureController::class, 'edit']);
+Route::get('/add/car',function () {
+    return view('addCar');
+});
+Route::post('/cars/{voiture}/edit', [VoitureController::class,'update']);
+Route::get('/cars/{voiture}/delete', [VoitureController::class,'delete']);
+
+Route::post('/add/car', [VoitureController::class, 'store']);
 
 
 Route::get('/home', function () {
     return view('home');
 });
-Route::post('cars/1/edit',[VoitureController::class, 'update'] );
 

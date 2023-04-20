@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class VoitureController extends Controller
 {
@@ -25,8 +26,16 @@ class VoitureController extends Controller
         $voiture = Voiture::where('id', $id)->first();
         return view('edit-car',['car'=>$voiture]);
     }
-    public function update(Request $request): RedirectResponse{
-        dd($request);
+    public function store(Request $request): RedirectResponse{
+        Voiture::create($request->all());
+        return redirect('/cars');
+    }
+    public function update(Request $request,Voiture $voiture){
+        $voiture->update($request->all());
+        return redirect('/cars');
+    }
+    public function delete(Request $request,Voiture $voiture){
+        $voiture->delete();
         return redirect('/cars');
     }
 }
