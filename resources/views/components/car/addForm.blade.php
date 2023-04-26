@@ -22,6 +22,14 @@
             
         </div>
         <div class="container-fluid ">
+            <label class="form-label" for="carburant">Nombre des portes</label>
+            <select class="form-control" name="carburant" id="">
+                <option value="Diesel">Diesel</option>
+                <option value="Essence">Essence</option>
+                <option value="Hybride">Hybride</option>
+                <option value="Electrical">Electrical</option>
+
+            </select>
             <label class="form-label" for="nbportest">Nombre des portes</label>
             <input class="form-control" type="number" name="nbportes" id="" value="@yield('nbportes')" required>
             
@@ -40,6 +48,6 @@
     <CENter>   
         <input class="btn btn-success m-2" type="submit" value="Enregister">
         <input class="btn btn-dark m-2" type="reset" value="Annuler">
-        <a class="btn btn-danger m-2" href="./">Retouner</a>
+        <a class="btn btn-danger m-2" href="{{ asset('dashboard/') }}">Retouner</a>
     </CENter>   
 </form>

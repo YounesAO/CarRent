@@ -9,20 +9,18 @@
     <label class="form-label" for="dateRetour">Date retour</label>
     <input class="form-control" type="date" name="dateRetour" id="">
     @if ($errors->any())
-   
-            @foreach ($errors->all() as $error)
+        @foreach ($errors->all() as $error)
             <div class="alert m-1 p-0 alert-danger">
                 <ul>
-                <li>{{ $error }}</li>
-            </ul>
-        </div>
-            @endforeach
-       
-@endif
+                    <li>{{ $error }}</li>
+                </ul>
+            </div>
+        @endforeach
+    @endif
     <center>
         <input class="btn btn-success m-2" type="submit" value="Suivant">
         <input class="btn btn-dark m-2 " type="reset" value="Vider">
-        <a  class="btn btn-danger" href="./">Retouner</a>
+        <a  class="btn btn-danger" href="{{ asset('cars') }}">Retouner</a>
     </center>
     
 </form> 

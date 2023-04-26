@@ -1,11 +1,14 @@
 @extends('dashboard')
-@section('content')
-<div class="d-flex m-1">
-    <div>
-
+@section('header')
+<div class="d-flex justify-content-between m-3 p-1">
     <h3>Voitures</h3> 
     <a class='btn btn-outline-success'href='{{ asset('/add/car') }}' >Ajouter voitures</a>   
-    </div>
+</div>
+@endsection
+@section('content')
+
+<div class="d-flex m-1">
+   
     <table class="table m-1">
         <tr class="">
             <th>Marque</th>

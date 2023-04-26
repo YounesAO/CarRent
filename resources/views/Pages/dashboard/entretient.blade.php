@@ -1,4 +1,9 @@
 @extends('dashboard')
+@section('header')
+<div class="d-flex justify-content-between m-3 p-1">
+    <h3>Entretiens</h3> 
+</div>
+@endsection
 @section('content')
 <div class="m-1 home d-flex">
     @foreach ($voitures as $car)
@@ -6,11 +11,6 @@
     @endforeach
 </div>
 
-@endsection
-@section('fix')
-<div class="d-flex">
-    <span>last repare </span>
-</div>
 @endsection
 <style>
     #fix i {

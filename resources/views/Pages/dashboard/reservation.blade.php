@@ -1,4 +1,9 @@
 @extends('dashboard')
+@section('header')
+<div class="d-flex justify-content-between m-3 p-1">
+    <h3>Reservations</h3> 
+</div>
+@endsection
 @section('content')
 <div class="d-flex m-1">
     <table class="table m-1">
