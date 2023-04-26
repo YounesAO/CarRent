@@ -7,6 +7,8 @@ use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\UserController;
 use App\Models\Entretient;
 use App\Models\Reservation;
+use App\Models\User;
+
 use App\Models\Voiture;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -22,7 +24,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
  
+
 Route::get('/', function () {
+    return view('login',['users'=>User::all()]);
+
+});
+Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::post('welcome',function(){
@@ -57,6 +64,10 @@ Route::get('dashboard/entretient',[EntretientController::class,'index']);
 Route::get('add/entretient/{voiture}',[EntretientController::class,'fill']);
 Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 
+Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
+Route::get('/dashboard/reservation',[ReservationController::class,'index']);
+
+Route::get('/check/reservation/{id}',[ReservationController::class,'show']);
 
 Route::get('/home', function () {
     return view('home');

@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class VoitureController extends Controller
 {
+    public function getAll()
+    {
+        $voitures = Voiture::all();
+        return(view('Pages.dashboard.cars',['cars'=>$voitures]));
+
+    }
     public function index(){
 
         $voitures = Voiture::all();

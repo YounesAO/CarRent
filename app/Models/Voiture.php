@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Termwind\Components\Dd;
 
 class Voiture extends Model
 {
@@ -20,6 +21,7 @@ class Voiture extends Model
         'nbPlaces',
         'kilometrage',
         'image',
+        'carburant',
         'idModel'
     ];
     
@@ -34,6 +36,13 @@ class Voiture extends Model
     {
         return new Attribute(
             get: fn () => marque::where('idMarque',$this->model->idMarque)->first()
+        );
+    }
+    protected function status(): Attribute
+    {
+        return new Attribute(
+            get: fn () => Reservation::where('idVoiture',$this->id)->first()
+            
         );
     }
 }

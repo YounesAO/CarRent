@@ -4,13 +4,12 @@
 @section('content')
 
     <div class="login-container">
-    
-
+        
         <div>
             @foreach ($users as $user)
-                <div class="btn btn-warning w">
-                    <p>{{$user->prenomUtilisateur." ".$user->nomUtilisateur }}</p>
-                </div> 
+                <a class="btn btn-warning w" href="{{ asset('welcome') }}">
+                    <p>{{$user->prenomUtilisateur." ".$user->nomUtilisateur }}  </p>
+                </a> 
             @endforeach
         </div>
     </div>

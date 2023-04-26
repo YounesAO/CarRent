@@ -10,7 +10,7 @@
     align-items: center;
     cursor:pointer;
     &::before{
-        content:' ';
+        content:counter(circle);
         position:absolute;
         top:30px;
         height:40px;

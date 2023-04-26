@@ -14,9 +14,11 @@ class EntretientController extends Controller
         $cars = Voiture::all();
         return view('Pages.dashboard.entretient',['entretient'=>true,'voitures'=>$cars]);
     }
+    //remplir et afficher le form
     public function fill(Voiture $voiture){
         $pieces = Piece::all();
-        return view('Pages.dashboard.add-entretien',['car'=>$voiture,'pieces'=>$pieces]);
+        
+        return view('Pages.dashboard.add-entretien',['car'=>$voiture,'pieces'=>$pieces,'entretients'=>Entretient::where('idVoiture',$voiture->id)]);
     }
     public function store(Request $request,$id)
     {

@@ -9,6 +9,8 @@ use App\Models\Voiture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function Ramsey\Uuid\v1;
+
 class ReservationController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations =Reservation::all();
+        return (view('Pages.dashboard.reservation',['reservations'=>$reservations]));
     }
 
     /**
@@ -61,9 +64,14 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show($id)
     {
-        //
+        $reservation = Reservation::where('idReservation',$id)->first();
+        return(view("Pages.Reservation.check",[
+            'reservation'=>$reservation,
+            'client'=>$reservation->client,
+            'voiture'=>$reservation->voiture
+        ]));
     }
 
     /**
