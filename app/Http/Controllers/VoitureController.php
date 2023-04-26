@@ -14,17 +14,21 @@ class VoitureController extends Controller
     public function index(){
 
         $voitures = Voiture::all();
+        // foreach ($voitures as $v){
+        //     $v->stats = DB::select('select * from reservation where idVoiture = ? order by dateRetour',[$v->s]);
+        // }
+        // dd($voitures);
         return view('catalogue',['voitures'=>$voitures]);
     }
     public function view($id){
 
         $voiture = Voiture::where('id', $id)->first();
-        return view('voiture',['car'=>$voiture]);
+        return view('Pages.Voiture.info',['car'=>$voiture]);
     }  
     public function edit($id){
 
         $voiture = Voiture::where('id', $id)->first();
-        return view('edit-car',['car'=>$voiture]);
+        return view('Pages.Voiture.edit',['car'=>$voiture]);
     }
     public function store(Request $request): RedirectResponse{
         Voiture::create($request->all());

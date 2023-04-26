@@ -1,0 +1,14 @@
+@include('layouts.head')
+@include('layouts.nav')
+<body>
+<div class="d-flex">
+@include('layouts.sidebar')
+<div class=" w-9 content mt-@yield('mt',0) flex  justify-content-center shadow">
+    @yield('content')
+
+</div>
+</div>
+@include('layouts.footer')
+
+</body>
+</html>

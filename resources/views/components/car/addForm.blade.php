@@ -33,8 +33,13 @@
             
         
         </div>
-   </div>
-   <div id="error" class="form-text text-danger">error d'ajout des données </div>
-<CENter>   <input class="btn btn-success m-2" type="submit" value="Enregister">
-</CENter>   
+</div>
+@if($errors->any())
+    <div id="error" class="form-text text-danger">error d'ajout des données </div>
+@endif
+    <CENter>   
+        <input class="btn btn-success m-2" type="submit" value="Enregister">
+        <input class="btn btn-dark m-2" type="reset" value="Annuler">
+        <a class="btn btn-danger m-2" href="./">Retouner</a>
+    </CENter>   
 </form>

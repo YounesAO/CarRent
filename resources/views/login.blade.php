@@ -8,7 +8,7 @@
 
         <div>
             @foreach ($users as $user)
-                <div class="btn btn-warning w-9">
+                <div class="btn btn-warning w">
                     <p>{{$user->prenomUtilisateur." ".$user->nomUtilisateur }}</p>
                 </div> 
             @endforeach

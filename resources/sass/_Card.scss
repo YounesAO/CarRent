@@ -1,7 +1,19 @@
 .card{
+    height: fit-content!important;
+
     .card-info{
+        
         img{
             width: 250px;
         }
     }
+    .d-flex{
+        a:hover{
+            color: white;
+        }
+    }
+}
+
+.imgCar{
+    width: 250px;
 }

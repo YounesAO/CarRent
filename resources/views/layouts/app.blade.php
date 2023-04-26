@@ -1,8 +1,10 @@
 
 <body>
-    @include('components.UI.nav')
-    <h1>@yield('header')</h1>
-    <div class=" content d-flex  justify-content-center shadow">
+    @include('layouts.nav')
+    <h3 class="m-1  ">@yield('header')</h3>
+    @yield('bar')
+    
+    <div class=" content mt-@yield('mt',0) d-flex  justify-content-center shadow">
         @yield('content')
     </div>
     @include('layouts.footer')

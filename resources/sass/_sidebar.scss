@@ -1,0 +1,66 @@
+.side-bar{
+    width: 7.1%;
+    background-color:rgb(22, 16, 94);
+    height: 100vh;
+    ul{
+        list-style: none;
+        li{ 
+            margin-top: 40px;
+            text-decoration: none;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: blueviolet;
+                text-decoration: none;
+                
+
+                
+                i{
+                    font-size: larger;
+                    display: block;
+                }
+                &::after{
+                    content:' ';
+                    margin-top: 40px;
+                    font-size: 11px;
+                    font-weight: 600;
+                    color:whitesmoke;
+                    text-align: center;
+                    position: absolute;
+                    opacity: 0;
+                    transition: opacity 0.3s  cubic-bezier(0.49, 0.28, 1, 0.41);
+
+                }
+            }
+        }
+        &:hover{
+            a::after{
+                opacity: 1;
+            }
+            #Home::after{
+                content:'Home';
+            } 
+            #reservation::after{
+                content:'Resevations';
+            } 
+            #cars::after{
+                content:'Voitures';
+            } 
+            #fix::after{
+                content:'Entretient';
+            } 
+            #charge:after{
+                content:'Charges';
+            } 
+            #incom::after{
+                content:'Reveunues';
+            }
+        }
+    }
+}

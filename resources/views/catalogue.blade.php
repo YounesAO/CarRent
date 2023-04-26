@@ -3,7 +3,6 @@
 @extends('layouts.app')
 @section('header','Catalogue des voitures')
 @section('content')
-
     @foreach ($voitures as $car)
         @include('components.car.card')
     @endforeach

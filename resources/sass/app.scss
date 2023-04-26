@@ -1,26 +1,37 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.bunny.net/css?family=time');
 
 // Variables
 @import 'variables';
 //card style
 @import 'Card';
+@import 'progress_bar';
+@import 'sidebar';
+@import 'dashboard';
+
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-
+.content{
+    min-height: 80vh;
+}
 .w-9{
     width: 90%;
 }
 
 
-
+.btn{
+    --button-box-shadow-width: 0.375em;
+    --button-box-shadow: 0 var(--button-box-shadow-width) 0 currentColor;
+    box-shadow: var(--button-box-shadow);
+}
 
 
 
 .footer{
-    position: absolute;
+    margin-top: 10px;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
