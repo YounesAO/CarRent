@@ -15,6 +15,9 @@
         @include('components.car.card')
         <div class="d-flex">
             <span>last repare </span>
+            @foreach ($entretients as $item)
+                {{$item->idEntretient}}
+            @endforeach
             <span></span>
         </div>
     </div>
@@ -23,6 +26,9 @@
             @csrf
             <fieldset>
             <legend>information sur l'entretien</legend> 
+            <label for="nature" >Nature d'entretien</label>
+            <input type="text" class="form-control" name="nature" required>
+            
             <label for="nomAtelier" >Atelier</label>
             <input type="text" class="form-control" name="nomAtelier" placeholder="N'est pas obligatoire">
             <label for="adresse" >Adresse d'atelier</label>
@@ -45,7 +51,7 @@
                 @endif
                     <div class="col {{$i}}">
                         <label class="form-check-label m-1" for="idPiece[]">{{$one->nom}}</label>
-                        <input class="form-check-input" type="radio" name="idPiece[]"  value ="{{$one->idPiece}}" >
+                        <input class="form-check-input" type="checkbox" name="idPiece[]"  value ="{{$one->idPiece}}" >
                     </div>
                     @if ( $i==count($pieces) ||$i == intdiv(count($pieces), 2) )
                         </fieldset>

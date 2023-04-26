@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class PieceChangee extends Model
 {
     use HasFactory;
-    protected $table = '';
+    protected $table='pieceChangee';
+    public $timestamps = false;
+
+    protected $fillable=[
+        'idPiece',
+        'idEntretient'	
+
+    ];
+
 
 }

@@ -9,7 +9,17 @@ class Piece extends Model
 {
     use HasFactory;
     protected $table = 'piece';
-    protected $fillable=['idPiece',
-    'nom','img','prix','description','maxKilo','maxDurre'];
+    protected $primaryKey ='idPiece';
+    public $timestamps = false;
+
+    protected $fillable=[
+        'idPiece',
+        'nom',
+        'img',
+        'prix',
+        'description',
+        'maxKilo',
+        'maxDurre'
+    ];
 
 }
