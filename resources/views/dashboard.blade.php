@@ -1,4 +1,5 @@
-@include('layouts.head')
+@extends('layouts.head')
+@section('title','Dashboard')
 @include('layouts.nav')
 <body>
 <div class="d-flex">

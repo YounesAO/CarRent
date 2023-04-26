@@ -1,4 +1,4 @@
-@include('layouts.head')
+@extends('layouts.head')
 @section('title','Catalogue des voitures')
 @extends('layouts.app')
 @section('header','Catalogue des voitures')
