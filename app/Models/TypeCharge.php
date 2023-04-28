@@ -9,5 +9,9 @@ class TypeCharge extends Model
 {
     use HasFactory;
     protected $table = 'TypeCharge';
+    protected $fillable  = [
+        'idTypeCharge',
+        'nomCharge'
+    ];
 
 }

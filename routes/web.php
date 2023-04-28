@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\ChargeController;
+use App\Http\Controllers\ChargeEntrepriseController;
+use App\Http\Controllers\ChargeVoitureController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EntretientController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\UserController;
+use App\Models\Charge;
+use App\Models\ChargeEntreprise;
+use App\Models\ChargeVoiture;
 use App\Models\Entretient;
 use App\Models\Reservation;
 use App\Models\User;
@@ -66,6 +72,15 @@ Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 
 Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
 Route::get('/dashboard/reservation',[ReservationController::class,'index']);
+Route::get('/dashboard/charge', [ChargeController::class,'index']);
+Route::get('/dashboard/charge/voiture',[ChargeVoitureController::class,'index']);
+Route::get('/dashboard/charge/voiture/{voiture}',[ChargeVoitureController::class,'view']);
+Route::post('/dashboard/charge/voiture/{voiture}',[ChargeVoitureController::class,'store']);
+
+Route::get('dashboard/charge/entreprise',[ChargeEntrepriseController::class,'index']);
+Route::post('dashboard/charge/entreprise',[ChargeEntrepriseController::class,'store']);
+Route::get('/check/charge/{charge}',[ChargeController::class,'show']);
+
 
 Route::get('/check/reservation/{id}',[ReservationController::class,'show']);
 

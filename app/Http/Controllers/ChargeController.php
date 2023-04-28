@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Charge;
+use App\Models\Voiture;
 use Illuminate\Http\Request;
 
 class ChargeController extends Controller
@@ -12,7 +13,9 @@ class ChargeController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('Pages.dashboard.charge',['charges'=>Charge::paginate(6)]);
+    
     }
 
     /**
@@ -36,7 +39,7 @@ class ChargeController extends Controller
      */
     public function show(Charge $charge)
     {
-        //
+        return view('Pages.dashboard.charge-info',['charge'=>$charge]);
     }
 
     /**

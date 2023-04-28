@@ -17,15 +17,15 @@
     <h3 >{{$car->marque->marque}} {{$car->model->model}}</h3>
     <div class="d-flex justify-content-center buttons">
         @if (isset($entretient))
-        <a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('add/entretient')}}/{{$car->id}}">Rendre entretien</a>
+        <a class="col btn btn-outline-primary  m-1" href="{{ asset('add/entretient')}}/{{$car->id}}">Rendre entretien</a>
         
+        @elseif(isset($charge))
+        <a class="col btn btn-outline-warning m-1" href="{{ asset('dashboard/charge/voiture')}}/{{$car->id}}">Ajouter charge</a>
         @else
-        
-        
         <a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('cars')}}/{{$car->id}}">view</a>
             @if($car->status==null || ($car->status!=null && strtotime($car->status->dateRetour)<time()))
                 <a class="col-5 btn btn-outline-warning m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">reserve</a>
-            @endif   
+            @endif
         @endif
 
     </div>     

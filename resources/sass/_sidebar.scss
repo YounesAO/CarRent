@@ -38,11 +38,6 @@
 
                 }
             }
-        }
-        &:hover{
-            a::after{
-                opacity: 1;
-            }
             #Home::after{
                 content:'Home';
             } 
@@ -61,6 +56,12 @@
             #incom::after{
                 content:'Reveunues';
             }
+        }
+        &:hover{
+            a::after{
+                opacity: 1;
+            }
+           
         }
     }
 }
