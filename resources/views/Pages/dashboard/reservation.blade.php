@@ -2,33 +2,24 @@
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
     <h3>Reservations</h3> 
+    <div class="d-flex m-1">
+        <form  action="" method="GET">
+            <label class="form-label" for="month">Choisir le mois</label>
+            <input  class="form-control" type="month" id="start" name="month">
+            <button type="submit">o</button>
+        </form>
+    </div>
 </div>
 @endsection
 @section('content')
-<div class="d-flex m-1">
-    <table class="table m-1">
-        <tr class="">
-            <th>Voiture reservée</th>
-            <th>Date de depart</th>
-            <th>Date de retour</th>
-            <th>Nom de client</th>
-            <th>plus</th>
-        </tr>
-        @foreach($reservations as $r)
-            <tr class="">
-                <td>{{$r->voiture->marque->marque}} {{$r->voiture->model->model}}</td>
-                <td>{{$r->dateDebut}}</td>
-                <td>{{$r->dateRetour}}</td>
-                <td>{{$r->client->nomClient}} {{$r->client->prenomClient}}</td>
-                <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('/check/reservation')}}/{{$r->idReservation}}">view</a></td>
-            </tr>
-        @endforeach
-    </table>
-</div>
+
 @endsection
 
 <style>
     #reservation i {
-        color: white;
+        color: white !important;
+    }
+    #reservation::after {
+        opacity: 1 !important;
     }
 </style>

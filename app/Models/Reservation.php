@@ -18,7 +18,8 @@ class Reservation extends Model
         'idVoiture',	
         'dateDebut',	
         'dateRetour',	
-        'distance',	
+        'distance',
+        'prix',	
         'idPaiement' ];
 
     protected function voiture(): Attribute

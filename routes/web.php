@@ -72,6 +72,8 @@ Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 
 Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
 Route::get('/dashboard/reservation',[ReservationController::class,'index']);
+Route::get('/dashboard/reservation/history',[ReservationController::class,'view']);
+
 Route::get('/dashboard/charge', [ChargeController::class,'index']);
 Route::get('/dashboard/charge/voiture',[ChargeVoitureController::class,'index']);
 Route::get('/dashboard/charge/voiture/{voiture}',[ChargeVoitureController::class,'view']);

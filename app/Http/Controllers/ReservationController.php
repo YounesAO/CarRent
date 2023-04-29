@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Permis;
 use App\Models\Reservation;
 use App\Models\Voiture;
+use DateTimeImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -89,6 +90,19 @@ class ReservationController extends Controller
     {
         //
     }
+    public function view(Request $request)
+    {
+        $date = $request->input('month');
+        if($date == null){
+            $date = new DateTimeImmutable();
+            $date = $date->format('Y-m-d H:i:s');
+        }
+        $date = explode('-', $date);
+        $reservations =Reservation::whereYear('dateDebut','=',$date[0])->whereMonth('datedebut', '=', $date[1])->get();
+
+        return view('Pages.dashboard.reservation-history',['reservations'=>$reservations,'month'=>$date]);
+    }
+
 
     /**
      * Remove the specified resource from storage.
