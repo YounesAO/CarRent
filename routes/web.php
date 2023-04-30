@@ -5,6 +5,7 @@ use App\Http\Controllers\ChargeEntrepriseController;
 use App\Http\Controllers\ChargeVoitureController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EntretientController;
+use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\UserController;
@@ -12,10 +13,12 @@ use App\Models\Charge;
 use App\Models\ChargeEntreprise;
 use App\Models\ChargeVoiture;
 use App\Models\Entretient;
+use App\Models\Marque;
 use App\Models\Reservation;
 use App\Models\User;
 
 use App\Models\Voiture;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -49,7 +52,7 @@ Route::post('/cars/{voiture}/edit', [VoitureController::class,'update']);
 Route::get('/cars/{voiture}/delete', [VoitureController::class,'delete']);
 Route::post('/add/car', [VoitureController::class, 'store']);
 Route::get('/add/car',function () {
-    return view('Pages.Voiture.add');
+    return view('Pages.Voiture.add',['marque'=>Marque::all()]);
 });
 
 Route::get('/add/reservation',function () {
@@ -72,7 +75,7 @@ Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 
 Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
 Route::get('/dashboard/reservation',[ReservationController::class,'index']);
-Route::get('/dashboard/reservation/history',[ReservationController::class,'view']);
+Route::get('/dashboard/reservation/history?month={month}',[ReservationController::class,'view']);
 
 Route::get('/dashboard/charge', [ChargeController::class,'index']);
 Route::get('/dashboard/charge/voiture',[ChargeVoitureController::class,'index']);
@@ -82,6 +85,7 @@ Route::post('/dashboard/charge/voiture/{voiture}',[ChargeVoitureController::clas
 Route::get('dashboard/charge/entreprise',[ChargeEntrepriseController::class,'index']);
 Route::post('dashboard/charge/entreprise',[ChargeEntrepriseController::class,'store']);
 Route::get('/check/charge/{charge}',[ChargeController::class,'show']);
+Route::get('/get-model',[ModeleController::class,'index']);
 
 
 Route::get('/check/reservation/{id}',[ReservationController::class,'show']);

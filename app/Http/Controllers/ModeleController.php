@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marque;
 use App\Models\Modele;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class ModeleController extends Controller
@@ -10,10 +12,15 @@ class ModeleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $NOM = $request->input('marque');
+        $marque = Marque::where('marque',$NOM)->first();
+        
+        $modeles = Modele::where('idMarque', $marque->idMarque)->get();
+        return response()->json($modeles);
+
+        }
 
     /**
      * Show the form for creating a new resource.

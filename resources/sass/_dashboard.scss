@@ -2,6 +2,7 @@
     
     .card{
         width: 300px;
+        z-index: 1;
     }
 
    
@@ -45,4 +46,35 @@ fieldset{
         flex-direction: row-reverse;
         justify-content: left;
     }
+}
+.pieces{
+list-style: none;
+position: relative;
+right: 50px;
+li{
+    margin-bottom: 3px;
+.piece{
+    width:20px;
+    position: relative;
+    right :680px;
+    z-index: 0;
+    &.red {
+        filter:  drop-shadow(600px 20px 0px red);
+    }
+    &.green {
+        filter:  drop-shadow(600px 20px 0px green);
+    }
+    &.warning {
+        filter:  drop-shadow(600px 20px 0px #ffc107);
+    }
+}    
+.nomPieces{
+    position: relative;
+    top: 23px;
+    right: 70px;
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 2px;
+}
+}
 }

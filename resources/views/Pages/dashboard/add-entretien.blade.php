@@ -9,15 +9,21 @@
     </div>
 @endforeach
 @endif
-<div class="d-flex">
+<div class="d-flex reverse-column">
    
     <div class="entretient-form m-1">
         @include('components.car.card')
-        <div class="d-flex">
-            <span>last repare </span>
-            @foreach ($entretients as $item)
-                {{$item->idEntretient}}
+        <div class="d-flex ">
+            <span>L'état des pieces  :</span>
+            <ul class="m-1 pieces">
+            @foreach ($pieces as $item)
+                @if (isset($stat[$item->idPiece]))
+                    <li class=""><img class="piece {{$stat[$item->idPiece]}}" src="{{ asset('images').'/' }}{{$item->img}}" alt="" title="{{$item->nom}}"><span class="nomPieces">{{$item->nom}}</span> </li>
+                @else
+                    <li class=""><img class="piece green" src="{{ asset('images').'/' }}{{$item->img}}" alt="" title="{{$item->nom}}"><span class="nomPieces">{{$item->nom}}</span> </li>
+                @endif
             @endforeach
+        </ul>
             <span></span>
         </div>
     </div>

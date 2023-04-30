@@ -9,5 +9,8 @@ class Modele extends Model
 {
     use HasFactory;
     protected $table = 'model';
+    protected $primaryKey ='idModel';
+    public $timestamps = false;
+
     protected $fillable = ['idModel','idMarque','model','annee' ];
 }
