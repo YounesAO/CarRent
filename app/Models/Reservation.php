@@ -35,4 +35,10 @@ class Reservation extends Model
             get: fn () =>Client::where('idClient',$this->idClient)->first()
         );
     }
+    protected function duree(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>(date_diff(date_create($this->dateRetour) ,date_create($this->dateDebut))->format("%d"))
+        );
+    }
 }

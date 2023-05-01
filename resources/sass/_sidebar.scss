@@ -56,12 +56,13 @@
             #incom::after{
                 content:'Reveunues';
             }
-        }
-        &:hover{
-            a::after{
-                opacity: 1;
+            &:hover{
+                a::after{
+                    opacity: 1;
+                }
+               
             }
-           
         }
+       
     }
 }

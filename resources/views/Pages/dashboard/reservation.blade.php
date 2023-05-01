@@ -12,7 +12,11 @@
 </div>
 @endsection
 @section('content')
-
+   <div class="d-flex">
+    @foreach ($reservations as $reservation)
+        @include('components.reservation.widget')
+    @endforeach
+   </div>
 @endsection
 
 <style>

@@ -21,7 +21,7 @@ class Voiture extends Model
         'nbPlaces',
         'kilometrage',
         'image',
-        'carburant',
+        'thisburant',
         'idModel'
     ];
     
@@ -45,5 +45,16 @@ class Voiture extends Model
             
         );
     }
+
+    protected function disponible(): Attribute
+    {
+        return new Attribute(
+            get: fn () => 
+                ($this->status==null || ($this->status!=null && strtotime($this->status->dateRetour)<time())?true:false)
+            
+        );
+    }
+    
+    
 }
 

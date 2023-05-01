@@ -11,7 +11,7 @@
             <input class="form-control" type="text" name="immatricule" id="" value="@yield('immatricule')" required>
             
             <label class="form-label" for="marque">Marque</label>
-            <input class ="form-control" name="marque" value="@yield('marque')" list="marques" required>
+            <input class ="form-control"id="marque" name="marque" value="@yield('marque')" list="marques" required>
             
                 <datalist id="marques">
                     @foreach($marque as $m)
@@ -20,7 +20,7 @@
                 </datalist>
             
             <label class="form-label" for="model">Model de voiture</label>
-            <input class ="form-control" name="model" value="@yield('model')" list="model" required>
+            <input class ="form-control" name="model" value="@yield('model')" list="models" required>
 
                 <datalist id="models">
                     
@@ -62,10 +62,16 @@
         <a class="btn btn-danger m-2" href="{{ asset('dashboard/') }}">Retouner</a>
     </CENter>   
 </form>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
 <script>
     $(document).ready(function() {
+        console.log('hi')
+
         $('#marque').change(function() {
             var selectedMarque = $(this).val();
+            console.log(selectedMarque)
+
 
     $.ajax({
       url: '/get-model',
@@ -75,7 +81,7 @@
         var datalist = $('#models');
         datalist.empty(); // Clear existing options
         $.each(data, function(index, item) {
-          $('<option>').attr('value', item).appendTo(datalist);
+          $('<option>').attr('value', item.model).appendTo(datalist);
         });
       },
       error: function(jqXHR, textStatus, errorThrown) {

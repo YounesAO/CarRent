@@ -14,7 +14,7 @@
     <div class="entretient-form m-1">
         @include('components.car.card')
         <div class="d-flex ">
-            <span>L'état des pieces  :</span>
+            <span>Etat des pieces :</span>
             <ul class="m-1 pieces">
             @foreach ($pieces as $item)
                 @if (isset($stat[$item->idPiece]))

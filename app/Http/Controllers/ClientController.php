@@ -24,7 +24,6 @@ class ClientController extends Controller
         (?,?,?,?,?)',[null,$idc[0]->idClient,$info['idVoiture'],$info['dateDebut'],$info['dateRetour']]);
         
         $reservation = DB::select('select * from reservation order by(idReservation) desc LIMIT 1');
-        dd($reservation[0]);
         return view("Pages.Reservation.check",['reservation'=>$reservation[0],'client'=>Client::where('idClient',$info['cin']),'voiture'=>Voiture::where('id',$info['idVoiture'])]);
         } 
     }

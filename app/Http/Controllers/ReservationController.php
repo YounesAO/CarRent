@@ -19,8 +19,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations =Reservation::all();
-        return (view('Pages.dashboard.reservation',['reservations'=>$reservations]));
+        $reservations = Reservation::all()->where('idPaiement',null);
+        return (view('Pages.dashboard.reservation',['reservations'=>$reservations   ]));
     }
 
     /**
@@ -91,7 +91,7 @@ class ReservationController extends Controller
         //
     }
     public function view(Request $request)
-    {
+    {   
         $date = $request->input('month');
         if($date == null){
             $date = new DateTimeImmutable();
@@ -99,7 +99,6 @@ class ReservationController extends Controller
         }
         $date = explode('-', $date);
         $reservations =Reservation::whereYear('dateDebut','=',$date[0])->whereMonth('datedebut', '=', $date[1])->get();
-
         return view('Pages.dashboard.reservation-history',['reservations'=>$reservations,'month'=>$date]);
     }
 

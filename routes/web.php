@@ -67,7 +67,7 @@ Route::post('/add/client', [ClientController::class, 'store']);
 Route::post('/check/client', [ReservationController::class, 'store']);
 
 Route::get('/dashboard',function () {
-    return view('Pages.dashboard.home');
+    return view('Pages.dashboard.home',['nbCars'=>Voiture::all()->count()]);
 });
 Route::get('dashboard/entretient',[EntretientController::class,'index']);
 Route::get('add/entretient/{voiture}',[EntretientController::class,'fill']);
@@ -75,7 +75,7 @@ Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 
 Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
 Route::get('/dashboard/reservation',[ReservationController::class,'index']);
-Route::get('/dashboard/reservation/history?month={month}',[ReservationController::class,'view']);
+Route::get('/dashboard/reservation/history',[ReservationController::class,'view']);
 
 Route::get('/dashboard/charge', [ChargeController::class,'index']);
 Route::get('/dashboard/charge/voiture',[ChargeVoitureController::class,'index']);

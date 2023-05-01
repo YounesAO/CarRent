@@ -6,7 +6,7 @@
             <i class="fa-solid fa-car"></i>
         </div>
         <div class="body">
-            <span class="num">12</span>
+            <span class="num">{{$nbCars}}</span>
         <span class="desc">Total des voitures</span>
         </div>
     </div>
