@@ -1,4 +1,4 @@
-<form class=""action="" method="post">
+<form class=""action="" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="id" value ='@yield('idCar')'>
     
@@ -33,7 +33,7 @@
             
         </div>
         <div class="container-fluid ">
-            <label class="form-label" for="carburant">Nombre des portes</label>
+            <label class="form-label" for="carburant">Carburant</label>
             <select class="form-control" name="carburant" id="">
                 <option value="Diesel">Diesel</option>
                 <option value="Essence">Essence</option>
@@ -41,12 +41,34 @@
                 <option value="Electrical">Electrical</option>
 
             </select>
+
+            <label class="form-label" for="model">Categorie</label>
+            <input class ="form-control" name="model" value="@yield('model')" list="models" required>
+
+                <datalist id="models">
+                    
+                </datalist>
+
             <label class="form-label" for="nbportest">Nombre des portes</label>
             <input class="form-control" type="number" name="nbportes" id="" value="@yield('nbportes')" required>
             
             <label class="form-label" for="nbPlaces">Nombre des places</label>
             <input class="form-control" type="number" name="nbPlaces" id="" value="@yield('nbPlaces')" required>
             
+                <div class=" d-flex flex-column-reverse daitails">
+                    <div class=" ">
+                        <input class="form-check-input" class="form-check-input" type="checkbox" name="4WD" id="" value="1">
+                        <label class="form-label" for="4WD">4x4 (4WD)</label>
+                        <input class="form-check-input" type="checkbox" name="AC" id="" value="1">
+                        <label class="form-label" for="AC">Climatisation (AC)</label>
+
+                    </div>
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="auto" id="" value="1">
+                        <label class="form-label" for="auto">Boite Automatique</label>
+                    </div>
+                </div>
+
             <label class="form-label" for="image">Image</label>
             <input class="form-control" type="file"  name="image" value="@yield('image')"id="" >
             

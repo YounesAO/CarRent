@@ -21,7 +21,10 @@ class Voiture extends Model
         'nbPlaces',
         'kilometrage',
         'image',
-        'thisburant',
+        'carburant',
+        'FWD',
+        'AC',
+        'auto',
         'idModel'
     ];
     

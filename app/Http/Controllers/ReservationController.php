@@ -36,6 +36,7 @@ class ReservationController extends Controller
      */
     public function prepare(Request $request,$id)
     {
+
     $request->validate([
         'cin'=>'required|regex:/(^([a-zA-z]+)(\d+)?$)/u',
         'dateDebut' => 'required|date|after:today',
@@ -49,13 +50,13 @@ class ReservationController extends Controller
             $permis= Permis::where('idPermis', $client->idPermis)->first();
 
         return view('Pages.Client.check',['req'=>$request,'id'=>$id,'client'=>$client,'permis'=>$permis]);
-
     
     }
     public function store(Request $request){
         $info =$request->req_;
-        DB::insert('insert into reservation (`idReservation`,`idClient`,`idVoiture`,`dateDebut`,`dateRetour`) values
-        (?,?,?,?,?)',[null,$request->idClient,$info['idVoiture'],$info['dateDebut'],$info['dateRetour']]);
+
+        DB::insert('insert into reservation (`idReservation`,`idClient`,`idVoiture`,`dateDebut`,`dateRetour`,`prix`) values
+        (?,?,?,?,?,?)',[null,$request->idClient,$info['idVoiture'],$info['dateDebut'],$info['dateRetour'],$info['prix']]);
         
         $reservation = DB::select('select * from reservation order by(idReservation) desc LIMIT 1');
 

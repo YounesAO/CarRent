@@ -8,6 +8,8 @@
     <input class="form-control" type="date" name="dateDebut" id="">
     <label class="form-label" for="dateRetour">Date retour</label>
     <input class="form-control" type="date" name="dateRetour" id="">
+    <label class="form-label" for="prix">Prix</label>
+    <input class="form-control" type="text" name="prix" id="">
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <div class="alert m-1 p-0 alert-danger">
