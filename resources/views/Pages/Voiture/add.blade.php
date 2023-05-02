@@ -1,5 +1,5 @@
 @extends('dashboard')
-@section('title','Ajouter une voiture page')
+@php $title ="Ajouter voiture"@endphp
 
 @section('header')
 <h3 class="m-1">Ajouter une voiture</h3>

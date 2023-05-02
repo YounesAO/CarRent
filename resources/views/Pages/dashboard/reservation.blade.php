@@ -1,3 +1,5 @@
+@php $title ="Informations sur la reservation"@endphp
+
 @extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
@@ -12,7 +14,7 @@
 </div>
 @endsection
 @section('content')
-   <div class="d-flex">
+   <div class="d-flex flex-wrap justify-content-center">
     @foreach ($reservations as $reservation)
         @include('components.reservation.widget')
     @endforeach

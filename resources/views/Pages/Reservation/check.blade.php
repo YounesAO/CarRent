@@ -1,4 +1,5 @@
+@php $title ="Information sur la reservation" @endphp
 @extends('dashboard')
 @section('content')
-    @dd($reservation)
+@include('components.reservation.widget')
 @endsection

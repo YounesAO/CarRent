@@ -39,7 +39,7 @@ class ChargeController extends Controller
      */
     public function show(Charge $charge)
     {
-        return view('Pages.dashboard.charge-info',['charge'=>$charge]);
+        return view('Pages.dashboard.charge-info',['title'=>'Information sur les charge','charge'=>$charge]);
     }
 
     /**

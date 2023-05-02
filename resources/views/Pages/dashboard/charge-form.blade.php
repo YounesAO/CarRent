@@ -1,3 +1,5 @@
+@php $title ="Ajouter une charges"@endphp
+
 @extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">

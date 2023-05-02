@@ -1,10 +1,13 @@
 .card{
     height: fit-content!important;
+    width: 300px;
 
     .card-info{
         
         img{
-            width: 250px;
+            width: 100%;
+            aspect-ratio : 3/2;
+            object-fit: contain;
         }
     }
     .d-flex{

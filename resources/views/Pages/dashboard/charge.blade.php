@@ -1,4 +1,6 @@
-@extends('dashboard')
+@php $title ="gestion des charges"@endphp
+
+@include('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
     <h3>Charge</h3> 

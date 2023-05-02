@@ -1,3 +1,5 @@
+@php $title ="Ajouter un entretien d'une voiture"@endphp
+
 @extends('dashboard')
 @section('content')
 @if ($errors->any())

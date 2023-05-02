@@ -58,9 +58,8 @@ class ReservationController extends Controller
         DB::insert('insert into reservation (`idReservation`,`idClient`,`idVoiture`,`dateDebut`,`dateRetour`,`prix`) values
         (?,?,?,?,?,?)',[null,$request->idClient,$info['idVoiture'],$info['dateDebut'],$info['dateRetour'],$info['prix']]);
         
-        $reservation = DB::select('select * from reservation order by(idReservation) desc LIMIT 1');
-
-        return view("Pages.Reservation.check",['reservation'=>$reservation[0],'client'=>Client::where('idClient',$request->idClient),'voiture'=>Voiture::where('idVoiture',$info['idVoiture'])]);
+        $reservation = Reservation::all()->last();
+        return view("Pages.Reservation.check",['reservation'=>$reservation,'client'=>Client::where('idClient',$request->idClient),'voiture'=>Voiture::where('id',$info['idVoiture'])->first()]);
     }
 
     /**

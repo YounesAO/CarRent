@@ -1,4 +1,5 @@
 
+@php $title ="Ajouter une reservation" @endphp
 @include('layouts.head')
 @extends('layouts.app')
 @section('bar')

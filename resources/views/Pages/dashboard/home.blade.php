@@ -1,6 +1,8 @@
+@php $title ="Accueil"@endphp
+
 @extends('dashboard')
 @section('content')
-<div class=" d-flex justify-content-between m-5">
+<div class=" d-flex justify-content-center flex-wrap">
     <div onclick="window.location.href +='/cars';" class="m-1 widget " style="color:rgb(146, 37, 236);background-color: rgba(137, 43, 226, 0.24)">
         <div class="icon">
             <i class="fa-solid fa-car"></i>
@@ -44,6 +46,8 @@
         
     </div>
 </div>
+<div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+
 @endsection
 <style>
 

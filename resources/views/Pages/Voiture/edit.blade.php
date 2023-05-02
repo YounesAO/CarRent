@@ -1,6 +1,6 @@
+@php $title = 'Modifer les informations de '.$nom = $car->marque->marque ." ".$car->model->model  @endphp
 @include('layouts.head')
 
-@section('title','edite une voiture page')
 @extends('layouts.app')
 @section('header','modifier une voiture')
 @section('content')
