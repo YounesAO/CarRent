@@ -20,7 +20,33 @@ class EntretientController extends Controller
     }
     //remplir et afficher le form
     public function fill(Voiture $voiture){
+        $pieces = Piece::all();
 
+        $piecePerEnt = EntretientController::entretiens($voiture);
+
+        return view('Pages.dashboard.add-entretien',['car'=>$voiture,'pieces'=>$pieces,'stat'=>$piecePerEnt]);
+    }
+    public function store(Request $request,$id)
+    {
+        $request->validate([
+            'date'=> 'required',
+        ]);
+
+        $entretient = Entretient::create($request->all());
+        $chargev = new ChargeVoiture(["idVoiture"=>$id,'natureCharge'=>"Entretient",'idEntretient'=>$entretient->idEntretient]);
+        $chargev->save();
+        $charge = new Charge(['categorieCharge'=>'Entretient','dateCharge'=>$request->date,'montant'=>$entretient->montant,'idChargeEntreprise'=>null,'idChargeVoiture'=>$chargev->idChargeVoiture]);
+        $charge->save();
+        foreach($request->idPiece as $idpiece){
+            $piece= new PieceChangee(['idPiece'=> $idpiece,'idEntretient'=>$entretient->idEntretient]);
+            $piece->save();
+        }
+        dd($piece);
+    return('alert');
+
+    }
+    public static function entretiens(Voiture $voiture)
+    {
         $pieces = Piece::all();
         //les pieces a changées selon les condition 
         $piecePerEnt = [];
@@ -51,27 +77,7 @@ class EntretientController extends Controller
                     }
                 }
             }
-        }        
-
-        return view('Pages.dashboard.add-entretien',['car'=>$voiture,'pieces'=>$pieces,'stat'=>$piecePerEnt]);
-    }
-    public function store(Request $request,$id)
-    {
-        $request->validate([
-            'date'=> 'required',
-        ]);
-
-        $entretient = Entretient::create($request->all());
-        $chargev = new ChargeVoiture(["idVoiture"=>$id,'natureEntretient'=>$request->nature,'idEntretient'=>$entretient->idEntretient]);
-        $chargev->save();
-        $charge = new Charge(['categorieCharge'=>'Entretient','dateCharge'=>$request->date,'montant'=>$entretient->montant,'idChargeEntreprise'=>null,'idChargeVoiture'=>$chargev->idChargeVoiture]);
-        $charge->save();
-        foreach($request->idPiece as $idpiece){
-            $piece= new PieceChangee(['idPiece'=> $idpiece,'idEntretient'=>$entretient->idEntretient]);
-            $piece->save();
-        }
-        dd($piece);
-    return('alert');
-
+        } 
+        return $piecePerEnt ;
     }
 }

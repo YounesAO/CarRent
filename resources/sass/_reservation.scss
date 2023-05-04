@@ -1,0 +1,78 @@
+.reservation-about{
+    .header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin:10px;
+        padding: 12px;
+        background-color: rgb(157, 177, 231);
+        section{
+            cursor: pointer;
+            width: 30%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            padding-left: 30px;
+            background-color: rgba(183, 223, 255, 0.877);
+            margin: 1%;
+            .icon{
+                i{
+                    font-size: 50px;
+                }
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: baseline;
+                margin-left: 10px;
+                font-family: 'Lucida Sans';
+            }
+        }
+        .stat{
+            cursor:default;
+        }
+    }
+.section-info{
+    display: flex;
+    width: 100%;
+    margin:10px;
+    padding: 12px;
+    border: 1px solid #aa77fcc7;
+    background-color: rgb(193, 155, 255); 
+    border-radius: 7px; 
+    div{
+            width: 23%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background-color: #eee;
+            margin: 1%;
+        span{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        h5{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-top: 10px;
+            margin-left: 3px;
+        }
+    }  
+
+}
+.buttons{
+    display: flex;
+    justify-content: end;
+    button{
+        width: 200px;
+        box-shadow: none;
+        
+    }
+}
+}
+.bold{
+    font-weight: 600;
+}

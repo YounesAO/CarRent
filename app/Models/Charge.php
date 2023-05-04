@@ -20,4 +20,5 @@ class Charge extends Model
         'idChargeEntreprise',
         'idChargeVoiture'
     ];
+    
 }

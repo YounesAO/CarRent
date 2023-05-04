@@ -14,7 +14,7 @@ class ChargeController extends Controller
     public function index()
     {
         
-        return view('Pages.dashboard.charge',['charges'=>Charge::paginate(6)]);
+        return view('Pages.dashboard.charge',['charges'=>Charge::all()]);
     
     }
 

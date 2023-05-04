@@ -8,7 +8,7 @@
             <i class="fa-solid fa-car"></i>
         </div>
         <div class="body">
-            <span class="num">{{$nbCars}}</span>
+            <span class="num">{{$cars->count()}}</span>
         <span class="desc">Total des voitures</span>
         </div>
     </div>
@@ -19,7 +19,7 @@
             <i class="fa-solid fa-tags"></i>
         </div>
         <div class="body">
-            <span class="num">12</span>
+            <span class="num">{{$reservations->where('encours',1)->count()}}</span>
             <span class="desc">Reservation en cours</span>
         </div>
     </div>
@@ -29,7 +29,18 @@
             <i class="fa-solid fa-hourglass-half"></i>
         </div>
         <div class="body">
-            <span class="num">12</span>
+            <span class="num">
+                @php
+                $nbPaiement=0;
+                foreach($reservations as $reservation){
+                    if($reservation->paiement!=null && $reservation->paiement->cheque!=null && $reservation->paiement->cheque->encours){
+                    $nbPaiement++;
+                    }
+                }
+                echo $nbPaiement;
+                @endphp
+                
+            </span>
             <span class="desc">Paiements en attente</span>
         </div>
     </div>
@@ -40,7 +51,16 @@
             <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
         <div class="body">
-            <span class="num">12</span>
+            <span class="num">  
+            @php
+            $nbAlerts=0;
+            foreach($cars as $car){
+            $nbAlerts += count($car->entretients);
+            }
+            echo $nbAlerts;
+            @endphp 
+            
+            </span>
             <span class="desc">Entretien alerts</span>
         </div>
         

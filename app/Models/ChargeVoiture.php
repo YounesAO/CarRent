@@ -15,7 +15,7 @@ class ChargeVoiture extends Model
     protected $fillable =[
         'idChargeVoiture',
         'idVoiture',
-        'natureEntretient',
+        'natureCharge',
         'idEntretient'	
     ];
 }

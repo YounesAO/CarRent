@@ -1,6 +1,6 @@
 @php $title ="Historique des reservations"@endphp
 
-@extends('dashboard')
+@extends ('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
     <h3>Reservations de mois {{$month[1]." ".$month[0]}}</h3> 

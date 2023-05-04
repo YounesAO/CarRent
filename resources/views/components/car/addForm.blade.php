@@ -33,7 +33,7 @@
             
         </div>
         <div class="container-fluid ">
-            <label class="form-label" for="carburant">Carburant</label>
+            <label class="form-label" for="carburant">Carburant </label>
             <select class="form-control" name="carburant" id="">
                 <option value="Diesel">Diesel</option>
                 <option value="Essence">Essence</option>
@@ -42,12 +42,8 @@
 
             </select>
 
-            <label class="form-label" for="model">Categorie</label>
-            <input class ="form-control" name="model" value="@yield('model')" list="models" required>
-
-                <datalist id="models">
-                    
-                </datalist>
+            <label class="form-label" for="cat">Categorie</label>
+            <input class ="form-control" type="text" name="cat" value="@yield('cat')" placeholder="categorie" required>
 
             <label class="form-label" for="nbportest">Nombre des portes</label>
             <input class="form-control" type="number" name="nbportes" id="" value="@yield('nbportes')" required>
@@ -57,14 +53,14 @@
             
                 <div class=" d-flex flex-column-reverse daitails">
                     <div class=" ">
-                        <input class="form-check-input" class="form-check-input" type="checkbox" name="4WD" id="" value="1">
+                        <input class="form-check-input" class="form-check-input" type="checkbox" name="4WD" id="" value="1" @yield('4WD')>
                         <label class="form-label" for="4WD">4x4 (4WD)</label>
-                        <input class="form-check-input" type="checkbox" name="AC" id="" value="1">
+                        <input class="form-check-input" type="checkbox" name="AC" id="" value="1" @yield('AC')>
                         <label class="form-label" for="AC">Climatisation (AC)</label>
 
                     </div>
                     <div>
-                        <input class="form-check-input" type="checkbox" name="auto" id="" value="1">
+                        <input class="form-check-input" type="checkbox" name="auto" id="" value="1" @yield('auto')>
                         <label class="form-label" for="auto">Boite Automatique</label>
                     </div>
                 </div>

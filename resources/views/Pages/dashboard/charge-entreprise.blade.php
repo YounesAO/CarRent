@@ -1,4 +1,4 @@
-@php $title .="Ajouter une charge d'entreprise"@endphp
+@php $title = "Ajouter une charge d'entreprise"@endphp
 
 @extends('dashboard')
 @section('header')

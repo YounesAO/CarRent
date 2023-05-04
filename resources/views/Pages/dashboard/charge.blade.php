@@ -1,6 +1,6 @@
 @php $title ="gestion des charges"@endphp
 
-@include('dashboard')
+@extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
     <h3>Charge</h3> 
@@ -12,31 +12,43 @@
     <a class="btn btn-primary m-2" href="charge/entreprise">Ajouter charge Entreptise</a>
 </div>
 
-<div class="d-flex m-1">
-    <table class="table m-2">
+<div class=" container-fluid m-1">
+    <table id="chargeTable" class="table m-2">
+        <thead>
         <tr class="">
             <th>Identifiant</th>
-            <th>categorie de charge</th>
+            <th>Type de charge</th>
+            <th>Categorie de charge</th>
             <th>Date de charge</th>
             <th>Montant total</th>
-            <th>plus</th>
+            <th>Plus</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach($charges as $charge)
             <tr class="">
                 <td>{{$charge->idCharge}}</td>
+                <td>{{$charge-> }}</td>
                 <td>{{$charge->categorieCharge}}</td>
                 <td>{{$charge->dateCharge}}</td>
                 <td>{{$charge->montant}}</td>
                 <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('/check/charge')}}/{{$charge->idCharge}}">view</a></td>
             </tr>
         @endforeach
+    </tbody>
     </table>
    
 </div>
 <div>
-    {{ $charges->links() }}
 
-   </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#chargeTable').DataTable({
+            pagingType: 'full_numbers',
+        });
+    }, false);
+</script>
 @endsection
 
 <style>

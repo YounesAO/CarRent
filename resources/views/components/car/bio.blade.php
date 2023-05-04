@@ -1,4 +1,4 @@
-<div class="w-9 p-3 m-1 shadow">
+<div class="w-9 p-3 m-1 gishadow">
     <div class=" bio d-flex">
         <div class=" car m-2">
             <span class="info">marque</span>
@@ -36,8 +36,15 @@
     </div>
 <div class="">
     les reservations passées:
+    @php $nbReservation = 0;@endphp
     @foreach($reservations as $reservation)
-    @include("components.reservation.widget")
-    @endforeach
+    @php $nbReservation ++;@endphp
+        @if($nbReservation < 7)
+                @include("components.reservation.notification")
+        @endif
+    @endforeach    
+    <div class="d-flex justify-content-center">
+        <a class="btn " href="/dashboard/reservation/history">Total de {{ $nbReservation }} reservations</a> 
+    </div>
 </div>
 </div>

@@ -4,8 +4,10 @@ use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\ChargeEntrepriseController;
 use App\Http\Controllers\ChargeVoitureController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntretientController;
 use App\Http\Controllers\ModeleController;
+use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\UserController;
@@ -46,7 +48,7 @@ Route::post('welcome',function(){
 });
 
 Route::get('/cars', [VoitureController::class, 'index']);
-Route::get('/cars/{id}', [VoitureController::class, 'view']);
+Route::get('/cars/{id}', [VoitureController::class, 'view'])->name('voiture');
 Route::get('/cars/{id}/edit', [VoitureController::class, 'edit']);
 Route::post('/cars/{voiture}/edit', [VoitureController::class,'update']);
 Route::get('/cars/{voiture}/delete', [VoitureController::class,'delete']);
@@ -65,10 +67,11 @@ Route::post('/add/reservation/{id}', [ReservationController::class, 'prepare']);
 
 Route::post('/add/client', [ClientController::class, 'store']);
 Route::post('/check/client', [ReservationController::class, 'store']);
+Route::get('/check/client/{client}', function($client){
+    view('Pages.Reservation.add',['voiture'=>$client]);
+})->name('client');
 
-Route::get('/dashboard',function () {
-    return view('Pages.dashboard.home',['nbCars'=>Voiture::all()->count()]);
-});
+Route::get('/dashboard',[DashboardController::class,'index']);
 Route::get('dashboard/entretient',[EntretientController::class,'index']);
 Route::get('add/entretient/{voiture}',[EntretientController::class,'fill']);
 Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
@@ -89,6 +92,10 @@ Route::get('/get-model',[ModeleController::class,'index']);
 
 
 Route::get('/check/reservation/{id}',[ReservationController::class,'show']);
+Route::post('edite/reservation/{reservation}',[ReservationController::class,'update']);
+Route::post('add/paiement/{reservation}',[PaiementController::class,'store']);
+Route::post('edite/paiement/{paiement}',[PaiementController::class,'update']);
+
 
 Route::get('/home', function () {
     return view('home');

@@ -7,6 +7,8 @@
   <div class="d-flex flex-wrap cars">
     @foreach ($voitures as $car)
         @include('components.car.card')
+        
     @endforeach
+  
   </div>
 @endsection

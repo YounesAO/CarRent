@@ -1,20 +1,19 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=time');
-
 // Variables
 @import 'variables';
 //card style
-@import 'Card';
+@import 'Car';
 @import 'progress_bar';
 @import 'sidebar';
 @import 'dashboard';
 @import 'login';
-
-
-
+@import 'datatables.net-bs5/css/dataTables.bootstrap5';
+@import'slick-carousel/slick/slick.scss';
+@import'slick-carousel/slick/slick-theme.scss';
+@import'reservation';
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
-
 .content{
     min-height: 80vh;
 }

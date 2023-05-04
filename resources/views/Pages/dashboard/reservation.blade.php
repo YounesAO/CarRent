@@ -3,24 +3,13 @@
 @extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
-    <h3>Reservations</h3> 
-    <div class="d-flex m-1">
-        <form  action="" method="GET">
-            <label class="form-label" for="month">Choisir le mois</label>
-            <input  class="form-control" type="month" id="start" name="month">
-            <button type="submit">o</button>
-        </form>
-    </div>
+    <h3>Reservations en cours</h3> 
+    <a href="reservation/history"><svg width="2" height="2" aria-hidden="true" fill="currentColor" class="mx-3 text-slate-300">
+        <circle cx="1" cy="1" r="1" />
+      </svg> Historique</a>
 </div>
 @endsection
 @section('content')
-   <div class="d-flex flex-wrap justify-content-center">
-    @foreach ($reservations as $reservation)
-        @include('components.reservation.widget')
-    @endforeach
-   </div>
-@endsection
-
 <style>
     #reservation i {
         color: white !important;
@@ -29,3 +18,28 @@
         opacity: 1 !important;
     }
 </style>
+<div class="m-5">
+    <div class="reservation-unpaid">
+        @foreach ($reservations as $reservation)
+            @include('components.reservation.widget')
+        @endforeach
+        
+    </div>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    $('.reservation-unpaid').slick({
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1
+    });
+    
+    
+}, false);
+</script>
+
+
+@endsection
+

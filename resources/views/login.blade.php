@@ -1,3 +1,4 @@
+@php $title ="s'authentification - CarRent"@endphp
 
 @include('layouts.head')
 @extends('layouts.app')

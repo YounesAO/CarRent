@@ -34,8 +34,6 @@
             @csrf
             <fieldset>
             <legend>information sur l'entretien</legend> 
-            <label for="nature" >Nature d'entretien</label>
-            <input type="text" class="form-control" name="nature" required>
             
             <label for="nomAtelier" >Atelier</label>
             <input type="text" class="form-control" name="nomAtelier" placeholder="N'est pas obligatoire">

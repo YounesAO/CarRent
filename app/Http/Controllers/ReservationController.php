@@ -19,8 +19,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all()->where('idPaiement',null);
-        return (view('Pages.dashboard.reservation',['reservations'=>$reservations   ]));
+        $reservations = Reservation::where('idPaiement',null)->get();
+        return (view('Pages.dashboard.reservation',['reservations'=>$reservations ]));
     }
 
     /**
@@ -54,12 +54,9 @@ class ReservationController extends Controller
     }
     public function store(Request $request){
         $info =$request->req_;
-
-        DB::insert('insert into reservation (`idReservation`,`idClient`,`idVoiture`,`dateDebut`,`dateRetour`,`prix`) values
-        (?,?,?,?,?,?)',[null,$request->idClient,$info['idVoiture'],$info['dateDebut'],$info['dateRetour'],$info['prix']]);
-        
-        $reservation = Reservation::all()->last();
-        return view("Pages.Reservation.check",['reservation'=>$reservation,'client'=>Client::where('idClient',$request->idClient),'voiture'=>Voiture::where('id',$info['idVoiture'])->first()]);
+        $client=Client::where('CIN',$info['cin'])->first();
+        $reservation = new Reservation(['idClient'=>$client->idClient,'idVoiture'=>$info['idVoiture'],'dateDebut'=>$info['dateDebut'],'dateRetour'=>$info['dateRetour'],$info['prix']]);
+        return view("Pages.Reservation.about",['reservation'=>$reservation,'client'=>Client::where('idClient',$request->idClient),'voiture'=>Voiture::where('id',$info['idVoiture'])->first()]);
     }
 
     /**
@@ -68,7 +65,7 @@ class ReservationController extends Controller
     public function show($id)
     {
         $reservation = Reservation::where('idReservation',$id)->first();
-        return(view("Pages.Reservation.check",[
+        return(view("Pages.Reservation.about",[
             'reservation'=>$reservation,
             'client'=>$reservation->client,
             'voiture'=>$reservation->voiture
@@ -88,8 +85,9 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
-    }
+        $reservation->update($request->all());
+        return redirect('dashboard/reservation');  
+}
     public function view(Request $request)
     {   
         $date = $request->input('month');

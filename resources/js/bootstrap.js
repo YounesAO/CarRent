@@ -1,5 +1,10 @@
 import 'bootstrap';
 import 'chart.js';
+import $ from "jquery";
+import 'datatables.net-bs5';
+import 'slick-carousel';
+
+window.jQuery = window.$ = $
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

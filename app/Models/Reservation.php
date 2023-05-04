@@ -11,6 +11,8 @@ class Reservation extends Model
     use HasFactory;
     protected $table = 'reservation';
     protected $primaryKey ='idReservation';
+    public $timestamps = false;
+
 
     protected $fillable = [
         'idReservation',	
@@ -39,6 +41,24 @@ class Reservation extends Model
     {
         return new Attribute(
             get: fn () =>(date_diff(date_create($this->dateRetour) ,date_create($this->dateDebut))->format("%d"))
+        );
+    }
+    protected function montant(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>($this->duree * $this->prix)
+        );
+    }
+    protected function encours(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>($this->voiture->disponible)
+        );
+    }
+    protected function paiement(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>Paiement::where('idPaiement',$this->idPaiement)->first()
         );
     }
 }

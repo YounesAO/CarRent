@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\EntretientController;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -57,7 +58,16 @@ class Voiture extends Model
             
         );
     }
+    protected function entretients(): Attribute
+    {
+        return new Attribute(
+            get: fn () => array_filter(EntretientController::entretiens($this), function($value) {
+                return $value == "red";
+            })
+            
+        );
+    }
     
-    
-}
 
+
+}
