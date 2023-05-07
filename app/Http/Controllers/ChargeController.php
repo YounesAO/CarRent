@@ -47,7 +47,7 @@ class ChargeController extends Controller
      */
     public function edit(Charge $charge)
     {
-        //
+        
     }
 
     /**
@@ -55,7 +55,8 @@ class ChargeController extends Controller
      */
     public function update(Request $request, Charge $charge)
     {
-        //
+        $charge->update($request->all());
+        return redirect('/check/charge/'.$charge->idCharge);
     }
 
     /**

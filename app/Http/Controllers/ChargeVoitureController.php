@@ -19,7 +19,7 @@ class ChargeVoitureController extends Controller
     }
     public function store(Request $request,$voiture)
     {   
-        $chargeVoiture = new ChargeVoiture(['idVoiture'=>$voiture,'natureEntretient'=>$request->nature]);
+        $chargeVoiture = new ChargeVoiture(['idVoiture'=>$voiture,'natureCharge'=>$request->nature]);
         $chargeVoiture->save();
         $charge = new Charge(['categorieCharge'=>"Voiture",'dateCharge'=>$request->dateCharge,'montant'=>$request->montant,'idChargeVoiture'=>$chargeVoiture->idChargeVoiture ]);
         $charge->save();

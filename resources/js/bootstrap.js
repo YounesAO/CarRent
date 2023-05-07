@@ -4,6 +4,8 @@ import $ from "jquery";
 import 'datatables.net-bs5';
 import 'slick-carousel';
 
+import  'chart.js/auto'
+import 'chart.js/helpers';
 window.jQuery = window.$ = $
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

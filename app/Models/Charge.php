@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute ;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,19 @@ class Charge extends Model
         'idChargeEntreprise',
         'idChargeVoiture'
     ];
-    
+
+    protected function chargeVoiture(): Attribute
+    {
+        return new Attribute(
+            get: fn () => (ChargeVoiture::where('idChargeVoiture',$this->idChargeVoiture)->first() )
+            
+        );
+    }
+    protected function chargeEntreprise(): Attribute
+    {
+        return new Attribute(
+            get: fn () => (chargeEntreprise::where('idChargeEntreprise',$this->idChargeEntreprise)->first())
+            
+        );
+    }
 }

@@ -64,8 +64,7 @@
 
 }
 .buttons{
-    display: flex;
-    justify-content: end;
+    flex : end;
     button{
         width: 200px;
         box-shadow: none;

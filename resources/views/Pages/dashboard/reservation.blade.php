@@ -19,7 +19,7 @@
     }
 </style>
 <div class="m-5">
-    <div class="reservation-unpaid">
+    <div id="hidden" class=" reservation-unpaid ">
         @foreach ($reservations as $reservation)
             @include('components.reservation.widget')
         @endforeach
@@ -30,14 +30,16 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
+
     $('.reservation-unpaid').slick({
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1
     });
     
-    
+
 }, false);
+
 </script>
 
 

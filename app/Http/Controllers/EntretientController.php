@@ -35,7 +35,7 @@ class EntretientController extends Controller
         $entretient = Entretient::create($request->all());
         $chargev = new ChargeVoiture(["idVoiture"=>$id,'natureCharge'=>"Entretient",'idEntretient'=>$entretient->idEntretient]);
         $chargev->save();
-        $charge = new Charge(['categorieCharge'=>'Entretient','dateCharge'=>$request->date,'montant'=>$entretient->montant,'idChargeEntreprise'=>null,'idChargeVoiture'=>$chargev->idChargeVoiture]);
+        $charge = new Charge(['categorieCharge'=>'voiture','dateCharge'=>$request->date,'montant'=>$entretient->montant,'idChargeEntreprise'=>null,'idChargeVoiture'=>$chargev->idChargeVoiture]);
         $charge->save();
         foreach($request->idPiece as $idpiece){
             $piece= new PieceChangee(['idPiece'=> $idpiece,'idEntretient'=>$entretient->idEntretient]);

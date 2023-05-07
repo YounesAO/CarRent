@@ -7,7 +7,7 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Reservation {{$reservation->idReservation}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="" action="/edite/reservation/{{$reservation->idReservation}}" method="post">
+        <form class="" action="/npedite/reservation/{{$reservation->idReservation}}" method="post">
         <div class="modal-body">
             <div>
                 <span>voiture reservée :{{$reservation->voiture->marque->marque." ".$reservation->voiture->model->model}}</span>
@@ -76,6 +76,7 @@
       </div>
     </div>
   </div>
+  @if($reservation->paiement!=null)
   <!-- Modal de modification paiement -->
 <div class="modal fade" id="paiementedit{{$reservation->idReservation}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -122,3 +123,4 @@
     </div>
   </div>
   </div>
+  @endif

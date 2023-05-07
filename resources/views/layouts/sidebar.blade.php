@@ -8,6 +8,10 @@
             <a id="reservation" href="/dashboard/reservation"><i class="fa-solid fa-handshake"></i> </a>
         </li>
         <li>
+            <a id="client" href="/dashboard/client"><i class="fa-solid fa-users"></i> </a>
+        </li>
+    
+        <li>
             <a id="cars" href="/dashboard/cars"><i class="fa-solid fa-car"></i> </a>
         </li>
         

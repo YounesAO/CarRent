@@ -1,7 +1,6 @@
 .side-bar{
     width: 7.1%;
     background-color:rgb(22, 16, 94);
-    height: 100vh;
     ul{
         list-style: none;
         li{ 
@@ -49,6 +48,9 @@
             } 
             #fix::after{
                 content:'Entretient';
+            } 
+            #client:after{
+                content:'Clients';
             } 
             #charge:after{
                 content:'Charges';

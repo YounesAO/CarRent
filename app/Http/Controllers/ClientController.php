@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
+    public function index()
+    {
+       return view('Pages.client.index');
+    }
     public function store(Request $request){
         // dd($request);
         $info=$request->req_;

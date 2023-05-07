@@ -28,7 +28,15 @@
         @foreach($charges as $charge)
             <tr class="">
                 <td>{{$charge->idCharge}}</td>
-                <td>{{$charge-> }}</td>
+                <td>
+                    @if($charge->chargeVoiture!=null)
+                    {{$charge->chargeVoiture->natureCharge}} 
+
+                    @elseif($charge->chargeEntreprise!=null)
+                    
+                    {{$charge->chargeEntreprise->typeCharge->nomCharge}} 
+                    @endif
+                </td>
                 <td>{{$charge->categorieCharge}}</td>
                 <td>{{$charge->dateCharge}}</td>
                 <td>{{$charge->montant}}</td>

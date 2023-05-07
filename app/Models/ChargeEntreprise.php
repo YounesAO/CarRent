@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use function PHPSTORM_META\type;
 
 class ChargeEntreprise extends Model
 {
@@ -14,4 +17,11 @@ class ChargeEntreprise extends Model
         'idChargeEntreprise',
         'idTypeCharge'
     ];
+    protected function typeCharge(): Attribute
+    {
+        return new Attribute(
+            get: fn () => (TypeCharge::where('idTypeCharge',$this->idTypeCharge)->first())
+            
+        );
+    }
 }

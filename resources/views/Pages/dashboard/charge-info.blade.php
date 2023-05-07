@@ -16,8 +16,38 @@
     <span>{{$charge->categorieCharge}}</span>
     <h3>Date de charge </h3>
     <span>{{$charge->dateCharge}}</span>
-    <a href="edite/{{$charge->idCharge}}" class="btn btn-outline-danger col-1">Edite</a>
+    <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editeCharge">Modifier les informations</button>
+        <a href="/delete/charge/{{$charge->idCharge}}" class="btn btn-danger">Supprimmer la charge</a>
+
+    </div>
 </div>
+<div class="modal"  id="editeCharge" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier les information de charge</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/edite/charge/{{$charge->idCharge}}">
+            <div class="modal-body">
+                @csrf
+                <label class="form-label" for="montant">Montant de charge :</label>
+                <input class="form-control" type="text" name="montant" value="{{$charge->montant}}" required> 
+                <label class="form-label" for="dateCharge">Date de charge</label>
+                <input class="form-control" type="date" name="dateCharge" id="" value="{{$charge->dateCharge}}" required>
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
 
 @endsection
 <style>
@@ -28,3 +58,6 @@
         opacity: 1 !important;
     }
 </style>
+<script>
+    
+</script>
