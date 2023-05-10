@@ -4,22 +4,9 @@ import * as Utils from'./Utils'
 import Chart from 'chart.js/auto'
 import 'chart.js/helpers';
 let Stats = null;
-
+if($('#data').val()!=null){
 var data = JSON.parse($('#data').val());
-    console.log(data.revenue);
-    const ctx = document.getElementById('chargeChart')
-    console.log(ctx);
-    const data2 = [
-        { year: 2010, count: 10 },
-        { year: 2011, count: 20 },
-        { year: 2012, count: 15 },
-        { year: 2013, count: 25 },
-        { year: 2014, count: 22 },
-        { year: 2015, count: 30 },
-        { year: 2016, count: 28 },
-      ];
-      console.log(data.entreprise);
-    
+    const ctx = document.getElementById('chargeChart')    
       var c= new Chart(
         ctx,
         { 
@@ -40,7 +27,8 @@ var data = JSON.parse($('#data').val());
       
   //chart de revuen et charge par voitures 
  
-  const DATA_COUNT = 3;
+const DATA_COUNT = Object.keys(data.revenue).length;
+;
 const NUMBER_CFG = {count: DATA_COUNT, min: -100000000, max: 100000000};
 
 const labels = data.revenue.map(row => row.voiture);
@@ -89,3 +77,69 @@ const config = {
 var c1= new Chart(
     $('#revenuechart'),config
   );
+}
+  //chart l'accuiel
+  var stats = JSON.parse($('#stats').val());
+
+  const DATA_COUNT1 = Object.keys(stats).length;
+
+  const NUMBER_CFG1 = {count: DATA_COUNT1, min:0, max: 100};
+  
+  const labels1 = stats.map(row => row.date);
+  const data1 = {
+    labels: labels1,
+    datasets: [
+      {
+        label: 'Reservation',
+        data: stats.map(row => row.number),
+       
+      },
+      {
+        label: 'Renevues',
+        data: stats.map(row => row.revenues),
+       
+      },
+      
+    ]
+  };
+  const config2= {
+    type: 'line',
+    data: data1,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          callbacks: {
+              label: function(context) {
+                  let label = context.dataset.label || '';
+
+                  if (label) {
+                    console.log(label);
+
+                      label += ': ';
+                  }
+                  if (context.parsed.y !== null  ) {
+                    if(label!='Reservation: ')
+                      label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'MAD' }).format(context.parsed.y);
+                    else
+                    label += new Intl.NumberFormat('en-US').format(context.parsed.y);
+                    }
+                  return label;
+              }
+          }
+      },
+        title: {
+          display: true,
+          text: 'Chart.js Line Chart'
+        }
+      }
+    },
+  };
+
+
+  var c3= new Chart(
+    $('#line-chart'),config2
+  ); 

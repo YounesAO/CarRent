@@ -12,7 +12,7 @@ class ChargeEntrepriseController extends Controller
     #show the vew of the form whith all types of charges
     public function index()
     {
-        return(view('Pages.dashboard.charge-entreprise',['types'=>TypeCharge::all()]));
+        return(view('Pages.Charge.charge-entreprise',['types'=>TypeCharge::all()]));
     }
     #store the charge Entreprise
     public function store(Request $request)

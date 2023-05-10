@@ -51,7 +51,7 @@ class RevenueController extends Controller
             else
             $ChargePerType[$t->chargeEntreprise->typeCharge->idTypeCharge] = $t->montant;
         }
-
+        $ChargeEntPerType = [];
         foreach($ChargePerType as $key=>$value){
             $nom =TypeCharge::where('idTypeCharge',$key)->first()->nomCharge;
             $ChargeEntPerType [] = ['label' =>$nom,'data'=>$value];

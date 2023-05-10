@@ -9,6 +9,9 @@ class Permis extends Model
 {
     use HasFactory;
     protected $table = 'permis';
+    protected $primaryKey ='idPermis';
+    public $timestamps = false;
+
     protected $fillable = [
         'idPermis',
         'datePermis',

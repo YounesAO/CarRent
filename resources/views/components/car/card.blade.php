@@ -22,7 +22,11 @@
         @else
         <a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('cars')}}/{{$car->id}}">view</a>
             @if($car->status==null || ($car->status!=null && strtotime($car->status->dateRetour)<time()))
-                <a class="col-5 btn btn-outline-warning m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">reserve</a>
+                @if(isset($req))
+                    <a class="col-5 btn btn-outline-warning m-1" href="{{ asset('new/reservation')}}/{{$car->id}}/?req={{$req}}">Reserver</a>
+                @else
+                    <a class="col-5 btn btn-outline-warning m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">Reserver</a>
+                @endif
             @endif
         @endif
 

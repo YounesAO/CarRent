@@ -6,14 +6,17 @@ use App\Http\Controllers\EntretientController;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Termwind\Components\Dd;
 
 class Voiture extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $table = 'Voiture';
-    
+    protected $primaryKey='id';
+
     protected $fillable = [
         'id', 
         'immatricule',
@@ -28,6 +31,17 @@ class Voiture extends Model
         'auto',
         'idModel'
     ];
+    protected $cascadeDeletes = ['chargesvoi','reservations'];
+
+    
+    public function chargesvoi()
+    {
+        return $this->hasMany(ChargeVoiture::class,'idVoiture');
+    }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class,'idVoiture');
+    }
     
     protected function model(): Attribute
     {

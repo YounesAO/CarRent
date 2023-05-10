@@ -8,17 +8,17 @@
             @foreach($req->all() as $key => $data)
             <input type="hidden" name="req [{{$key}}]" value="{{$data}}">
             @endforeach
-            <label class="form-label" for="nom">Nom Client</label>
-            <input class="form-control" type="text" name="nom" id=""  required>
+            <label class="form-label" for="nomClient">Nom Client</label>
+            <input class="form-control" type="text" name="nomClient" id=""  required>
             
-            <label class="form-label" for="prenom">Prénom</label>
-            <input class="form-control" type="text" name="prenom" id="" required>
+            <label class="form-label" for="prenomClient">Prénom</label>
+            <input class="form-control" type="text" name="prenomClient" id="" required>
             
-            <label class="form-label" for="cin">CIN</label>
-            <input class ="form-control" type="text" name="cin" value="{{$req->cin}}" disabled>
+            <label class="form-label" for="CIN">CIN</label>
+            <input class ="form-control" type="text" name="CIN" value="{{$req->cin}}" disabled>
 
-            <label class="form-label" for="dateNaiss">Date de naissance</label>
-            <input class="form-control" type="date" name="dateNaiss" id="" value="" required>
+            <label class="form-label" for="dateNaissance">Date de naissance</label>
+            <input class="form-control" type="date" name="dateNaissance" id="" value="" required>
             <label class="form-label" for="adresseClient">Adresse de Client</label>
             <textarea class="form-control" name="adresseClient" id="" cols="30" rows="4" >
             </textarea>
@@ -40,8 +40,8 @@
             <label class="form-label" for="imagePermis">photo du Permis de conduite </label>
             <input class="form-control" type="file"  name="imagePermis" value=""id="" >
 
-            <label class="form-label" for="image">photo de la carte d'identite nationale</label>
-            <input class="form-control" type="file"  name="image" value=""id="" >
+            <label class="form-label" for="photoCIN">photo de la carte d'identite nationale</label>
+            <input class="form-control" type="file"  name="photoCIN" value=""id="" >
             
             
             

@@ -2,12 +2,12 @@
 
 @extends ('dashboard')
 @section('header')
-<div class="d-flex justify-content-between m-3 p-1">
-    <h3>Reservations de mois {{$month[1]." ".$month[0]}}</h3> 
+<div class="d-flex filter-reservation justify-content-between m-3 p-3">
+    <h3>Reservations de mois {{$month[1]."/".$month[0]}}</h3> 
     <form class="d-flex justify-content-center align-items-center" action="" method="GET">
         <label class="form-label p-2 mt-2" for="month">Mois</label>
         <input  class="form-control p-1 m-1 " type="month" id="start" name="month" value="" placeholder="choisie le mois ">
-        <button class="btn btn-primary p-2" type="submit">  <i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="btn shadow-none btn-primary p-2" type="submit">  <i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
 @endsection

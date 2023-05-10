@@ -11,7 +11,7 @@
     </div>
     <div>
         <span>Etat : 
-            @if($reservation->encours)
+            @if(!$reservation->encours)
                 <span class='text-danger'>Reservation terminée</span>
             @else
                 <span class='text-success'>Reservation en cours</span>
@@ -21,7 +21,7 @@
     <div>
         <span>Montant</span>
         <span>{{$reservation->montant}}</span>
-        <a href="/check/reservation/{{$reservation->idReservation}}">plus</a>
+        <a href="/check/reservation/{{$reservation->idReservation}}" target="_parent">plus</a>
     </div>
 
 </div>

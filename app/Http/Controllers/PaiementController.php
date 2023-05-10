@@ -11,9 +11,11 @@ class PaiementController extends Controller
 {
     public function store(Request $request,Reservation $reservation)
     {
-        $paiement = new Paiement;
+        $paiement = new Paiement();
+
         $paiement->datePaiement = $request->datePaiement;
         $paiement->montant = $request->montant;
+
         if($request->Cheque){
         $cheque = new Cheque();
         $cheque->montant=$request->montant;
@@ -21,10 +23,15 @@ class PaiementController extends Controller
         $cheque->idClient = $reservation->client->idClient;
         $cheque->save();
         $paiement->idCheque = $cheque->idCheque;
+        }else{
+            $paiement->idCheque=null;
         }
+
         $paiement->save();
+
         $reservation->idPaiement = $paiement->idPaiement;
         $reservation->save();
+
         return redirect('/dashboard/reservation');
     }
     public function update(Request $request ,Paiement $paiement){

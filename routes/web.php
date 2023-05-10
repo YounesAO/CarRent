@@ -60,6 +60,11 @@ Route::post('/add/car', [VoitureController::class, 'store']);
 Route::get('/add/car',function () {
     return view('Pages.Voiture.add',['marque'=>Marque::all()]);
 });
+Route::get('/new/reservation',function () {
+    return view('Pages.Reservation.new');
+});
+Route::post('/new/reservation',[ReservationController::class,'filter']);
+Route::get('/new/reservation/{id}',[ReservationController::class,'send']);
 
 Route::get('/add/reservation',function () {
     return view('Pages.Reservation.add');
@@ -73,7 +78,7 @@ Route::post('/add/client', [ClientController::class, 'store']);
 Route::post('/check/client', [ReservationController::class, 'store']);
 Route::get('/check/client/{client}', function($client){
     view('Pages.Reservation.add',['voiture'=>$client]);
-})->name('client');
+});
 
 Route::get('/dashboard',[DashboardController::class,'index']);
 Route::get('dashboard/entretient',[EntretientController::class,'index']);
@@ -93,6 +98,7 @@ Route::get('dashboard/charge/entreprise',[ChargeEntrepriseController::class,'ind
 Route::post('dashboard/charge/entreprise',[ChargeEntrepriseController::class,'store']);
 Route::get('/check/charge/{charge}',[ChargeController::class,'show']);
 Route::get('/edite/charge/{charge}',[ChargeController::class,'update']);
+Route::get('/delete/charge/{charge}',[ChargeController::class,'destroy']);
 
 Route::get('/get-model',[ModeleController::class,'index']);
 
@@ -106,8 +112,13 @@ Route::get('dashboard/analyse',[RevenueController::class,'index']);
 Route::post('dashboard/analyse',[RevenueController::class,'index']);
 
 Route::get('dashboard/client',[ClientController::class,'index']);
+Route::get('/profile/client',[ClientController::class,'show'])->name('client');
+Route::post('/profile/client',[ClientController::class,'view']);
+Route::get('/delete/client/{client}',[ClientController::class,'drop']);
 
-    
+Route::get('/slide/reservation',[ReservationController::class,'slide']);
+Route::get('/slide/reservation/unpaid',[ReservationController::class,'slideUpaid']);
+
 Route::get('/home', function () {
     return view('home');
 });

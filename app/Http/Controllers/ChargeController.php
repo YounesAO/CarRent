@@ -14,7 +14,7 @@ class ChargeController extends Controller
     public function index()
     {
         
-        return view('Pages.dashboard.charge',['charges'=>Charge::all()]);
+        return view('Pages.Charge.charge',['charges'=>Charge::all()]);
     
     }
 
@@ -39,7 +39,7 @@ class ChargeController extends Controller
      */
     public function show(Charge $charge)
     {
-        return view('Pages.dashboard.charge-info',['title'=>'Information sur les charge','charge'=>$charge]);
+        return view('Pages.Charge.charge-info',['title'=>'Information sur les charge','charge'=>$charge]);
     }
 
     /**
@@ -64,6 +64,6 @@ class ChargeController extends Controller
      */
     public function destroy(Charge $charge)
     {
-        //
+        $charge->delete();
     }
 }

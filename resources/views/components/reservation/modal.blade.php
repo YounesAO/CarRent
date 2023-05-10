@@ -7,7 +7,7 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Reservation {{$reservation->idReservation}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="" action="/npedite/reservation/{{$reservation->idReservation}}" method="post">
+        <form class="" action="/edite/reservation/{{$reservation->idReservation}}" method="post">
         <div class="modal-body">
             <div>
                 <span>voiture reservée :{{$reservation->voiture->marque->marque." ".$reservation->voiture->model->model}}</span>

@@ -1,3 +1,5 @@
+
+@import 'variables';
 .entretient-form ,.home{
     
     .card{
@@ -10,13 +12,20 @@
 .widget{
     display: flex;
     height: 100px;
-    width: 250px;
+   
     border-radius: 10px;
     text-align: center;
     align-items: center;
     justify-content: baseline;
     border: 1px solid currentColor;
     cursor: pointer;
+    @media (min-width: 768px) { 
+        width: 250px;
+     }
+     @media (max-width: 768px) { 
+        width: 400px;
+     }
+
     .icon{
         margin-left: 15px;
         font-size: 30px;
@@ -77,4 +86,61 @@ li{
     margin-left: 2px;
 }
 }
+}
+.top{
+    border-radius: 10px;
+    color: #212529;
+    img {
+        width:100px;
+        aspect-ratio : 3/2;
+        object-fit: contain;
+        
+    }
+    .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+
+        span{
+            font-family: 'Righteous Regular';
+        }
+        .marque{
+            font-family: 'Bruno Ace SC Regular';
+            font-size:20px;
+
+        }
+    }
+    .nbResevation{
+        font-size: 50px;
+        font-family: 'Oswald Bold';
+        margin: auto;
+    }
+    &:hover{
+        transition: all ease-in-out 500ms;
+        background-color: #212529;
+        color:$light-color;
+    }
+}
+.box{
+    border: 1px solid #212529;
+    border-radius: 5px;
+    height: auto;
+    .title{
+        position: relative;
+        bottom: 0;
+        background-color: $light-color;
+        display: block;
+        width: 100%;
+        color: #212529;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        border-radius: 0 0 5px 5px;
+        text-align: center;
+        margin-top: 12px;
+        padding:  6px 0 ;
+        --button-box-shadow-width: 0.375em;
+        --button-box-shadow: 0 var(--button-box-shadow-width) 0 #212529;
+        box-shadow: var(--button-box-shadow);
+    }
 }

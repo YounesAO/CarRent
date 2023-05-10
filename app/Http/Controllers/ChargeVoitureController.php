@@ -12,10 +12,10 @@ class ChargeVoitureController extends Controller
     public function index()
     {
         $cars = Voiture::all();
-        return (view('Pages.dashboard.charge-voiture',['cars'=>$cars,'charge'=>true]));
+        return (view('Pages.Charge.charge-voiture',['cars'=>$cars,'charge'=>true]));
     }
     public function view(Voiture $voiture){
-        return (view('Pages.dashboard.charge-form',['car'=>$voiture]));
+        return (view('Pages.Charge.charge-form',['car'=>$voiture]));
     }
     public function store(Request $request,$voiture)
     {   

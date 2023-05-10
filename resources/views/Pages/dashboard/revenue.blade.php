@@ -21,41 +21,41 @@
 </div>
 <div class="d-flex justify-content-center flex-column align-items-center "> 
 
-    <section class="d-flex justify-content-around col-12">
-        <div class="col-3 stats bg-warning m-1 p-3">
+    <section class="d-flex justify-content-around flex-wrap col-12">
+        <div class=" col-lg-3 col-11 col-md-4 stats bg-warning m-1 p-3">
             <span>Total revenues</span>
             <span class="montant">{{$revenue->pluck('montant')->sum()}}</span>
         </div>
-        <div class="col-2 stats bg-warning m-1 p-3">
+        <div class="col-lg-2 col-md-4 col-11 stats bg-warning m-1 p-3">
             <span>Total Reservations</span>
             <span class="montant">{{$revenue->count()}}</span>
         </div>
-        <div class="col-2 stats bg-warning m-1 p-3">
+        <div class=" col-lg-2 col-md-3 col-11 stats bg-warning m-1 p-3">
             <span>Total Charges Voiture</span>
             <span class="montant">{{$chargeVoiture->pluck('montant')->sum()}}</span>
         </div>
-        <div class="col-2 stats bg-warning m-1 p-3">
+        <div class="col-lg-2 col-md-5 col-11 stats bg-warning m-1 p-3">
             <span>Total Charges Entreprise</span>
             <span class="montant">{{$chargeEntreprise->pluck('montant')->sum()}}</span>
         </div>
-        <div class="col-2 stats bg-warning m-1 p-3">
+        <div class="col-lg-2 col-md-6 col-11 stats bg-warning m-1 p-3">
             <span>Total Net Revenues</span>
             <span class="montant">{{$revenue->pluck('montant')->sum() - (($chargeEntreprise->pluck('montant')->sum())+($chargeVoiture->pluck('montant')->sum()))}} </span>
         </div>
     </section>
-    <section class=" charts d-flex justify-content-around col-12">
-        <input id="data" type="hidden"value="{{json_encode($stats)}}">
-        <div class="char">
+    <section class=" charts d-flex justify-content-around flex-wrap col-12">
+        <div class="char col-lg-6 col-11">
             <canvas id="revenuechart"></canvas>
             <span>Les revenues</span>
         </div>
-        <div class="char">
+        <div class="char col-lg-6 col-11">
             <canvas id="chargeChart"></canvas>
             <span>Les charges</span>
 
         </div>
 
-    </section>
+    </section>        
+    <input id="data" type="hidden"value="{{json_encode($stats)}}">
     <section>
         <div class="result">
         </div>

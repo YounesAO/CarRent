@@ -1,4 +1,4 @@
-<div class="container reservation-about">
+<div class="d-flex flex-column  col-11 jusity-content-center reservation-about">
     <div class="header">
         <section class="car" onclick="window.location.href ='{{ route('voiture', ['id'=>$reservation->voiture->id]) }}'"> 
              <div class="icon">
@@ -39,20 +39,20 @@
     <section class="section-info">
         <div class="depart">
             <span>Depart :</span>
-            <span class='bold'>{{$reservation->dateDebut}}</span>
+            <span class='bold number'>{{$reservation->dateDebut}}</span>
         </div>
         
         <div class="arrivee">
             <span>Arrivee :</span>
-            <span class='bold'>{{$reservation->dateRetour}}</span>
+            <span class='bold number'>{{$reservation->dateRetour}}</span>
         </div>  
         <div class="duree">
             <span>Durée :</span>
-            <span class='bold'>{{$reservation->duree}} <span>jours</span></span>
+            <span class='bold number'>{{$reservation->duree}} <span>jours</span></span>
         </div>
         <div class="montant">
             <span>Montant :</span>
-            <span class='bold'>{{$reservation->montant}}</span>
+            <span class='bold number'>{{$reservation->montant}}</span>
         </div>
     </section>
     <div class="buttons">
@@ -78,7 +78,7 @@
                 </tr>
                 <tfoot>
                     <td  colspan="4" >
-                        <button data-bs-toggle="modal" data-bs-target="#paiementedit{{$reservation->idReservation}}" class=" btn btn-warning">modifier payement</button>
+                        <button data-bs-toggle="modal" data-bs-target="#paiementedit{{$reservation->idReservation}}" class=" btn btn-warning noshadow  m-1">modifier payement</button>
                     </td>
                 </tfoot>
                 @else

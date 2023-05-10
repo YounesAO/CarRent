@@ -3,7 +3,7 @@
 @extends('dashboard')
 @section('content')
 <div class=" d-flex justify-content-center flex-wrap">
-    <div onclick="window.location.href +='/cars';" class="m-1 widget " style="color:rgb(146, 37, 236);background-color: rgba(137, 43, 226, 0.24)">
+    <div class="m-1 widget  " style="color:rgb(146, 37, 236);background-color: rgba(137, 43, 226, 0.24)" onclick="window.location.href +='/cars';" >
         <div class="icon">
             <i class="fa-solid fa-car"></i>
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     
-    <div class="m-1 widget " style="color :rgb(25, 196, 10);  background-color:rgba(43, 226, 119, 0.24)" onclick="window.location.href +='/reservation';">
+    <div class="m-1 widget  " style="color :rgb(25, 196, 10);  background-color:rgba(43, 226, 119, 0.24)" onclick="window.location.href +='/reservation';">
         
         <div class="icon">
             <i class="fa-solid fa-tags"></i>
@@ -24,7 +24,7 @@
         </div>
     </div>
     
-    <div class="m-1 widget " style="color :rgb(255, 217, 0); background-color: rgba(226, 192, 43, 0.24)" onclick="window.location.href +='/incom';">
+    <div class="m-1 widget  " style="color :rgb(255, 217, 0); background-color: rgba(226, 192, 43, 0.24)" onclick="window.location.href +='/incom';">
         <div class="icon">
             <i class="fa-solid fa-hourglass-half"></i>
         </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
     
-    <div class="m-1 widget " style="color:rgb(209, 25, 25); background-color: rgba(226, 43, 150, 0.24)" onclick="window.location.href +='/entretient';">
+    <div class="m-1 widget  " style="color:rgb(209, 25, 25); background-color: rgba(226, 43, 150, 0.24)" onclick="window.location.href +='/entretient';">
         
         <div class="icon">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -66,7 +66,31 @@
         
     </div>
 </div>
-<div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+<section class="d-flex flex-wrap">
+    <div class="box col-11 col-lg-6 m-3" >
+        <canvas id="line-chart"></canvas>
+        <span class="title">Top Cars Reservations</span>
+
+    </div>
+    <div class="box col-11 col-lg-5 m-3">
+        @foreach($topCars as $car)
+        <div class="d-flex m-1 shadow  top p-2" onclick="window.location.href ='cars/{{$car->voiture->id}}';" >
+            <img src="{{ asset('images').'/'.$car->voiture->image }}" alt="">
+            <div class="info">
+                <span class="marque">    {{$car->voiture->marque->marque}}        </span>
+                <span>    {{$car->voiture->model->model}}        </span>
+            </div>
+            <span class="nbResevation">    {{$car->nbReservation}}        </span>
+        </div>
+        @endforeach
+        <span class="title">Top Cars Reservations</span>
+    </div>
+
+</section>
+<div>
+    <canvas id="acquisitions"></canvas>
+</div>
+<input id="stats" type="hidden"value="{{json_encode($stats)}}">
 
 @endsection
 <style>

@@ -4,6 +4,7 @@
 @import 'variables';
 //card style
 @import 'Car';
+@import 'client';
 @import 'progress_bar';
 @import 'sidebar';
 @import 'dashboard';
@@ -15,13 +16,24 @@
 @import'renenue';
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
-.content{
-    min-height: 80vh;
-}
-.w-9{
-    width: 100%;
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
 }
 
+.w-9{
+    width: 94%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh
+}
+.content{
+    flex:1;
+}
 
 .btn{
     --button-box-shadow-width: 0.375em;
@@ -36,4 +48,15 @@
     position: relative;
     bottom: 0;
     width: 100%;
+}
+.slick-prev:before, .slick-next:before {
+    color: #09529b !important;
+    border-radius: 0;
+    height: 100%;
+}
+.slick-next:before{
+    content: '▶';
+}
+.slick-prev:before{
+    content: '◀';
 }

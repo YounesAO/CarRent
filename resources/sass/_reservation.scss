@@ -1,4 +1,6 @@
 .reservation-about{
+    background-color: rgba(211, 223, 255, 0.329);
+
     .header{
         display: flex;
         justify-content: center;
@@ -6,7 +8,6 @@
         width: 100%;
         margin:10px;
         padding: 12px;
-        background-color: rgb(157, 177, 231);
         section{
             cursor: pointer;
             width: 30%;
@@ -15,8 +16,14 @@
             align-items: center;
             border-radius: 10px;
             padding-left: 30px;
-            background-color: rgba(183, 223, 255, 0.877);
-            margin: 1%;
+            border: #1d0359 solid 1px;
+            box-shadow: 1px 2px #2c2c2c ;
+            margin-left:20px;
+            transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms;
+            &:hover{
+                background-color: #1d0359;
+                color: #f4F4F4;
+            }
             .icon{
                 i{
                     font-size: 50px;
@@ -28,9 +35,10 @@
                 justify-content: center;
                 align-items: baseline;
                 margin-left: 10px;
-                font-family: 'Lucida Sans';
+                font-family: $font-family-sans-serif;
             }
         }
+       
         .stat{
             cursor:default;
         }
@@ -55,6 +63,11 @@
         span{
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
+        .number{
+            font-weight: 100;
+            font-size: 16px;
+            font-family: 'Righteous Regular';
+        }
         h5{
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             margin-top: 10px;
@@ -65,13 +78,40 @@
 }
 .buttons{
     flex : end;
-    button{
+    button,.button {
         width: 200px;
         box-shadow: none;
         
     }
 }
 }
+.button {
+    width: 200px;
+    box-shadow: none;
+    
+}
+
 .bold{
     font-weight: 600;
+}
+.noshadow{
+    width: 200px;
+    box-shadow: none!important;
+    
+}
+.slick-dots li button:before{
+    font-size: 20px;
+    color: #1d0359;
+}
+.slick-slide{
+margin-right: 20px;
+}
+.slide-reservation{
+    width: 100%;
+    height: 250px;
+}
+.filter-reservation{
+    background-color: #4109c236;
+    border: 1px solid #4109c2;
+    border-radius: 10px;
 }

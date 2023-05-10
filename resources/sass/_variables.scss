@@ -1,7 +1,74 @@
 // Body
 $body-bg: #f8fafc;
-
+$primary-color:rgb(22, 16, 94);
+$light-color:rgb(198, 193, 255);
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+@font-face {
+    font-family: 'Oswald Bold';
+    src: url('/public/font/oswald-bold-webfont.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Oswald ExtraLight Regular';
+    src: url('/public/font/oswald-extralight-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Oswald Light Regular';
+    src: url('/public/font/oswald-light-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Oswald Medium Regular';
+    src: url('/public/font/oswald-medium-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Oswald Regular';
+    src: url('/public/font/oswald-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Oswald SemiBold Regular';
+    src: url('/public/font/oswald-semibold-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Righteous Regular';
+    src: url('/public/font/righteous-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Bruno Ace SC Regular';
+    src: url('/public/font/brunoacesc-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Oswald Regular';
+    src: url('/public/font/brunoacesc-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .fw{
+    flex: 1;
+  }

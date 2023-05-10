@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute ;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Charge extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
     public $timestamps = false;
     protected $table='charge';
     protected $primaryKey ='idCharge';
@@ -21,7 +24,13 @@ class Charge extends Model
         'idChargeEntreprise',
         'idChargeVoiture'
     ];
-
+    public function ChargesVoiture()
+    {
+        return $this->belongsTo(ChargeVoiture::class);
+    }
+    
+    
+    
     protected function chargeVoiture(): Attribute
     {
         return new Attribute(
@@ -36,4 +45,6 @@ class Charge extends Model
             
         );
     }
+   
+
 }

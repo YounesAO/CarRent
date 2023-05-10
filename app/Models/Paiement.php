@@ -18,6 +18,11 @@ class Paiement extends Model
         'montant',
         'idCheque'
     ];
+
+    public function reservaions()
+    {
+        return $this->hasMany(Reservation::class,'idPaiement');
+    }
     protected function cheque(): Attribute
     {
         return new Attribute(

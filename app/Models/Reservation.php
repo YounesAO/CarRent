@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reservation extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
     protected $table = 'reservation';
     protected $primaryKey ='idReservation';
     public $timestamps = false;
@@ -52,7 +55,7 @@ class Reservation extends Model
     protected function encours(): Attribute
     {
         return new Attribute(
-            get: fn () =>($this->voiture->disponible)
+            get: fn () =>(( $this->dateDebut<= date('Y-m-d') && $this->dateRetour>= date('Y-m-d')))
         );
     }
     protected function paiement(): Attribute

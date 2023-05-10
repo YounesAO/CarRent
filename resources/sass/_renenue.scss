@@ -2,11 +2,16 @@
     margin-top: 12px;
 
     div{
+        @media (min-width: 768px) { 
         width: 48%;
+        }
     }
     .char{
         border: 1px solid #212529;
         border-radius: 5px;
+        canvas{
+            margin: 10px ;
+        }
         span{
             display: block;
             width: 100%;
@@ -28,6 +33,7 @@
     border: 1px dotted #212529;
     border-radius: 5px;
     padding: 30px;
+
     
 
 }

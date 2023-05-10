@@ -1,0 +1,30 @@
+.client-cherche{
+    border: 1px solid rgb(255, 217, 0); 
+    background-color: rgba(226, 192, 43, 0.24);
+    border-radius: 10px;
+    form{
+        label{
+            text-align: center;
+            font-family: 'Righteous Regular';
+        }
+        .form-control{
+
+            width: 30%;
+        }
+       
+    }
+}
+.client{
+    .header{
+        border: 1px solid rgb(255, 217, 0); 
+        background-color: rgba(226, 192, 43, 0.24);
+    .h-info{
+        .icon{
+            font-size: 30px;
+        }
+        div{
+            margin-right: 20px;
+        }
+    }
+    }
+}

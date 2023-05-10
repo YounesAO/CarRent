@@ -3,9 +3,10 @@ import 'chart.js';
 import $ from "jquery";
 import 'datatables.net-bs5';
 import 'slick-carousel';
-
 import  'chart.js/auto'
 import 'chart.js/helpers';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
 window.jQuery = window.$ = $
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

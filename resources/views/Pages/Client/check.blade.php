@@ -8,7 +8,7 @@
 @section('mt',5)
 @section('active-reservation','active')
 @section('content')
-<form class = "" action="/check/client" method="POST">
+<form class = "col-8" action="/check/client" method="POST">
     @csrf
     <input type="hidden" name="id" value ='{{$id}}'>
     <input type="hidden" name="idClient" value ='{{$client->idClient}}'>
@@ -23,7 +23,7 @@
             <input class="form-control" type="text" name="nom" value="{{$client->nomClient}}"  >
             
             <label class="form-label" for="prenom">Prénom</label>
-            <input class="form-control" type="text" name="prenom" id=" " value="{{$client->prenomClient}}" >
+            <input class="form-control" type="text" name="prenom" id="" value="{{$client->prenomClient}}" >
             
             <label class="form-label" for="cin" >CIN</label>
             <input class ="form-control" type="text" name="cin" value="{{$req->cin}}" disabled>
@@ -33,6 +33,10 @@
             <label class="form-label" for="adresseClient">Adresse de Client</label>
             <textarea class="form-control" name="adresseClient" id="" cols="30" rows="4"  >{{$client->adresseClient}}
             </textarea>
+            @if($req['prix']==null)
+            <label class="form-label" for="prix">Prix</label>
+            <input class="form-control" type="text" name="prix" id="">
+            @endif
            
 
            

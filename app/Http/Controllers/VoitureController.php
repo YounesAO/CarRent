@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Charge;
+use App\Models\ChargeVoiture;
 use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Reservation;
@@ -24,8 +26,8 @@ class VoitureController extends Controller
 
     }
     public function index(){
-
         $voitures = Voiture::all();
+       Charge::where('deleted_at',null)->delete();
         // foreach ($voitures as $v){
         //     $v->stats = DB::select('select * from reservation where idVoiture = ? order by dateRetour',[$v->s]);
         // }

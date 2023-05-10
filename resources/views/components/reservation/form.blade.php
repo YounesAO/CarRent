@@ -1,5 +1,5 @@
 
-<form class="w-9" action="" method="post">
+<form class="col-4" action="" method="post">
     @csrf
     <input type="hidden" name="idVoiture" value="{{ $voiture ?? ''}}">
     <label class="form-label" for="cin">CIN de Client :</label>
@@ -8,8 +8,12 @@
     <input class="form-control" type="date" name="dateDebut" id="">
     <label class="form-label" for="dateRetour">Date retour</label>
     <input class="form-control" type="date" name="dateRetour" id="">
-    <label class="form-label" for="prix">Prix</label>
-    <input class="form-control" type="text" name="prix" id="">
+    @if(!isset($voiture))
+        <input class="form-control" type="hidden" value="" name="prix" id="">
+    @else
+        <label class="form-label" for="prix">Prix</label>
+        <input class="form-control" type="text" name="prix" id="">
+    @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <div class="alert m-1 p-0 alert-danger">

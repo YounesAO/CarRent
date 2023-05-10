@@ -8,7 +8,9 @@ use App\Models\Reservation;
 use App\Models\Voiture;
 use DateTimeImmutable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\RateLimiter\RequestRateLimiterInterface;
 
 use function Ramsey\Uuid\v1;
 
@@ -20,15 +22,16 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::where('idPaiement',null)->get();
-        return (view('Pages.dashboard.reservation',['reservations'=>$reservations ]));
+        return (view('Pages.Reservation.reservation',['reservations'=>$reservations ]));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function send(Request $request ,$id)
     {
-        //
+        $request->merge(['idVoiture' => $id]);
+        return $this->prepare($request,$id);        
     }
 
     /**
@@ -54,8 +57,17 @@ class ReservationController extends Controller
     }
     public function store(Request $request){
         $info =$request->req_;
+        if($info['prix']==null)
+        $info['prix']=$request->prix;
         $client=Client::where('CIN',$info['cin'])->first();
-        $reservation = new Reservation(['idClient'=>$client->idClient,'idVoiture'=>$info['idVoiture'],'dateDebut'=>$info['dateDebut'],'dateRetour'=>$info['dateRetour'],$info['prix']]);
+        $permis=Permis::where('idPermis',$client->idPermis)->first();
+        $permis->update(['datePermis'=>$request->datePermis,'villePermis'=>$request->villePermis,'photoPermis'=>$request->imagePermis]);
+        $client->update($request->all());
+        $client->CIN=$info['cin'];
+        $client->idPermis = $permis->idPermis;
+        $client->save();
+        $reservation = new Reservation(['idClient'=>$client->idClient,'idVoiture'=>$info['idVoiture'],'dateDebut'=>$info['dateDebut'],'dateRetour'=>$info['dateRetour'],'prix'=>$info['prix']]);
+        $reservation->save();
         return view("Pages.Reservation.about",['reservation'=>$reservation,'client'=>Client::where('idClient',$request->idClient),'voiture'=>Voiture::where('id',$info['idVoiture'])->first()]);
     }
 
@@ -75,9 +87,14 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reservation $reservation)
+    public function filter(Request $request )
     {
-        //
+        $date1 = $request->input('dateDebut');
+        $date2 = $request->input('dateRetour');
+        $voitures = Voiture::whereRaw('id not IN( SELECT idVoiture from reservation where dateRetour >? and dateDebut<? )',[$date1,$date2])->get();
+
+        return (view('Pages.Reservation.selectCar',['voitures'=>$voitures,'req'=>$request]));
+
     }
 
     /**
@@ -97,10 +114,33 @@ class ReservationController extends Controller
         }
         $date = explode('-', $date);
         $reservations =Reservation::whereYear('dateDebut','=',$date[0])->whereMonth('datedebut', '=', $date[1])->get();
-        return view('Pages.dashboard.reservation-history',['reservations'=>$reservations,'month'=>$date]);
+        return view('Pages.Reservation.reservation-history',['reservations'=>$reservations,'month'=>$date]);
     }
 
+    public function slide()
+    
+    {     
+        $today = date('Y-m-d', time());
+        $reservations = Reservation::all()->filter(function ($item) use($today){
+            $depart = $item->dateDebut;
+            $retour = $item->dateRetour;
+            return (  $depart<= $today &&$retour >= $today);
+        }); 
 
+        return view('components.reservation.slider',['reservations'=>$reservations]);
+    }
+    public function slideUpaid()
+    
+    {     
+        $today = date('Y-m-d', time());
+        $reservations = Reservation::all()->filter(function ($item) use($today){
+            $depart = $item->dateDebut;
+            $retour = $item->dateRetour;
+            return (  $depart < $today &&$retour <= $today && $item->idPaiment ==null);
+        }); 
+
+        return view('components.reservation.slider',['reservations'=>$reservations]);
+    }
     /**
      * Remove the specified resource from storage.
      */
