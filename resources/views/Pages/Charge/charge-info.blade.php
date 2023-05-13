@@ -2,25 +2,46 @@
 
 @extends('dashboard')
 @section('header')
-<div class="d-flex justify-content-between m-3 p-1">
-    <h3>Charge</h3> 
+<div class="d-flex style1 bg-3 justify-content-between m-2 p-4">
+    <h1 class="">Information sur Charge</h1> 
 </div>
 @endsection
 @section('content')
-<div class="m-1 home d-flex flex-column">
-    <h3>charge id</h3>
-    <span>{{$charge->idCharge}}</span>
-    <h3>charge montant</h3>
-    <span>{{$charge->montant}}</span>
-    <h3>charge categorie</h3>
-    <span>{{$charge->categorieCharge}}</span>
-    <h3>Date de charge </h3>
-    <span>{{$charge->dateCharge}}</span>
-    <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editeCharge">Modifier les informations</button>
-        <a href="/delete/charge/{{$charge->idCharge}}" class="btn btn-danger">Supprimmer la charge</a>
-
+<div class="m-3 home  d-flex flex-wrap ">
+    <div class="widget bg-2  m-1">
+        <div class="body p-3 d-flex">
+            <h3 class="desc">Identifiant :</h3>
+            <span class="num">{{$charge->idCharge}}</span>
+        </div>
     </div>
+
+    <div class="widget bg-2 m-1 ">
+        <div class="body p-3 d-flex">
+            <h3 class="desc">Charge montant (dh) :</h3>
+            <span class="num">{{$charge->montant}}</span>
+        </div>
+    </div>
+
+    <div class="widget bg-2  m-1 ">
+        <div class="body p-3 d-flex">
+            <h3 class="desc">Categorie de charge:</h3>
+            <span class="num">{{$charge->categorieCharge}}</span>
+        </div>
+    </div>
+
+    <div class="widget bg-2  m-1">
+        <div class="body p-3 d-flex">
+            <h3 class="desc">Date de charge :</h3>
+            <span class="num">{{$charge->dateCharge}}  </span>
+        </div>
+    </div>
+
+    
+</div>
+<div class="m-2 d-flex">
+    <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#editeCharge">Modifier les informations</button>
+    <a href="/delete/charge/{{$charge->idCharge}}" class="btn btn-danger m-1">Supprimmer la charge</a>
+
 </div>
 <div class="modal"  id="editeCharge" tabindex="-1">
     <div class="modal-dialog">
@@ -39,8 +60,8 @@
                 
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </form>
 

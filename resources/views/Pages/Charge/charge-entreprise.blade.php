@@ -3,12 +3,12 @@
 @extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
-    <h3>Charge d'entreprise</h3> 
+    <h3>Ajouter une charge d'entreprise</h3> 
 </div>
 @endsection
 @section('content')
-<div class="m-1 home d-flex">    
-    <div class="m-1 w-9">
+<div class="m-1 home d-flex justify-content-center">    
+    <div class="m-1 col-11 col-lg-7">
         <form action="" method="post">
             @csrf
             <label class="form-label" for="nature">Nature charge</label>

@@ -7,10 +7,10 @@
 </div>
 @endsection
 @section('content')
-<div class="m-1 home d-flex">
+<div class="m-1 home d-flex justify-content-center flex-wrap">
     @include('components.car.card')
     
-    <div class="m-1 w-9">
+    <div class="m-1 col-11 col-lg-7">
         <form action="" method="post">
             @csrf
             <label class="form-label" for="nature">Nature charge</label>

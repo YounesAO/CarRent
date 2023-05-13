@@ -35,4 +35,14 @@ class Client extends Model
             get:fn()=>Permis::where('idPermis',$this->idPermis)->first()
         );
     }
+    public function nbReservation():Attribute {
+        return new Attribute(
+            get:fn()=>Reservation::where('idClient',$this->idClient)->count()
+        );
+    }
+    public function nomComplet():Attribute {
+        return new Attribute(
+            get:fn()=>$this->nomClient.' '.$this->prenomClient
+        );
+    }
 }

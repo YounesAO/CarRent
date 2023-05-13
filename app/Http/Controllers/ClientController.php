@@ -52,5 +52,10 @@ class ClientController extends Controller
             $client->delete();
             return redirect('/dashboard/client');
         }
+        public function all()
+        {
+            $clients = Client::all();
+            return view('Pages.client.history',["clients"=>$clients]);
+        }
     }
 

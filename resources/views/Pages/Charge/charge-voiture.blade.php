@@ -7,7 +7,7 @@
 </div>
 @endsection
 @section('content')
-<div class="m-1 home d-flex">
+<div class="m-1 home d-flex flex-wrap">
     @foreach($cars as $car)
     @include('components.car.card')
     @endforeach

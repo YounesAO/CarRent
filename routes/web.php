@@ -6,17 +6,24 @@ use App\Http\Controllers\ChargeVoitureController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntretientController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\PieceController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\UserController;
 use App\Models\Charge;
 use App\Models\ChargeEntreprise;
 use App\Models\ChargeVoiture;
+use App\Models\Cheque;
 use App\Models\Entretient;
 use App\Models\Marque;
+use App\Models\Modele;
+use App\Models\PieceChangee;
 use App\Models\Reservation;
 use App\Models\User;
 
@@ -38,18 +45,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- 
 
-Route::get('/', function () {
-    return view('login',['users'=>User::all()]);
 
-});
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-Route::post('welcome',function(){
-    return redirect('cars');
-});
+
+Route::get('/', [LoginController::class,'index']);
+
+Route::post('/login',[LoginController::class,'login']);
+
 
 Route::get('/cars', [VoitureController::class, 'index']);
 Route::get('/cars/{id}', [VoitureController::class, 'view'])->name('voiture');
@@ -73,6 +75,7 @@ Route::get('/add/reservation/{id}', function ($id) {
     return view('Pages.Reservation.add',['voiture'=>$id]);
 });
 Route::post('/add/reservation/{id}', [ReservationController::class, 'prepare']);
+Route::get('dashboard/Clients', [ClientController::class, 'all']);
 
 Route::post('/add/client', [ClientController::class, 'store']);
 Route::post('/check/client', [ReservationController::class, 'store']);
@@ -118,8 +121,25 @@ Route::get('/delete/client/{client}',[ClientController::class,'drop']);
 
 Route::get('/slide/reservation',[ReservationController::class,'slide']);
 Route::get('/slide/reservation/unpaid',[ReservationController::class,'slideUpaid']);
-
+Route::get('/settings',[SettingsController::class,'index']);
+Route::get('/settings/user',[SettingsController::class,'compte']);
+Route::post('/settings/user',[UserController::class,'update']);
+Route::get('/settings/general',[SettingsController::class,'general']);
+Route::get('/settings/deleted',[SettingsController::class,'deleted']);
+Route::get('/settings/edite/marque/{marque}',[MarqueController::class,'index']);
+Route::post('edite/marque',[MarqueController::class,'update']);
+Route::get('/delete/marque/{marque}',[MarqueController::class,'destroy']);
+Route::get('/settings/edite/model/{model}',[ModeleController::class,'edit']);
+Route::post('/edite/model',[ModeleController::class,'update']);
+Route::post('/delete/model/{model}',[ModeleController::class,'destroy']);
+Route::get('/settings/edite/piece/{piece}',[PieceController::class,'edit']);
+Route::post('/edite/piece',[PieceController::class,'update']);
+Route::post('/delete/piece/{piece}',[PieceController::class,'destroy']);
+Route::get('/notification',function (){
+    return view('Pages.dashboard.notification',['cheques'=>Cheque::all(),'voitures'=>Voiture::all()]);
+});
 Route::get('/home', function () {
     return view('home');
 });
+
 

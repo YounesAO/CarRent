@@ -81,6 +81,13 @@ class Voiture extends Model
             
         );
     }
+    protected function nom(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->marque->marque.' '.$this->model->model
+            
+        );
+    }
     
 
 

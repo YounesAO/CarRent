@@ -29,8 +29,8 @@
             <span></span>
         </div>
     </div>
-    <div class="m-2">
-        <form class="flex justify-content-center align-items-center"action="" method="POST">
+    <div class="m-2 fw">
+        <form class="col-11"action="" method="POST">
             @csrf
             <fieldset>
             <legend>information sur l'entretien</legend> 
@@ -47,12 +47,12 @@
             <input type="date" class="form-control" name="date" required>
             </fieldset>
             <legend>Choisie les pièces changées</legend>
-            <div class=" d-flex ">
+            <div class=" d-flex reverse-row justify-content-center">
                 @php $i=0 @endphp
                 @foreach ($pieces as $one)
                 @php $i++ @endphp
                 @if ( $i==1 || $i== (count($pieces) + count($pieces) % 2) / 2 )
-                    <div class="row">
+                    <div class="row col-5">
                         <fieldset>
                 @endif
                     <div class="col {{$i}}">
@@ -65,8 +65,11 @@
                     @endif
                 @endforeach
             </div>
-            <input  class ="btn btn-outline-primary "type="submit" value="Envoyer">
-            <input class ="btn btn-outline-danger" type="reset" value="Vider">
+           <div class="d-flex justify-content-center m-3">
+            <input  class ="btn btn-outline-primary m-1"type="submit" value="Envoyer">
+            <input class ="btn btn-outline-danger m-1" type="reset" value="Vider">
+
+           </div>
         </form>
     </div>
     

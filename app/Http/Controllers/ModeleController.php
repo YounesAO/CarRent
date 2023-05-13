@@ -49,24 +49,28 @@ class ModeleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Modele $modele)
+    public function edit(Modele $model)
     {
-        //
+        return view('Pages.settings.editeModel',['model'=>$model]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Modele $modele)
+    public function update(Request $request)
     {
-        //
+        $model= modele::find($request->idModel);
+        $model->update($request->all());
+        return redirect('settings/general')->with(['status' => "le model a été modifier par success"]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Modele $modele)
+    public function destroy(Modele $model)
     {
-        //
+        $model->delete();
+        return(redirect('/settings/general')->with('status', 'le Model a été supprimer par success'));
+
     }
 }

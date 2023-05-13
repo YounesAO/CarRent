@@ -22,11 +22,23 @@ class Cheque extends Model
         'idClient'	
         
     ];
+    protected function client(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>(Client::where('idClient',$this->idClient)->first())
+        );
+    }
     protected function encours(): Attribute
     {
         return new Attribute(
             get: fn () =>(strtotime($this->dateCheque)>time())?true:false
         );
     }
-
+    protected function now(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>(($this->dateCheque)==date('Y-m-d'))?true:false
+        );
+    
+    }
 }

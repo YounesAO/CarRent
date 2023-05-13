@@ -67,14 +67,14 @@
     </div>
 </div>
 <section class="d-flex flex-wrap">
-    <div class="box col-11 col-lg-6 m-3" >
-        <canvas id="line-chart"></canvas>
-        <span class="title">Top Cars Reservations</span>
+    <div class="box d-flex flex-column col-11 col-lg-6 m-3" >
+        <canvas class="fw p-1" id="line-chart"></canvas>
+        <span class="title">Total reservation mois </span>
 
     </div>
-    <div class="box col-11 col-lg-5 m-3">
+    <div class="box d-flex flex-column col-11 col-lg-5 m-3">
         @foreach($topCars as $car)
-        <div class="d-flex m-1 shadow  top p-2" onclick="window.location.href ='cars/{{$car->voiture->id}}';" >
+        <div class="d-flex m-1 fw shadow  top p-2" onclick="window.location.href ='cars/{{$car->voiture->id}}';" >
             <img src="{{ asset('images').'/'.$car->voiture->image }}" alt="">
             <div class="info">
                 <span class="marque">    {{$car->voiture->marque->marque}}        </span>
@@ -87,10 +87,22 @@
     </div>
 
 </section>
-<div>
-    <canvas id="acquisitions"></canvas>
-</div>
+<section class="d-flex flex-wrap">
+    <div class="box  d-flex flex-column justify-content-between  col-11 col-lg-6 m-3" >
+        <canvas class="fw p-1" id="bar-duree"></canvas>
+        <span class="title">Top Cars Reservations</span>
+    </div>
+
+    <div class="box d-flex flex-column justify-content-between col-11 col-lg-5 m-3">
+        <canvas id="pieChart"></canvas>
+        <span class="title">Top Cars Reservations</span>
+    </div>
+
+</section>
+
 <input id="stats" type="hidden"value="{{json_encode($stats)}}">
+<input id="stats-reservation" type="hidden"value="{{json_encode($statsReservation)}}">
+<input id="duree" type="hidden"value="{{json_encode($duree)}}">
 
 @endsection
 <style>

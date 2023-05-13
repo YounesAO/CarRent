@@ -4,6 +4,7 @@
 @import 'variables';
 //card style
 @import 'Car';
+@import '_navbar';
 @import 'client';
 @import 'progress_bar';
 @import 'sidebar';
@@ -59,4 +60,38 @@ body{
 }
 .slick-prev:before{
     content: '◀';
+}
+.style1{
+    text-decoration: none;
+    border: 1px solid rgb(255, 217, 0); 
+    background-color: rgba(226, 192, 43, 0.24);
+    border-radius: 10px;
+    transition: all ease-in 500ms;
+    &:hover{
+        opacity:0.7;
+    }
+    &:hover.no-opacity{
+        opacity:1;
+    }
+    
+}
+.bg-1{
+    border: 1px solid rgba(0, 252, 96, 0.726); 
+    background-color: rgba(0, 252, 97, 0.24);
+}
+.bg-2{
+    border: 1px solid #F1F7B5; 
+    background-color: #F1F7B550;
+}
+.bg-3{
+    border: 1px solid #9EA1D4; 
+    background-color: #9EA1D424;
+}
+.align-items-center{
+    display:flex;
+    align-items:center;
+}
+.fs-20{
+    font-family: 'Righteous Regular';
+    font-size: 14px;
 }

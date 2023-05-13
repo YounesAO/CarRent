@@ -46,7 +46,11 @@
     document.addEventListener('DOMContentLoaded', function () {
         $('#reservationTable').DataTable({
             pagingType: 'full_numbers',
+            language: {
+                url: '{{ asset("lang/fr-FR.json") }}',
+            }
         });
+
     }, false);
 </script>
 @endsection

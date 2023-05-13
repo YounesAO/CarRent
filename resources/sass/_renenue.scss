@@ -9,6 +9,7 @@
     .char{
         border: 1px solid #212529;
         border-radius: 5px;
+        margin-bottom: 20px;
         canvas{
             margin: 10px ;
         }
@@ -33,7 +34,27 @@
     border: 1px dotted #212529;
     border-radius: 5px;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+.montant{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 19px;
+}
 
-    
 
+}
+.form-filter{
+    @media screen and (max-width:600px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: start;
+        select{
+            margin: 10px 0px;
+        }
+        button{
+            width: 300px;
+        }
+    }
 }

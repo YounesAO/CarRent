@@ -28,12 +28,15 @@
     .buttons{
         display: none !important;
         opacity: 0;
+        height: 0;
         transition: opacity 1s ease-out;
     }
     &:hover{
         .buttons{
             display: flex !important;
             opacity: 1;
+            height: 100%;
+
         }
     }
 }

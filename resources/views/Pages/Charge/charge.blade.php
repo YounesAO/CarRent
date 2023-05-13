@@ -54,6 +54,9 @@
     document.addEventListener('DOMContentLoaded', function () {
         $('#chargeTable').DataTable({
             pagingType: 'full_numbers',
+            language: {
+                url: '{{ asset("lang/fr-FR.json") }}',
+            },
         });
     }, false);
 </script>

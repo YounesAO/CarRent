@@ -23,7 +23,7 @@
         width: 250px;
      }
      @media (max-width: 768px) { 
-        width: 400px;
+        width: 91.66666667%;
      }
 
     .icon{
@@ -143,4 +143,7 @@ li{
         --button-box-shadow: 0 var(--button-box-shadow-width) 0 #212529;
         box-shadow: var(--button-box-shadow);
     }
+}
+#pieChart{
+    max-height: 300px;
 }

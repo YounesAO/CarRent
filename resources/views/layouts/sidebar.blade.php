@@ -1,5 +1,5 @@
 
-<div class="d-flex side-bar  ">
+<div class="d-flex col-2 col-lg-1 justify-content-center side-bar   ">
     <ul>
         <li>
             <a id="Home" href="/dashboard"><i class="fa-solid fa-house"></i></a>

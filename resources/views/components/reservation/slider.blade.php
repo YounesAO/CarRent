@@ -21,12 +21,14 @@
     </div>
     
     <script>
-    
+    window.addEventListener('resize', function() {
+            location.reload();
+        });
+        var n =(window.matchMedia("(min-width: 720px)").matches)?4:1;
     $(document).ready(function(){
-    
         $('.reservation-unpaid').slick({
-        infinite: true,
-        slidesToShow: 4,
+        infinite: false,
+        slidesToShow:n,
         slidesToScroll: 1,
         dots: true,
     
