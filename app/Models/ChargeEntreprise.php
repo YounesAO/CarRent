@@ -16,6 +16,7 @@ class ChargeEntreprise extends Model
 
     public $timestamps = false;
     protected $table = "chargeentreprise";
+    protected $primaryKey = "idChargeEntreprise";
     protected $fillable = [
         'idChargeEntreprise',
         'idTypeCharge'

@@ -1,13 +1,11 @@
-<form class = "" action="/add/client" method="post">
+<form class = "" action="/new/client" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="id" value ='@yield('idCar')'>
     
-   <div class="container m-2 w-9 d-flex flex-column flex-wrap">
+   <div class="container m-2 w-9 d-flex">
         <div class="container-fluid">
             @csrf
-            @foreach($req->all() as $key => $data)
-            <input type="hidden" name="req [{{$key}}]" value="{{$data}}">
-            @endforeach
+            
             <label class="form-label" for="nomClient">Nom Client</label>
             <input class="form-control" type="text" name="nomClient" id=""  required>
             
@@ -15,7 +13,7 @@
             <input class="form-control" type="text" name="prenomClient" id="" required>
             
             <label class="form-label" for="CIN">CIN</label>
-            <input class ="form-control" type="text" name="CIN" value="{{$req->cin}}" disabled>
+            <input class ="form-control" type="text" name="CIN" value="" >
 
             <label class="form-label" for="dateNaissance">Date de naissance</label>
             <input class="form-control" type="date" name="dateNaissance" id="" value="" required>
@@ -37,8 +35,8 @@
             <label class="form-label" for="nationalite">Nationalité</label>
             <input class ="form-control" type="text" name="nationalite" value="" >
             
-            <label class="form-label" for="imagePermis">photo du Permis de conduite </label>
-            <input class="form-control" type="file"  name="imagePermis" value=""id="" >
+            <label class="form-label" for="photoPermis">photo du Permis de conduite </label>
+            <input class="form-control" type="file"  name="photoPermis" value=""id="" >
 
             <label class="form-label" for="photoCIN">photo de la carte d'identite nationale</label>
             <input class="form-control" type="file"  name="photoCIN" value=""id="" >

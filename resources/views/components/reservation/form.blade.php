@@ -1,5 +1,5 @@
 
-<form class="col-4" action="" method="post">
+<form class="col-11 col-md-4" action="" method="post">
     @csrf
     <input type="hidden" name="idVoiture" value="{{ $voiture ?? ''}}">
     <label class="form-label" for="cin">CIN de Client :</label>

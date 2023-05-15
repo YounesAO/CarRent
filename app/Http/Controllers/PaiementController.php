@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cheque;
 use App\Models\Paiement;
 use App\Models\Reservation;
+use App\Models\Voiture;
 use Illuminate\Http\Request;
 
 class PaiementController extends Controller
@@ -28,7 +29,11 @@ class PaiementController extends Controller
         }
 
         $paiement->save();
-
+        $voiture =Voiture::where('id',$reservation->idVoiture)->first();
+        $reservation->distance = $request->kilometrage - $voiture->kilometrage ;
+        $voiture->kilometrage =$request->kilometrage;
+        $voiture->save();
+        
         $reservation->idPaiement = $paiement->idPaiement;
         $reservation->save();
 

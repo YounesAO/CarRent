@@ -3,6 +3,8 @@
     <input class="form-control" type="date" name="datePaiement" required>
     <label class="form-label" for="montant">Monatnt</label>
     <input class="form-control" type="text" name="montant" required>
+    <label class="form-label" for="kilometrage">Kilométrage de retour</label>
+    <input class="form-control" type="text" name="kilometrage" required>
     <input class="form-label m-1 Cheque" type="checkbox" name="Cheque" >
     <label class="form-label " for="Cheque">Payer par Chèque</label>
     <div class="hide">

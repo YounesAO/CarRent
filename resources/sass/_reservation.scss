@@ -1,16 +1,14 @@
 .reservation-about{
-    background-color: rgba(211, 223, 255, 0.329);
 
     .header{
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
         width: 100%;
-        margin:10px;
         padding: 12px;
         section{
             cursor: pointer;
-            width: 30%;
             height: 100px;
             display: flex;
             align-items: center;
@@ -45,20 +43,19 @@
     }
 .section-info{
     display: flex;
-    width: 100%;
-    margin:10px;
+    flex-wrap: wrap;
     padding: 12px;
     border: 1px solid #aa77fcc7;
-    background-color: rgb(193, 155, 255); 
+    background-color: rgba(193, 155, 255, 0.26); 
     border-radius: 7px; 
     div{
-            width: 23%;
+            
             height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
-            background-color: #eee;
+            border-radius: 5px;
+            background-color: #752f963b;
             margin: 1%;
         span{
             font-family: Georgia, 'Times New Roman', Times, serif;
@@ -114,4 +111,10 @@ margin-right: 20px;
     background-color: #4109c236;
     border: 1px solid #4109c2;
     border-radius: 10px;
+}
+.reservation{
+    border:1px #2c2c2c solid;
+    a{
+        text-decoration: none;
+    }
 }

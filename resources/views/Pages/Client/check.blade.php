@@ -13,8 +13,8 @@
     <input type="hidden" name="id" value ='{{$id}}'>
     <input type="hidden" name="idClient" value ='{{$client->idClient}}'>
     
-   <div class="container m-2 w-9 d-flex">
-        <div class="container-fluid">
+   <div class="container m-2 w-9 d-flex justufy-content-center flex-wrap">
+        <div class="m-2 fw">
             @csrf
             
 
@@ -35,14 +35,14 @@
             </textarea>
             @if($req['prix']==null)
             <label class="form-label" for="prix">Prix</label>
-            <input class="form-control" type="text" name="prix" id="">
+            <input class="form-control" type="text" name="prix" id="" required>
             @endif
            
 
            
             
         </div>
-        <div class="container-fluid ">
+        <div class="m-2 fw">
             <label class="form-label" for="numPermis">Numéro de permet</label>
             <input class="form-control" type="text" name="numPermis" id="" value="{{$permis->numPermis}}" >
             

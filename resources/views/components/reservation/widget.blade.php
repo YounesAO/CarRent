@@ -1,26 +1,26 @@
 <div class=" card reservation shadow m-1 p-3">
     <div>
-        <span>{{$reservation->voiture->marque->marque." ".$reservation->voiture->model->model}}</span>
+        <span class="bold">{{$reservation->voiture->marque->marque." ".$reservation->voiture->model->model}}</span>
     </div>
     <div>
-        <span>Client : {{$reservation->client->nomClient." ".$reservation->client->prenomClient}}</span>
+        <span>Client : <span class="bold">{{$reservation->client->nomClient." ".$reservation->client->prenomClient}}</span></span>
     </div>
     <div>
-        <span>Durée de reservarion: {{$reservation->duree}} jours</span>
+        <span>Durée de reservarion: <span class="bold">{{$reservation->duree}}</span> jours</span>
        
     </div>
     <div>
         <span>Etat : 
             @if(!$reservation->encours)
-                <span class='text-danger'>Reservation terminée</span>
+                <span class='bold text-danger'>Reservation terminée</span>
             @else
-                <span class='text-success'>Reservation en cours</span>
+                <span class='bold text-success'>Reservation en cours</span>
             @endif
         </span>
     </div>
     <div>
         <span>Montant</span>
-        <span>{{$reservation->montant}}</span>
+        <span class="bold">{{$reservation->montant}}</span>
         <a href="/check/reservation/{{$reservation->idReservation}}" target="_parent">plus</a>
     </div>
 

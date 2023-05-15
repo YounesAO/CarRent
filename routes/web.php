@@ -20,6 +20,7 @@ use App\Models\Charge;
 use App\Models\ChargeEntreprise;
 use App\Models\ChargeVoiture;
 use App\Models\Cheque;
+use App\Models\Client;
 use App\Models\Entretient;
 use App\Models\Marque;
 use App\Models\Modele;
@@ -76,7 +77,8 @@ Route::get('/add/reservation/{id}', function ($id) {
 });
 Route::post('/add/reservation/{id}', [ReservationController::class, 'prepare']);
 Route::get('dashboard/Clients', [ClientController::class, 'all']);
-
+Route::get('add/client',[ClientController::class,'add']);
+Route::post('new/client',[ClientController::class,'insert']);
 Route::post('/add/client', [ClientController::class, 'store']);
 Route::post('/check/client', [ReservationController::class, 'store']);
 Route::get('/check/client/{client}', function($client){
@@ -115,8 +117,7 @@ Route::get('dashboard/analyse',[RevenueController::class,'index']);
 Route::post('dashboard/analyse',[RevenueController::class,'index']);
 
 Route::get('dashboard/client',[ClientController::class,'index']);
-Route::get('/profile/client',[ClientController::class,'show'])->name('client');
-Route::post('/profile/client',[ClientController::class,'view']);
+Route::any('/profile/client',[ClientController::class,'view'])->name('client');
 Route::get('/delete/client/{client}',[ClientController::class,'drop']);
 
 Route::get('/slide/reservation',[ReservationController::class,'slide']);

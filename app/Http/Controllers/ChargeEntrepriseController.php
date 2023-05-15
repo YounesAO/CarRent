@@ -19,7 +19,7 @@ class ChargeEntrepriseController extends Controller
     {  
         $chargeEntreprise = new ChargeEntreprise(['idTypeCharge'=>$request->nature]);
         $chargeEntreprise->save();
-        $charge = new Charge(['categorieCharge'=>"Entreprise",'dateCharge'=>$request->dateCharge,'montant'=>$request->montant,'idChargeEntreprise'=>$chargeEntreprise->idChargeEntreprise ]);
+        $charge = new Charge(['categorieCharge'=>"Entreprise",'dateCharge'=>$request->dateCharge,'montant'=>$request->montant,'idChargeEntreprise'=>($chargeEntreprise->idChargeEntreprise)]);
         $charge->save();
         return redirect('dashboard');
     }

@@ -136,7 +136,7 @@ class ReservationController extends Controller
         $reservations = Reservation::all()->filter(function ($item) use($today){
             $depart = $item->dateDebut;
             $retour = $item->dateRetour;
-            return (  $depart < $today &&$retour <= $today && $item->idPaiment ==null);
+            return (  $depart < $today &&$retour <= $today && $item->idPaiement ==null);
         }); 
 
         return view('components.reservation.slider',['reservations'=>$reservations]);

@@ -1,8 +1,8 @@
-<div class="d-flex flex-column  col-11 jusity-content-center reservation-about">
-    <div class="header">
-        <section class="car" onclick="window.location.href ='{{ route('voiture', ['id'=>$reservation->voiture->id]) }}'"> 
+<div class="d-flex flex-column  col-12 jusity-content-center align-items-center reservation-about">
+    <div class="header ">
+        <section class="car col-11 col-md-4 m-1" onclick="window.location.href ='{{ route('voiture', ['id'=>$reservation->voiture->id]) }}'"> 
              <div class="icon">
-                <i class="fa-solid fa-car-tunnel"></i>
+                <i class="fa-solid fa-car"></i>
             </div>
             <div>
            
@@ -10,7 +10,7 @@
             <span>{{$reservation->voiture->model->model}}</span>
         </div>
         </section>
-        <section class="client" onclick="window.location.href ='{{ route('client', ['client'=>$reservation->Client->idClient]) }}'">
+        <section class="client col-11 col-md-4 m-1" onclick="window.location.href ='{{ route('client', ['client'=>$reservation->Client->idClient]) }}'">
             <div class="icon">
                 <i class="fa-solid fa-user"></i>
             </div>
@@ -19,7 +19,7 @@
                 <span>{{$reservation->client->CIN}}</span>
             </div>
         </section>
-        <section class="stat">
+        <section class="stat col-11 col-md-3 m-1">
             <div class="icon">
                 <i class="fa-solid fa-circle-info"></i>
             </div>
@@ -36,29 +36,29 @@
             </div>
         </section>
     </div>
-    <section class="section-info">
-        <div class="depart">
+    <section class="section-info col-12">
+        <div class="depart col-12 col-sm-6 col-md-3">
             <span>Depart :</span>
             <span class='bold number'>{{$reservation->dateDebut}}</span>
         </div>
         
-        <div class="arrivee">
+        <div class="arrivee col-12 col-sm-5 col-md-3">
             <span>Arrivee :</span>
             <span class='bold number'>{{$reservation->dateRetour}}</span>
         </div>  
-        <div class="duree">
+        <div class="duree col-12 col-sm-6 col-md-2">
             <span>Durée :</span>
             <span class='bold number'>{{$reservation->duree}} <span>jours</span></span>
         </div>
-        <div class="montant">
+        <div class="montant col-12 col-sm-5 col-md-3">
             <span>Montant :</span>
             <span class='bold number'>{{$reservation->montant}}</span>
         </div>
     </section>
-    <div class="buttons">
+    <div class="buttons col-12 m-2">
         <button data-bs-toggle="modal" data-bs-target="#reservation{{$reservation->idReservation}}"class="btn btn-warning m-1">Modifier la reservation</button>
     </div>
-    <section>
+    <section class="col-12 m-2">
         <table class="table">
             <thead>
                 <tr>
