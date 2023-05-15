@@ -24,9 +24,7 @@
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" href="#Pieces" >Pieces et Entretients</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-        </li>
+        
     </ul>
 </div>
 

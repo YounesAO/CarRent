@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Client;
+use App\Models\Reservation;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 class ClientObserver
 {
@@ -27,7 +29,8 @@ class ClientObserver
      */
     public function deleted(Client $client): void
     {
-        $client->reservations->delete();
+        Reservation::where('idClient',$client->idClient)->delete();
+
     }
 
     /**
@@ -35,7 +38,8 @@ class ClientObserver
      */
     public function restored(Client $client): void
     {
-        //
+     App\models\Reservation::withTrashed()->where('idClient',$client->idClient)->restore();
+
     }
 
     /**

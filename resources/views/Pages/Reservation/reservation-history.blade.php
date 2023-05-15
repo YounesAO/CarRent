@@ -2,6 +2,11 @@
 
 @extends ('dashboard')
 @section('header')
+@if(session('status'))
+        <div class="alert m-1 alert-success">
+            {{session('status')}}
+        </div>
+    @endif
 <div class="d-flex filter-reservation justify-content-between m-3 p-3">
     <h3>Reservations de mois {{$month[1]."/".$month[0]}}</h3> 
     <form class="d-flex justify-content-center align-items-center" action="" method="GET">
@@ -12,6 +17,7 @@
 </div>
 @endsection
 @section('content')
+
 <div class="p-3 m-1">
     <table id="reservationTable" class="table m-1">
         <thead>

@@ -33,6 +33,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -54,6 +55,8 @@ Route::get('/', [LoginController::class,'index']);
 Route::post('/login',[LoginController::class,'login']);
 
 
+/*Gestion des Voitures  #Create #Update #delete :*/
+
 Route::get('/cars', [VoitureController::class, 'index']);
 Route::get('/cars/{id}', [VoitureController::class, 'view'])->name('voiture');
 Route::get('/cars/{id}/edit', [VoitureController::class, 'edit']);
@@ -63,6 +66,9 @@ Route::post('/add/car', [VoitureController::class, 'store']);
 Route::get('/add/car',function () {
     return view('Pages.Voiture.add',['marque'=>Marque::all()]);
 });
+
+/*Gestion des reservation  #Create :*/
+
 Route::get('/new/reservation',function () {
     return view('Pages.Reservation.new');
 });
@@ -76,15 +82,21 @@ Route::get('/add/reservation/{id}', function ($id) {
     return view('Pages.Reservation.add',['voiture'=>$id]);
 });
 Route::post('/add/reservation/{id}', [ReservationController::class, 'prepare']);
+
+/*Cestion des Client :*/
 Route::get('dashboard/Clients', [ClientController::class, 'all']);
 Route::get('add/client',[ClientController::class,'add']);
 Route::post('new/client',[ClientController::class,'insert']);
+Route::get('edite/client/{client}',[ClientController::class,'edit']);
+Route::post('edite/client/{client}',[ClientController::class,'update']);
+
 Route::post('/add/client', [ClientController::class, 'store']);
 Route::post('/check/client', [ReservationController::class, 'store']);
 Route::get('/check/client/{client}', function($client){
     view('Pages.Reservation.add',['voiture'=>$client]);
 });
 
+/*Gestion des Entretiens :*/
 Route::get('/dashboard',[DashboardController::class,'index']);
 Route::get('dashboard/entretient',[EntretientController::class,'index']);
 Route::get('add/entretient/{voiture}',[EntretientController::class,'fill']);
@@ -93,6 +105,8 @@ Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
 Route::get('/dashboard/reservation',[ReservationController::class,'index']);
 Route::get('/dashboard/reservation/history',[ReservationController::class,'view']);
+
+/*Gestion des Charge :*/
 
 Route::get('/dashboard/charge', [ChargeController::class,'index']);
 Route::get('/dashboard/charge/voiture',[ChargeVoitureController::class,'index']);
@@ -107,9 +121,17 @@ Route::get('/delete/charge/{charge}',[ChargeController::class,'destroy']);
 
 Route::get('/get-model',[ModeleController::class,'index']);
 
+/*slide des reservation :*/
 
 Route::get('/check/reservation/{id}',[ReservationController::class,'show']);
 Route::post('edite/reservation/{reservation}',[ReservationController::class,'update']);
+Route::get('/delete/reservation/{reservation}',[ReservationController::class,'destroy']);
+
+Route::get('/slide/reservation',[ReservationController::class,'slide']);
+Route::get('/slide/reservation/unpaid',[ReservationController::class,'slideUpaid']);
+
+/*Gestion des paiement des reservation :*/
+
 Route::post('add/paiement/{reservation}',[PaiementController::class,'store']);
 Route::post('edite/paiement/{paiement}',[PaiementController::class,'update']);
 
@@ -120,8 +142,9 @@ Route::get('dashboard/client',[ClientController::class,'index']);
 Route::any('/profile/client',[ClientController::class,'view'])->name('client');
 Route::get('/delete/client/{client}',[ClientController::class,'drop']);
 
-Route::get('/slide/reservation',[ReservationController::class,'slide']);
-Route::get('/slide/reservation/unpaid',[ReservationController::class,'slideUpaid']);
+/*Parametres de l'application :*/
+
+
 Route::get('/settings',[SettingsController::class,'index']);
 Route::get('/settings/user',[SettingsController::class,'compte']);
 Route::post('/settings/user',[UserController::class,'update']);
@@ -139,6 +162,11 @@ Route::post('/delete/piece/{piece}',[PieceController::class,'destroy']);
 Route::get('/notification',function (){
     return view('Pages.dashboard.notification',['cheques'=>Cheque::all(),'voitures'=>Voiture::all()]);
 });
+/* la restoration des éléments suprimmés*/
+Route::get('/restore/reservation/{reservation}',[ReservationController::class,'restore']);
+Route::get('/restore/client/{client}',[ClientController::class,'restore']);
+Route::get('/restore/voiture/{voiture}',[voitureController::class,'restore']);
+
 Route::get('/home', function () {
     return view('home');
 });

@@ -2,6 +2,11 @@
 @extends('dashboard')
 @section('content')
 <div class="client">
+    @if(session('stats'))
+        <div class="alert m-3   alert-success">
+            {{session('stats')}}
+        </div>
+    @endif
     <section class="header m-2 p-3">
         <div class="icon">
             <i class="fa-solid fa-user"></i>
@@ -48,23 +53,43 @@
     </div>
 </section>
 
-<section class="m-2">
-    <h3 class="  style1 p-3 bg-3">
-        Information sur le client
-    </h3>
+<section class="m-2 ">
+    <div class="style1 d-flex justify-content-between align-items-center m-2 bg-3">
+        <h5 class=" p-3 mb-0">
+            Information sur le client
+        </h5>
+        <div class=" p-3 ">
+            <a class="btn btn-primary" href="/edite/client/{{$client->idClient}}">Modifier</a>
+            <a class="btn btn-danger" href="/delete/client/{{$client->idClient}}">Suprimmer</a>
+        </div>
+    </div>
+    
     <div class="d-flex  m-2">
             <div class="d-flex col-3 flex-column m-1">
                 <span>Date naissance : <span class="bold">{{$client->dateNaissance}}</span></span>
                 <span>Nationalite : <span class="bold">{{$client->nationalite}}</span></span>
-                <span>Carte d'identité : <span class="bold"><a href="{{ asset("images/$client->photoCIN") }}">Voir</a></span></span>
-            </div>
+                <span>Carte d'identité : 
+                    @if($client->permis->photoPermis!=null)
+                    <span class="bold"><a href="{{ asset("images/$client->photoCIN") }}">Voir</a></span></span>
+                    @else
+                    <span>aucune photo</span>
+                    @endif
+                </div>
             <div class="d-flex col-5 flex-column m-1">
                 <span>Ville d'obtention de permis :<span class="bold">{{$client->permis->villePermis}}</span></span>
                 <span>Date de permis : <span class="bold">{{$client->permis->datePermis}}</span></span>
-                <span>Photo de permis  : <span class="bold"><a href="{{ asset("images")}}/{{$client->permis->photoPermis}}">Voir</a></span></span>
-            </div>
+                <span>Photo de permis  : 
+                    @if($client->permis->photoPermis!=null)
+                    <span class="bold"><a href="{{ asset("images")}}/{{$client->permis->photoPermis}}">Voir</a></span></span>
+                    @else
+                    <span>aucune photo</span>
+                    @endif
+                </div>
     </div>
 </section>
+<h5 class=" m-2 style1 p-3 bg-3">
+    Historique de client
+</h5>
 <section class="d-flex col-12 flex-wrap">
     <div class="box d-flex flex-column justify-content-between col-11 col-lg-6 m-3">
         <canvas id="client-chart"></canvas>

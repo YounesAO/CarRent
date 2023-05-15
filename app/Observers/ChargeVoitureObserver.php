@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Models\Charge;
 use App\Models\ChargeVoiture;
+use App\Models\Entretient;
 
 class ChargeVoitureObserver
 {
@@ -27,7 +29,8 @@ class ChargeVoitureObserver
      */
     public function deleted(ChargeVoiture $chargeVoiture): void
     {
-        $chargeVoiture->ChargesVoiture->delete();
+        Charge::where('idChargeVoiture',$chargeVoiture->idChargeVoiture)->delete();
+        Entretient::where('idEntretient',$chargeVoiture->idEntretient)->delete();
     }
 
     /**
@@ -35,7 +38,10 @@ class ChargeVoitureObserver
      */
     public function restored(ChargeVoiture $chargeVoiture): void
     {
-        //
+        Charge::withTrashed('idChargeVoiture',$chargeVoiture->idChargeVoiture)->restore();
+        Entretient::withTrashed('idEntretient',$chargeVoiture->idEntretient)->restore();
+
+
     }
 
     /**

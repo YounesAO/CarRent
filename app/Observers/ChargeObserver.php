@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Charge;
+use App\Models\ChargeEntreprise;
 use App\Models\ChargeVoiture;
 
 class ChargeObserver
@@ -28,7 +29,9 @@ class ChargeObserver
      */
     public function deleted(Charge $charge): void
     {
-      
+        ChargeVoiture::where('idChargeVoiture',$charge->idChargeVoiture)->delete();
+        ChargeVoiture::where('idChargeEntrepris',$charge->idChargeEntreprise)->delete();
+
     }
 
     /**
@@ -37,6 +40,7 @@ class ChargeObserver
     public function restored(Charge $charge): void
     {
         ChargeVoiture::withTrashed()->where('idChargeVoiture',$charge->idChargeVoiture)->restore();
+        ChargeEntreprise::withTrashed()->where('idChargeEntreprise',$charge->idChargeEntreprise)->restore();
 
 
     }

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Charge;
+use App\Models\ChargeVoiture;
 use App\Models\Reservation;
 use App\Models\Voiture;
 
@@ -29,9 +30,9 @@ class VoitureObserver
      */
     public function deleted(Voiture $voiture): void
     {   
-            $voiture->chargesvoi()->delete();
-            $voiture->reservations()->delete();
-            
+        Reservation::where('idVoiture',$voiture->id)->delete();
+        ChargeVoiture::where('idVoiture',$voiture->id)->delete();
+        
     }
 
     /**
@@ -39,9 +40,8 @@ class VoitureObserver
      */
     public function restored(Voiture $voiture): void
     { 
-        echo'hi';
-        die();
-
+        Reservation::withTrashed()->where('idVoiture',$voiture->id)->delete();
+        ChargeVoiture::withTrashed()->where('idVoiture',$voiture->id)->delete();
     }
 
     /**

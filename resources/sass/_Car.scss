@@ -43,15 +43,13 @@
 }
 .bio{
     .car-container{
-        width: 50%;
     }
     .car{
         display: flex;
         flex-direction: column;
-        width: 50%;
         .info{
             font-size: large;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .data{
             font-weight: bold;
@@ -69,4 +67,17 @@
         }
     }
 }
+.options{
+width: auto;
+display: flex;
+    span{
+    border-radius: 5px;
+    border :1px #213243 solid;
+    background-color: #eee;
+&:hover{
+    background: #213243;
+    color :#eee;
+}
+    }
 
+}

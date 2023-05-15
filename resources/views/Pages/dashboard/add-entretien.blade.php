@@ -29,7 +29,7 @@
             <span></span>
         </div>
     </div>
-    <div class="m-2 fw">
+    <div class="m-2 flex-wrap fw">
         <form class="col-11"action="" method="POST">
             @csrf
             <fieldset>

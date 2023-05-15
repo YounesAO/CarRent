@@ -46,6 +46,7 @@ class VoitureController extends Controller
         return view('Pages.Voiture.edit',['car'=>$voiture,'marque'=>$marque]);
     }
     public function store(Request $request): RedirectResponse{
+
         $marque =Marque::where('marque',$request->marque)->first();
         if($marque==null){
         $marque=new Marque(['marque'=>$request->marque]);
@@ -57,17 +58,17 @@ class VoitureController extends Controller
             $model->save();
 
         }
-        $car = Voiture::create($request->all());
+
+        $car =new Voiture($request->all());
 
         if($request->hasFile('image')){
             $fileName = 'cars/'.$marque->marque.'_'.time() .'.' . $request->image->extension();
             $path = $request->file('image')->move(public_path('/images/cars/'),$fileName);
-            $car->update(['image'=> $fileName]);
+            $car->image = $fileName;
 
         }
-        $car->update(['idModel'=> $model->idModel]);
-        $car->update(['image'=> $fileName]);
-        dd($request);
+        $car->idModel = $model->idModel;
+        $car->save();
 
         return redirect('/cars');
     }
@@ -98,5 +99,9 @@ class VoitureController extends Controller
     public function delete(Request $request,Voiture $voiture){
         $voiture->delete();
         return redirect('/cars');
+    }
+    function restore ( $id){
+           dd(Voiture::withTrashed()->where('id', $id)->restore());
+        return Redirect('settings/deleted')->with('status',"la Voiture a été bien restaurée");
     }
 }

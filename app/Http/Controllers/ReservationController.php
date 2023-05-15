@@ -10,6 +10,7 @@ use DateTimeImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\HttpFoundation\RateLimiter\RequestRateLimiterInterface;
 
 use function Ramsey\Uuid\v1;
@@ -42,9 +43,30 @@ class ReservationController extends Controller
 
     $request->validate([
         'cin'=>'required|regex:/(^([a-zA-z]+)(\d+)?$)/u',
-        'dateDebut' => 'required|date|after:today',
-        'dateRetour' => 'required|date|after:dateDebut'
+        'dateDebut' => 'required|date|after_or_equal:today',
+        'dateRetour' => 'required|date|after:dateDebut',
+    ],[
+        'cin.regex'=>"le numéro de cin doit etre de la forme AB12345",
+        'cin.required'=>'le numéro de CIN est oblogatoire',
+        'dateDebut.required'=>'la date de debut est obligatoire',
+        'dateDebut.date'=>'le champ doit etre de la format  d\'une date',
+        'dateDebut.after_or_equal'=>'la date de debut doit etre égale au supérieure à la date aujourd\'huit',
+        'dateRetour.required'=>'la date de debut est obligatoire',
+        'dateRetour.after'=>'la date de retour est date doit etre inférieure à la date de debut',
+        'prix.numeric'=>"le prix doit etre numerique",
+        'prix.required'=>"le prix est obligatoire",
+
     ]);
+    $condition = Reservation::all()->filter(function ($item) use($request,$id){
+        $depart = $item->dateDebut;
+        $retour = $item->dateRetour;
+        return (   $retour> $request->dateDebut and $depart<$request->dateRetour and $item->idVoiture==$id
+            );
+        });
+        if(!$condition->isEmpty()){
+            return(Redirect::back()->withErrors(['la voiture selectionnée et occupée durant cette periode']));
+        }
+
         $client= Client::where('CIN', $request->cin)->first();
 
         if($client == null)
@@ -146,6 +168,14 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return redirect('dashboard/reservation/history')->with('status',"la reservation a été bien suprimmée");
+    }
+    function restore ($id){
+        Reservation::withTrashed()
+            ->where('idReservation', $id)
+            ->restore();
+            
+        return Redirect('settings/deleted')->with('status',"la reservation a été bien restaurée");
     }
 }

@@ -57,6 +57,7 @@
     </section>
     <div class="buttons col-12 m-2">
         <button data-bs-toggle="modal" data-bs-target="#reservation{{$reservation->idReservation}}"class="btn btn-warning m-1">Modifier la reservation</button>
+        <a class="btn btn-danger "href="/delete/reservation/{{$reservation->idReservation}}">Suprimmer</a>
     </div>
     <section class="col-12 m-2">
         <table class="table">

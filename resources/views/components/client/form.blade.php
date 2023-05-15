@@ -53,7 +53,7 @@
    @endif
     <CENter>   
         <input class="btn btn-success m-2" type="submit" value="Enregister">
-        <input class="btn btn-dark m-2" type="reset" value="Annuler">
+        <input class="btn btn-dark m-2" type="reset" value="Vider">
         <a class="btn btn-danger m-2" href="./">Retouner</a>
     </CENter>   
 </form>

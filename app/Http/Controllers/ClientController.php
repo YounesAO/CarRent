@@ -68,6 +68,9 @@ class ClientController extends Controller
             $client =Client::where('CIN',request('CIN'))->first();
             else
             $client = Client::where('idClient',request('client'))->first();
+            if($client ==null){
+                return view('Pages.Client.index',['error'=>"aucun client associe à ce numéro CIN"]);
+            }
             $clientReservation= Reservation::where('idClient',$client->idClient)->get();
             $data = [];
 
@@ -79,9 +82,7 @@ class ClientController extends Controller
             foreach($clientReservation->groupby('idVoiture') as $voiture){
                 $pievoiture[]=["voiture"=>$voiture->first()->voiture->nom ,"stats"=>$voiture->count()];
             }
-            if($client ==null){
-                return view('Pages.Client.index',['error'=>"aucun client associe à ce numéro CIN"]);
-            }
+            
             return view('Pages.Client.profile',['client'=>$client,"data"=>$data,"pieData"=>$pievoiture]);
 
         }
@@ -96,10 +97,30 @@ class ClientController extends Controller
 
 
 
-        public function drop(Client $client)
+        public function edit(Client $client)
         {
-            $client->delete();
-            return redirect('/dashboard/client');
+            
+            return view('Pages.client.editeForm',['client'=>$client]);
+        }
+        public function update(Request $request ,Client $client)
+        {
+            $client->update($request->except('photoCIN'));
+            $permis = $client->permis;
+            $permis->update($request->except('photoPermis'));
+
+            if($request->hasFile('photoCIN')){
+                $fileName = 'Client/id'.$client->CIN.'/_'.time() .'.' . $request->photoCIN->extension();
+                $path = $request->file('photoCIN')->move(public_path('/images/Client/id'.$client->CIN.'/'),$fileName);
+                $client->photoCIN = $fileName;
+            }
+            if($request->hasFile('photoPermis')){
+                $fileName = 'Client/id'.$client->CIN.'/Permis'.time() .'.' . $request->photoPermis->extension();
+                $path = $request->file('photoPermis')->move(public_path('/images/Client/id'.$client->CIN.'/'),$fileName);
+                $permis->photoPermis = $fileName;
+            }
+            $permis->save();
+            $client->save();
+            return redirect('/profile/client?client='.$client->idClient)->with('stats','les information du Client ont été modifié avec succès');
         }
 
 
@@ -108,6 +129,15 @@ class ClientController extends Controller
         {
             $clients = Client::all();
             return view('Pages.client.history',["clients"=>$clients]);
+        }
+        public function drop(Client $client)
+        {   
+            $client->delete();
+            return redirect('/dashboard/client')->with("stats","le client a été suprimer par succès");
+        }
+        function restore( $id){
+            Client::withTrashed()->where('idClient',$id)->restore();
+            return Redirect('settings/deleted')->with('status',"Le client a été bien restauré");
         }
     }
 
