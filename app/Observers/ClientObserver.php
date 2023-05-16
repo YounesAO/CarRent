@@ -38,7 +38,7 @@ class ClientObserver
      */
     public function restored(Client $client): void
     {
-     App\models\Reservation::withTrashed()->where('idClient',$client->idClient)->restore();
+    Reservation::withTrashed()->where('idClient',$client->idClient)->restore();
 
     }
 

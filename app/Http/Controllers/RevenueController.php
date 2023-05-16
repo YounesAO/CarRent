@@ -7,6 +7,7 @@ use App\Models\Reservation;
 use App\Models\TypeCharge;
 use App\Models\Voiture;
 use GuzzleHttp\Psr7\Response;
+
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,20 +23,29 @@ use function PHPUnit\Framework\isNull;
 
 class RevenueController extends Controller
 {
+    /*
+        ce controlleur ne contient pas de model il definit le views de page revenues
+    */
     public function index(Request $request){
+        //les fitres par date et voitures
         $date1=$request->input('date1');
         $date2=$request->input('date2');
         $id=$request->input('voiture');
+        
+        // si les fitres ne sont pas {set}
         if(!isset($date1,$date2)){
         $date1='2022/05/01' ;
         $date2 = date('y/m/d',time());
         }
+        //les données suite au filtre données
         $revenue = RevenueController::revenue($date1, $date2,$id);
         $chargeVoiture = RevenueController::chargeVoiture($date1, $date2,$id);
         $chargeEntreprise =RevenueController::chargeEntreprise($date1, $date2) ;
-        //dd($request,$revenue,$chargeEntreprise,$chargeVoiture,IsEmpty($id));
-    
+        /*
+            préparation  des données des Chart 
+        */
         $voitures = Voiture::all();
+        //revenue par voiture 
         $revenuePerCar = [];
         foreach($voitures as $v){ 
             if(is_numeric($id)){
@@ -44,6 +54,7 @@ class RevenueController extends Controller
             $ChargePerCar [] = ["voiture"=>$v->marque->marque.' '.$v->model->model,"montant"=>doubleval(RevenueController::chargeVoiture($date1,$date2,$v->id)->pluck('montant')->sum())];
             
         }
+        //charge entreprise par types 
         $ChargePerType = [];
         foreach($chargeEntreprise as $t){
             if(isset( $ChargePerType[$t->chargeEntreprise->typeCharge->idTypeCharge] ))
@@ -57,9 +68,18 @@ class RevenueController extends Controller
             $ChargeEntPerType [] = ['label' =>$nom,'data'=>$value];
         }
         $stats =["revenue"=>$revenuePerCar,"charge"=>$ChargePerCar,'entreprise'=>$ChargeEntPerType];
-        //dd($revenue->pluck('montant')->sum());
+        //retourner tous les donées
         return view('Pages.dashboard.revenue',['revenue' => $revenue,'voitures'=>$voitures,'chargeVoiture'=>$chargeVoiture,'chargeEntreprise'=>$chargeEntreprise,'stats'=>$stats]);
     }
+
+/*
+*
+*## Methodes outils pour calculer les charges et
+*## revenues entre de dates données et avec le fitre des voiture
+*
+*
+*/
+
     public static function revenue($date1,$date2,$idv)
     {
         return Reservation::all()->filter(function ($item) use ($date1, $date2,$idv) {
@@ -67,6 +87,7 @@ class RevenueController extends Controller
                 return ($itemDate >= $date1 && $itemDate <= $date2)&&($item->idVoiture==$idv || !isset($idv));
             });
     }
+
     public static function chargeVoiture($date1,$date2,$idv)
     {
         return Charge::all()->filter(function ($item) use ($date1, $date2,$idv) {
@@ -75,6 +96,7 @@ class RevenueController extends Controller
                 return ($itemDate >= $date1 && $itemDate <= $date2)&&(isset($item->idChargeVoiture))&&($item->ChargeVoiture->idVoiture==$idv || !isset($idv));
             });
     }
+
     public static function chargeEntreprise($date1,$date2)
     {
         return Charge::all()->filter(function ($item) use ($date1, $date2) {
@@ -84,6 +106,6 @@ class RevenueController extends Controller
             });
     }
     
-   
-}
 
+}
+##endRevenue

@@ -13,6 +13,21 @@
 
     </div>
     <span class="info" >{{$car->marque->marque}} {{$car->model->model}}</span>
+    @if(isset($stat))
+    <style>.card{height: 100% !important;}</style>
+    <div class="d-flex ">
+        <span>Etat des pieces :</span>
+        <ul class="m-1 pieces">
+        @foreach ($pieces as $item)
+            @if (isset($stat[$item->idPiece]))
+                <li class=""><img class="piece {{$stat[$item->idPiece]}}" src="{{ asset('images').'/' }}{{$item->img}}" alt="" title="{{$item->nom}}"><span class="nomPieces">{{$item->nom}}</span> </li>
+            @else
+                <li class=""><img class="piece green" src="{{ asset('images').'/' }}{{$item->img}}" alt="" title="{{$item->nom}}"><span class="nomPieces">{{$item->nom}}</span> </li>
+            @endif
+        @endforeach
+    </ul>
+    </div>
+    @else
     <div class="d-flex justify-content-center buttons">
         @if (isset($entretient))
         <a class="col btn btn-outline-primary  m-1" href="{{ asset('add/entretient')}}/{{$car->id}}">Rendre entretien</a>
@@ -29,6 +44,7 @@
                 @endif
             @endif
         @endif
-
-    </div>     
+    </div>  
+    @endif
+   
 </div>

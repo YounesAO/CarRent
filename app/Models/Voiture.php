@@ -76,7 +76,7 @@ class Voiture extends Model
     {
         return new Attribute(
             get: fn () => array_filter(EntretientController::entretiens($this), function($value) {
-                return $value == "red";
+                return $value != "green";
             })
             
         );

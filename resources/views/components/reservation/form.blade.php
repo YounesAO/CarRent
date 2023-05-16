@@ -3,7 +3,7 @@
     @csrf
     <input type="hidden" name="idVoiture" value="{{ $voiture ?? ''}}">
     <label class="form-label" for="cin">CIN de Client :</label>
-    <input class="form-control" type="text" name="cin" id="">
+    <input class="form-control" type="text" name="cin" value="@yield('cin')" id="">
     <label class="form-label" for="dateDebut">Date debut</label>
     <input class="form-control" type="date" name="dateDebut" id="">
     <label class="form-label" for="dateRetour">Date retour</label>

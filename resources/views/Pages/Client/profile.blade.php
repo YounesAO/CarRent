@@ -59,6 +59,7 @@
             Information sur le client
         </h5>
         <div class=" p-3 ">
+            <a class="btn btn-success m-1"href="/new/reservation/{{$client->idClient}}">Ajouter Réservation</a>
             <a class="btn btn-primary" href="/edite/client/{{$client->idClient}}">Modifier</a>
             <a class="btn btn-danger" href="/delete/client/{{$client->idClient}}">Suprimmer</a>
         </div>

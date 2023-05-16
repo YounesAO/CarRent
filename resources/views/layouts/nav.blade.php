@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Car Rent</a>
+      <div>
+        <img src="{{ asset('icon.ico') }}" alt="" style="height: 50px;">
+        <span>Car rent</span>
+        </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,7 +33,7 @@
             <a title="Paramétres"  class="nav-link" href="{{ asset('settings') }}"><i class="fa-solid fa-gear"></i></a>
           </li>
           <li class="d-flex justify-content-center align-items-center  text-danger">
-            <a class="nav-link d-flex justify-content-center align-items-center disconnect text-danger"><i class="fa-solid fa-door-closed "></i> <i class="fa-solid fa-door-open"></i><span class="nav-text"> Déconnecter</span></a>
+            <a href="{{ asset('/logout') }}" class="nav-link d-flex justify-content-center align-items-center disconnect text-danger"><i class="fa-solid fa-door-closed "></i> <i class="fa-solid fa-door-open"></i><span class="nav-text"> Déconnecter</span></a>
           </li>
         </ul>
         @endif

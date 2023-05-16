@@ -7,6 +7,6 @@
 @endsection
 @section('mt',5)
 @section('content')
-@include('components.reservation.form')
+    @include('components.reservation.form')
 
 @endsection

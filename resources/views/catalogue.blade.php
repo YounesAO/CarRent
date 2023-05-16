@@ -2,7 +2,11 @@
 @include('layouts.head')
 @section('title','Catalogue des voitures')
 @extends('layouts.app')
-@section('header','Catalogue des voitures')
+@section('header')
+<div class="style1 bg-1 m-1 p-3">
+  <h4>Catalogue des voitures</h4>
+</div>
+@endsection
 @section('content')
   <div class="d-flex flex-wrap cars">
     @foreach ($voitures as $car)

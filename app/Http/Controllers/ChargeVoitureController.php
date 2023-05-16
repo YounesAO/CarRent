@@ -9,14 +9,21 @@ use Illuminate\Http\Request;
 
 class ChargeVoitureController extends Controller
 {
+    //returner toutes les charge des voitures
     public function index()
     {
         $cars = Voiture::all();
         return (view('Pages.Charge.charge-voiture',['cars'=>$cars,'charge'=>true]));
     }
+    /*
+        afficher les données de la charge
+    */
     public function view(Voiture $voiture){
         return (view('Pages.Charge.charge-form',['car'=>$voiture]));
     }
+    /*
+        enregister les données de la charge voitures
+    */
     public function store(Request $request,$voiture)
     {   
         $chargeVoiture = new ChargeVoiture(['idVoiture'=>$voiture,'natureCharge'=>$request->nature]);
@@ -26,3 +33,5 @@ class ChargeVoitureController extends Controller
         return redirect('dashboard');
     }
 }
+
+##end_chargeVoiture

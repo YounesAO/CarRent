@@ -8,7 +8,7 @@
 @endsection
 @section('content')
 <div class="p-3 m-1">
-    <table id="clientTable" class="table m-1">
+    <table id="clientTable" class="table m-1 ">
         <thead>
             <tr class="">
                 <th>Identifiant</th>

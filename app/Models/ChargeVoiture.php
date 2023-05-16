@@ -22,6 +22,7 @@ class ChargeVoiture extends Model
         'natureCharge',
         'idEntretient'	
     ];
+    
    
     public function voiture()
     {

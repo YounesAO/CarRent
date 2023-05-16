@@ -20,7 +20,7 @@
 <li class="m-1 p-3">
     <div>
         <img src="{{ asset('images') }}/{{$voiture->image}}" alt="" style="width:50px;">
-        <span>{{$voiture->nom}} besoin de {{count($voiture->entretients)}}</span>
+        <span>{{$voiture->nom}} besoin de {{count($voiture->entretients)}} entretien</span>
     </div>
 </li>
 @endif

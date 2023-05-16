@@ -8,6 +8,9 @@
 @endsection
 @section('content')
 <div class="d-flex  justify-content-center align-items-center">
+    @if(isset($client))
+    @section('cin',$client->CIN)
+    @endif
     @include('components.reservation.form')
 </div>
 @endsection

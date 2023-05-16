@@ -19,89 +19,116 @@ use function PHPUnit\Framework\isEmpty;
 
 class VoitureController extends Controller
 {
+    /*
+        retourner toutes les voitures  
+    */
     public function getAll()
     {
         $voitures = Voiture::all();
         return(view('Pages.dashboard.cars',['cars'=>$voitures]));
 
     }
+    /*
+        preparer catalogue les voitures  
+    */
     public function index(){
         $voitures = Voiture::all();
-       Charge::where('deleted_at',null)->delete();
-        // foreach ($voitures as $v){
-        //     $v->stats = DB::select('select * from reservation where idVoiture = ? order by dateRetour',[$v->s]);
-        // }
-        // dd($voitures);
         return view('catalogue',['voitures'=>$voitures]);
     }
+    /*
+        afficher un e voiture par identifiant 
+    */
     public function view($id){
-
         $voiture = Voiture::where('id', $id)->first();
         $reservations=Reservation::where('idVoiture',$id)->get();
         return view('Pages.Voiture.info',['car'=>$voiture,'reservations'=>$reservations]);
     }  
+    /*
+        Modifier une voiture par identifiant 
+    */
     public function edit($id){
         $marque = Marque::all();
         $voiture = Voiture::where('id', $id)->first();
         return view('Pages.Voiture.edit',['car'=>$voiture,'marque'=>$marque]);
     }
+    /*
+        enregistrer une voiture  sur la base de données 
+    */
     public function store(Request $request): RedirectResponse{
 
         $marque =Marque::where('marque',$request->marque)->first();
+        //Si la marque n'existe pas
         if($marque==null){
         $marque=new Marque(['marque'=>$request->marque]);
             $marque->save();
         }
+
         $model =Modele::where('model',$request->model)->where('annee',$request->anneeModel)->first();
+        //si le model n'existe pas
         if($model==null){
         $model=new Modele(['idMarque'=>$marque->idMarque,'model'=>$request->model,'annee'=>$request->anneeModel]);
             $model->save();
-
         }
-
+        //creation de la voiture
         $car =new Voiture($request->all());
 
+        //importer les images s'elles existent
         if($request->hasFile('image')){
             $fileName = 'cars/'.$marque->marque.'_'.time() .'.' . $request->image->extension();
             $path = $request->file('image')->move(public_path('/images/cars/'),$fileName);
             $car->image = $fileName;
-
         }
+        //enregister les modifications et query
         $car->idModel = $model->idModel;
         $car->save();
-
+        //redirect to the catalogue 
         return redirect('/cars');
     }
-    public function update(Request $request,Voiture $voiture){
+    /*
+        mise a jour des information de voiture donnée 
+    */
+    public function update(Request $request,Voiture $voiture)
+    {
         $marque =Marque::where('marque',$request->marque)->first();
+        //Si la marque n'existe pas
         if($marque==null){
         $marque=new Marque(['marque'=>$request->marque]);
             $marque->save();
         }
+
         $model =Modele::where('model',$request->model)->where('annee',$request->anneeModel)->first();
+        //Si le model n'existe pas
         if($model==null){
         $model=new Modele(['idMarque'=>$marque->idMarque,'model'=>$request->model,'annee'=>$request->anneeModel]);
             $model->save();
-
         }
+        //mise à jour des attributes voiture
         $voiture->update($request->all());
+        //traitement des images s'elles existent
         if($request->image !=null){
             $fileName = 'cars/'.$marque->marque.'_'.time() .'.' . $request->image->extension();
             $path = $request->file('image')->move(public_path('/images/cars/'),$fileName);
             $voiture->update(['image'=> $fileName]);
-
         }
-        
+        //enregister les modification sur la base de données
         $voiture->update(['idModel'=> $model->idModel]);
-        dd($request);
+        //redirect to the catalogue
         return redirect('/cars');
     }
+    /*
+        suprimmer une voiture par son identifiant 
+    */
     public function delete(Request $request,Voiture $voiture){
         $voiture->delete();
         return redirect('/cars');
     }
-    function restore ( $id){
-           dd(Voiture::withTrashed()->where('id', $id)->restore());
+    /*
+        restaurer une voiture par son identifiant 
+    */
+    function restore ($id){
+        Voiture::withTrashed()->where('id', $id)->restore();
         return Redirect('settings/deleted')->with('status',"la Voiture a été bien restaurée");
     }
 }
+
+//end_Voiture

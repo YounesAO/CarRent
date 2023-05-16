@@ -1,12 +1,12 @@
 <div class="w-9 p-3 m-1 gishadow">
-    <div class=" bio col-12 d-flex justify-content-center flex-wrap-reverse">
+    <div class=" bio shadow col-12 d-flex justify-content-around flex-wrap-reverse">
         <div class=" car col-12 col-md-6 m-2">
             <span class="info">Marque</span>
             <span class="info data">{{$car->marque->marque}}</span>
             <span class="info">Model :</span>
             <span class="info data">{{$car->model->model}}</span>
-            <span >Toltal Kilometrage :</span>
-            <span class="info data">{{$car->kilometrage}}km</span>
+            <span >Date du model :</span>
+            <span class="info data">{{$car->model->annee}}</span>
             <div class="options d-flex flex-wrap">
             <span class="style1 optionz m-1 p-2 col-5 col-md-4"><i class="fa-solid fa-user-large"></i> {{$car->nbPlaces}} Places</span>
             <span class="style1 optionz m-1 p-2 col-5 col-md-4"><i class="fa-solid fa-car"></i> {{$car->nbportes}} Portes</span>
@@ -35,10 +35,7 @@
             <img class="imgCar"src="{{ asset("images").'/'}}@php echo$car->image== null ? 'cars/car.png':$car->image @endphp" alt="">
         </div>
     </div>
-    <div class="m-2">
-        <a href="/cars/{{$car->id}}/edit" class="btn btn-success">Editer</a>
-        <a href="/cars/{{$car->id}}/delete" class="btn btn-danger">delete</a>
-    </div>
+    
 <div class="">
     les reservations passées:
     @php $nbReservation = 0;@endphp

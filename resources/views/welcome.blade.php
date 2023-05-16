@@ -13,9 +13,9 @@
 <div class="d-flex col-12 flex-column align-items-center justify-content-center">
     
     <div class="d-flex flex-column align-items-center justify-content-around col-12 p-3 col-md-8 col-lg-7 shadow-lg">
-        <div>
+        <div class="col-12 ">
             @if ($errors->any())
-                <ul class="errors">
+                <ul class="errors list-unstyled">
                     @foreach ($errors->all() as $error)
                     <div class="alert alert-danger">
                         <li>{{ $error }}</li>

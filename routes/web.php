@@ -53,6 +53,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', [LoginController::class,'index']);
 
 Route::post('/login',[LoginController::class,'login']);
+Route::get('/logout',[LoginController::class,'logout']);
+
 
 
 /*Gestion des Voitures  #Create #Update #delete :*/
@@ -68,10 +70,14 @@ Route::get('/add/car',function () {
 });
 
 /*Gestion des reservation  #Create :*/
-
 Route::get('/new/reservation',function () {
     return view('Pages.Reservation.new');
 });
+
+Route::get('/new/reservation/{client}',function (Client $client) {
+    return view('Pages.Reservation.new',['client'=>$client]);
+});
+
 Route::post('/new/reservation',[ReservationController::class,'filter']);
 Route::get('/new/reservation/{id}',[ReservationController::class,'send']);
 
@@ -167,8 +173,5 @@ Route::get('/restore/reservation/{reservation}',[ReservationController::class,'r
 Route::get('/restore/client/{client}',[ClientController::class,'restore']);
 Route::get('/restore/voiture/{voiture}',[voitureController::class,'restore']);
 
-Route::get('/home', function () {
-    return view('home');
-});
 
 
