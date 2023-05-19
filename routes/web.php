@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\ChargeEntrepriseController;
 use App\Http\Controllers\ChargeVoitureController;
+use App\Http\Controllers\ChequeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntretientController;
@@ -50,17 +51,22 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
 
-Route::get('/', [LoginController::class,'index']);
+Route::get('/', [LoginController::class,'index'])->name('login');
 
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 
+//catalogue des voitures
+Route::get('/cars', [VoitureController::class, 'index']);
+Route::get('/cars/{id}', [VoitureController::class, 'view'])->name('voiture');
+
+
+//middleware authetification group starts
+Route::group(['middleware' => 'auth'], function () {
 
 
 /*Gestion des Voitures  #Create #Update #delete :*/
 
-Route::get('/cars', [VoitureController::class, 'index']);
-Route::get('/cars/{id}', [VoitureController::class, 'view'])->name('voiture');
 Route::get('/cars/{id}/edit', [VoitureController::class, 'edit']);
 Route::post('/cars/{voiture}/edit', [VoitureController::class,'update']);
 Route::get('/cars/{voiture}/delete', [VoitureController::class,'delete']);
@@ -111,7 +117,6 @@ Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);
 Route::get('/dashboard/cars',[VoitureController::class,'getAll']);
 Route::get('/dashboard/reservation',[ReservationController::class,'index']);
 Route::get('/dashboard/reservation/history',[ReservationController::class,'view']);
-
 /*Gestion des Charge :*/
 
 Route::get('/dashboard/charge', [ChargeController::class,'index']);
@@ -143,7 +148,8 @@ Route::post('edite/paiement/{paiement}',[PaiementController::class,'update']);
 
 Route::get('dashboard/analyse',[RevenueController::class,'index']);
 Route::post('dashboard/analyse',[RevenueController::class,'index']);
-
+Route::get('dashboard/incom',[ChequeController::class,'index']);
+Route::get('dashboard/incom/history',[ChequeController::class,'all']);
 Route::get('dashboard/client',[ClientController::class,'index']);
 Route::any('/profile/client',[ClientController::class,'view'])->name('client');
 Route::get('/delete/client/{client}',[ClientController::class,'drop']);
@@ -174,4 +180,5 @@ Route::get('/restore/client/{client}',[ClientController::class,'restore']);
 Route::get('/restore/voiture/{voiture}',[voitureController::class,'restore']);
 
 
-
+//end midleware group
+});

@@ -1,18 +1,22 @@
 <div class="card m-1 p-2 shadow">
     <div class="card-info ">
         <img  class="imgcar" src="{{ asset("images").'/'}}@php echo$car->image== null ? 'cars/car.png':$car->image @endphp" alt="">
+        <span class="info" >{{$car->marque->marque}} {{$car->model->model}}</span>
+
         <p>status :
             @if($car->status==null || ($car->status!=null && strtotime($car->status->dateRetour)<time()))
-            <span style="color:rgb(9, 199, 50);" > Disponible</span>
+            <span class="bold" style="color:rgb(22, 163, 52);" > Disponible</span>
             @else
-            <span style="color:red" >non Disponible</span>
+            <span class="bold" style="color:rgb(184, 21, 21)" >Non disponible</span>
             @endif
         </p>
-        <span class="info">{{$car->kilometrage}} km</span>
+        <div class="options d-flex">
+            <span class="info optionz  box p-2 m-1"><i class="bold" >KM </i>{{number_format($car->kilometrage, 2, ',', ' ')}}</span>
+            @include('components.car.options-icons')
 
+        </div>
 
     </div>
-    <span class="info" >{{$car->marque->marque}} {{$car->model->model}}</span>
     @if(isset($stat))
     <style>.card{height: 100% !important;}</style>
     <div class="d-flex ">
@@ -35,14 +39,14 @@
         @elseif(isset($charge))
         <a class="col btn btn-outline-warning m-1" href="{{ asset('dashboard/charge/voiture')}}/{{$car->id}}">Ajouter charge</a>
         @else
-        <a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('cars')}}/{{$car->id}}">view</a>
-            @if($car->status==null || ($car->status!=null && strtotime($car->status->dateRetour)<time()))
+        <a class="fw btn btn-outline-primary  m-1" href="{{ asset('cars')}}/{{$car->id}}">view</a>
+            @auth
                 @if(isset($req))
-                    <a class="col-5 btn btn-outline-warning m-1" href="{{ asset('new/reservation')}}/{{$car->id}}/?req={{$req}}">Reserver</a>
+                    <a class="fw btn btn-outline-warning m-1" href="{{ asset('new/reservation')}}/{{$car->id}}/?req={{$req}}">Reserver</a>
                 @else
-                    <a class="col-5 btn btn-outline-warning m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">Reserver</a>
+                    <a class="fw btn btn-outline-warning m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">Reserver</a>
                 @endif
-            @endif
+            @endauth
         @endif
     </div>  
     @endif

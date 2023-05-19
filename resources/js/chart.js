@@ -299,7 +299,7 @@ if($("#clientReservation").val()!=undefined){
 
 
   var clientChart= new Chart(
-    $('#client-chart'),configclient
+    $('#Reserve-chart'),configclient
   ); 
   console.log(JSON.stringify(configclient));
 

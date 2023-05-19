@@ -3,7 +3,7 @@
 @extends('dashboard')
 @section('content')
 <div class=" d-flex justify-content-center flex-wrap">
-    <div class="m-1 widget  " style="color:rgb(146, 37, 236);background-color: rgba(137, 43, 226, 0.24)" onclick="window.location.href +='/cars';" >
+    <div class=" m-1 mt-4 widget  " style="color:rgb(70 0 127);background-color: rgba(198 193 255 / 70%)" onclick="window.location.href +='/cars';" >
         <div class="icon">
             <i class="fa-solid fa-car"></i>
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     
-    <div class="m-1 widget  " style="color :rgb(25, 196, 10);  background-color:rgba(43, 226, 119, 0.24)" onclick="window.location.href +='/reservation';">
+    <div class="m-1 mt-md-4 widget  " style="color :rgb(33 157 25);  background-color:rgba(43, 226, 119, 0.24)" onclick="window.location.href +='/reservation';">
         
         <div class="icon">
             <i class="fa-solid fa-tags"></i>
@@ -24,7 +24,7 @@
         </div>
     </div>
     
-    <div class="m-1 widget  " style="color :rgb(255, 217, 0); background-color: rgba(226, 192, 43, 0.24)" onclick="window.location.href +='/incom';">
+    <div class="m-1 mt-lg-4 widget  " style="color :rgb(255 152 0); background-color: rgba(226, 192, 43, 0.24)" onclick="window.location.href +='/incom';">
         <div class="icon">
             <i class="fa-solid fa-hourglass-half"></i>
         </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
     
-    <div class="m-1 widget  " style="color:rgb(209, 25, 25); background-color: rgba(226, 43, 150, 0.24)" onclick="window.location.href +='/entretient';">
+    <div class="m-1 mt-xl-4 widget  " style="color:rgb(209, 25, 25); background-color: rgba(226, 43, 150, 0.24)" onclick="window.location.href +='/entretient';">
         
         <div class="icon">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -83,19 +83,19 @@
             <span class="nbResevation">    {{$car->nbReservation}}        </span>
         </div>
         @endforeach
-        <span class="title">Top Cars Reservations</span>
+        <span class="title">Voitures les plus réservées</span>
     </div>
 
 </section>
 <section class="d-flex flex-wrap">
     <div class="box  d-flex flex-column justify-content-between  col-11 col-lg-6 m-3" >
         <canvas class="fw p-1" id="bar-duree"></canvas>
-        <span class="title">Top Cars Reservations</span>
+        <span class="title">Durée la plus réservée</span>
     </div>
 
     <div class="box d-flex flex-column justify-content-between col-11 col-lg-5 m-3">
         <canvas id="pieChart"></canvas>
-        <span class="title">Top Cars Reservations</span>
+        <span class="title">Reservations par voitures</span>
     </div>
 
 </section>

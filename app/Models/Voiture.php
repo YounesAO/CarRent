@@ -88,7 +88,6 @@ class Voiture extends Model
             
         );
     }
-    
-
+   
 
 }

@@ -41,7 +41,14 @@ class VoitureController extends Controller
     public function view($id){
         $voiture = Voiture::where('id', $id)->first();
         $reservations=Reservation::where('idVoiture',$id)->get();
-        return view('Pages.Voiture.info',['car'=>$voiture,'reservations'=>$reservations]);
+
+        //data for chart 
+        $data = [];
+            foreach($reservations as $r){
+                $data[]=["date"=>$r->dateDebut,"montant"=>$r->montant,"duree"=> $r->duree];
+            }
+        $totalChargeVoiture = RevenueController::chargeVoiture('2020-02-09',date('Y-m-d'),$id)->pluck('montant')->sum();
+        return view('Pages.Voiture.info',['car'=>$voiture,'reservations'=>$reservations,'data'=>$data,'totalChargeVoiture'=>$totalChargeVoiture]);
     }  
     /*
         Modifier une voiture par identifiant 
@@ -129,6 +136,7 @@ class VoitureController extends Controller
         Voiture::withTrashed()->where('id', $id)->restore();
         return Redirect('settings/deleted')->with('status',"la Voiture a été bien restaurée");
     }
+    
 }
 
 //end_Voiture

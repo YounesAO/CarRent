@@ -40,6 +40,7 @@ class UserController extends Controller
                 'password.min' => 'le mot de passe doit etre plus du 6 caractères',
                 'password.same' => 'la confirmation de mot de passe doit etre identique au mot de passe',
                 'password.required_with' => 'la confirmation de mot de passe doit etre identique au mot de passe',
+                'repassword.min' =>'la confirmation de mot de passe doit etre plus de 6 caractères',
             ]
         );
         //hashage de mot de passe
