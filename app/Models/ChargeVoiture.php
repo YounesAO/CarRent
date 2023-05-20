@@ -26,10 +26,14 @@ class ChargeVoiture extends Model
    
     public function voiture()
     {
-        return $this->belongsTo(Voiture::class);
+        return $this->belongsTo(Voiture::class,'idVoiture');
     }
     public function ChargesVoiture()
     {
-        return $this->hasMany(Charge::class);
+        return $this->belongsTo(Charge::class,'idCharge');
+    }
+    public function entretient()
+    {
+        return $this->hasOne(Entretient::class,'idEntretient');
     }
 }

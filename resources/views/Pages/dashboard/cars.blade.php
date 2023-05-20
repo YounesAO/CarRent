@@ -15,7 +15,7 @@
             <tr class="">
                 <th>Marque</th>
                 <th>Model</th>
-                <th>kilometrage</th>
+                <th>Immatricule</th>
                 <th>Carburant</th>
                 <th>plus</th>
             </tr>
@@ -25,7 +25,7 @@
                 <tr class="">
                     <td>{{$car->marque->marque}}</td>
                     <td>{{$car->model->model}}</td>
-                    <td>{{$car->kilometrage}}</td>
+                    <td>{{$car->immatricule}}</td>
                     <td>{{$car->carburant}}</td>
                     <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('cars')}}/{{$car->id}}">view</a></td>
                 </tr>

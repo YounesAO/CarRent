@@ -32,7 +32,7 @@
         </div>
         <div class="col-lg-2 col-md-4 col-11 stats bg-warning m-1 p-3">
             <span>Total Réservations</span>
-            <span class="montant">{{$revenue->count()}}</span>
+            <span class="montant nodh">{{$revenue->count()}}</span>
         </div>
         <div class=" col-lg-2 col-md-3 col-11 stats bg-warning m-1 p-3">
             <span>Total Charges Voiture</span>

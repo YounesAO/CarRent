@@ -7,6 +7,15 @@ $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
+//bottstrapp
+.navbar {
+  --bs-navbar-color: rgb(22 16 94)!important;
+}
+.nav-item{
+  font-weight: 600;
+  color: rgb(22 16 94);
+  font-size: 15px;
+}
 @font-face {
     font-family: 'Oswald Bold';
     src: url('/public/font/oswald-bold-webfont.woff2') format('woff2');
@@ -74,4 +83,7 @@ $line-height-base: 1.6;
   
   .fw{
     flex: 1;
+  }
+  .nodh::after {
+    content:" "!important;
   }

@@ -1,4 +1,4 @@
-<form class=""action="" method="post" enctype="multipart/form-data">
+<form class="col-11 col-md-9"action="" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="id" value ='@yield('idCar')'>
     
@@ -19,14 +19,14 @@
                     @endforeach
                 </datalist>
             
-            <label class="form-label" for="model">Model de voiture</label>
-            <input class ="form-control" name="model" value="@yield('model')" list="models" required>
+            <label class="form-label" for="model">Modèle de voiture</label>
+            <input class ="form-control" id="model" name="model" value="@yield('model')" list="models" required>
 
                 <datalist id="models">
                     
                 </datalist>
-            <label class="form-label" for="anneeModel">Année de model</label>
-            <input class="form-control"type="number" min="1900" max="2099" step="1" name="anneeModel" id="" value="@yield('anneeModel')" required>
+            <label class="form-label" for="anneeModel">Année de modèle</label>
+            <input class="form-control" id="anneeModel" type="number" min="1900" max="2099" step="1" name="anneeModel" id="" value="@yield('anneeModel')" required>
 
             <label class="form-label" for="dateDachat">Date d'achat</label>
             <input class="form-control" type="date" name="dateDachat" id="" value="@yield('dateDachat')" required>
@@ -34,7 +34,7 @@
         </div>
         <div class="container-fluid ">
             <label class="form-label" for="carburant">Carburant </label>
-            <select class="form-control" name="carburant" id="">
+            <select class="form-control" name="carburant" id="" value="@yield('carburant')">
                 <option value="Diesel">Diesel</option>
                 <option value="Essence">Essence</option>
                 <option value="Hybride">Hybride</option>
@@ -42,9 +42,7 @@
 
             </select>
 
-            <label class="form-label" for="cat">Categorie</label>
-            <input class ="form-control" type="text" name="cat" value="@yield('cat')" placeholder="categorie" required>
-
+          
             <label class="form-label" for="nbportest">Nombre des portes</label>
             <input class="form-control" type="number" name="nbportes" id="" value="@yield('nbportes')" required>
             
@@ -53,14 +51,14 @@
             
                 <div class=" d-flex flex-column-reverse daitails">
                     <div class=" ">
-                        <input class="form-check-input" class="form-check-input" type="checkbox" name="4WD" id="" value="1" @yield('4WD')>
-                        <label class="form-label" for="4WD">4x4 (4WD)</label>
-                        <input class="form-check-input" type="checkbox" name="AC" id="" value="1" @yield('AC')>
+                        <input class="form-check-input" class="form-check-input" type="checkbox" name="FWD" id=""  @yield('FWD')>
+                        <label class="form-label" for="FWD">4x4 (4WD)</label>
+                        <input class="form-check-input" type="checkbox" name="AC" id="" @yield('AC')>
                         <label class="form-label" for="AC">Climatisation (AC)</label>
 
                     </div>
                     <div>
-                        <input class="form-check-input" type="checkbox" name="auto" id="" value="1" @yield('auto')>
+                        <input class="form-check-input" type="checkbox" name="auto" id="" @yield('auto')>
                         <label class="form-label" for="auto">Boite Automatique</label>
                     </div>
                 </div>

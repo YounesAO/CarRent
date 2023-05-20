@@ -56,10 +56,12 @@
             <input class ="form-control" type="text" name="nationalite" value="{{$client->nationalite}}"  >
             
             <label class="form-label" for="imagePermis">photo du Permis de conduite </label>
-            <input class="form-control" type="file"  name="imagePermis" id="" value="{{$permis->img}}"   >
-
-            <label class="form-label" for="image">photo de la carte d'identite nationale</label>
-            <input class="form-control" type="file"  name="image" id="" value="{{$client->image}}" >
+            <input class="form-control" type="file"  name="imagePermis" value=""id="" > <br>
+            <br>
+            <a href="{{ asset('images')}}/{{$permis->photoPermis}}"><img src="{{ asset('images')}}/{{$permis->photoPermis}}" alt="" style="width:100px;"></a><br>
+            <label class="form-label" for="photoCIN">photo de la carte d'identite nationale</label>
+            <input class="form-control" type="file"  name="photoCIN"  >
+            <a href="{{ asset('images')}}/{{$client->photoCIN}}"><img src="{{ asset('images')}}/{{$client->photoCIN}}" alt="" style="width:100px;"></a><br>
             
             
             
@@ -74,7 +76,7 @@
     <CENter>   
         <input class="btn btn-success m-2" type="submit" value="Enregister">
         <input class="btn btn-dark m-2" type="reset" value="Annuler">
-        <a class="btn btn-danger m-2" href="./">Retouner</a>
+        <a class="btn btn-danger m-2" href="/new/reservation">Retouner</a>
     </CENter>   
 </form>
 @endsection

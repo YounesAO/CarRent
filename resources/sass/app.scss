@@ -17,6 +17,7 @@
 @import'renenue';
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
 *{
     margin: 0;
     padding:0;
@@ -69,7 +70,7 @@ body{
     transition: all ease-in 200ms;
     &:hover{
 
-        filter: contrast(1.5);
+        filter: contrast(1.1);
     }
     &:hover.no-opacity{
         opacity:1;
@@ -97,5 +98,11 @@ body{
 }
 .fs-20{
     font-family: 'Righteous Regular';
-    font-size: 14px;
+    font-size: 15px;
+    color: rgb(22 16 94);
+}.fs-10{
+    font-family: 'Righteous Regular';
+    font-size: 15px;
+    font-weight: 200;
+    color: rgb(22 16 94);
 }

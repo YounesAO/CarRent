@@ -8,7 +8,6 @@
     </style>
     <div class="m-5">
         <div id="hidden" class=" reservation-unpaid ">
-            
            @if($reservations->count()>0)
                 @foreach ($reservations as $reservation)
                     @include('components.reservation.widget')

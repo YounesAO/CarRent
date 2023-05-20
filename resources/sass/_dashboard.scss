@@ -12,7 +12,6 @@
 .widget{
     display: flex;
     height: 80px;
-   
     border-radius: 10px;
     text-align: center;
     align-items: center;
@@ -61,22 +60,24 @@ fieldset{
 .pieces{
 list-style: none;
 position: relative;
-right: 50px;
+right: -50px;
+top: -15px;
 li{
     margin-bottom: 3px;
 .piece{
+    z-index: 1;
     width:20px;
     position: relative;
-    right :680px;
+    right :140px;
     z-index: 0;
     &.red {
-        filter:  drop-shadow(600px 20px 0px red);
+        filter:  drop-shadow(60px 20px 0px red);
     }
     &.green {
-        filter:  drop-shadow(600px 20px 0px green);
+        filter:  drop-shadow(60px 20px 0px green);
     }
     &.warning {
-        filter:  drop-shadow(600px 20px 0px #ffc107);
+        filter:  drop-shadow(60px 20px 0px #ffc107);
     }
 }    
 .nomPieces{

@@ -3,7 +3,7 @@
 @extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
-    <h3>Charge</h3> 
+    <h3>Gestion des charges</h3> 
 </div>
 @endsection
 @section('content')
@@ -39,7 +39,7 @@
                 </td>
                 <td>{{$charge->categorieCharge}}</td>
                 <td>{{$charge->dateCharge}}</td>
-                <td>{{$charge->montant}}</td>
+                <td>{{number_format($charge->montant, 2, ',', ' ')}} dh</td>
                 <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('/check/charge')}}/{{$charge->idCharge}}">view</a></td>
             </tr>
         @endforeach

@@ -4,7 +4,7 @@
     @yield('header')
     @yield('bar')
     
-    <div class=" content mt-@yield('mt',0) d-flex  justify-content-center shadow">
+    <div class=" content mt-@yield('mt',0) d-flex  justify-content-center ">
         @yield('content')
     </div>
     @include('layouts.footer')

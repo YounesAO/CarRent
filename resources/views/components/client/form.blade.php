@@ -1,4 +1,4 @@
-<form class = "" action="/add/client" method="post">
+<form class = "" action="/add/client" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="id" value ='@yield('idCar')'>
     
@@ -38,11 +38,15 @@
             <input class ="form-control" type="text" name="nationalite" value="" >
             
             <label class="form-label" for="imagePermis">photo du Permis de conduite </label>
-            <input class="form-control" type="file"  name="imagePermis" value=""id="" >
 
-            <label class="form-label" for="photoCIN">photo de la carte d'identite nationale</label>
-            <input class="form-control" type="file"  name="photoCIN" value=""id="" >
+            <input class="form-control" type="file"  name="imagePermis" value=""id="" > <br>
+
+            <a href="{{ asset('images')}}/@yield('photoPermis') "><img src="{{ asset('images')}}/@yield('photoPermis') " alt="" style="width:100px;"></a><br>
             
+            <label class="form-label" for="photoCIN">photo de la carte d'identite nationale</label>
+
+            <input class="form-control" type="file"  name="photoCIN"  >
+            <a href="{{ asset('images')}}/@yield('photoCIN')"><img src="{{ asset('images')}}/@yield('photoCIN')" alt="" style="width:100px;"></a><br>
             
             
         

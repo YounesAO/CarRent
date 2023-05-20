@@ -9,6 +9,7 @@
     </h3>
     @auth        
     <div class="m-2">
+        <a class="fw btn btn-warning  shadow-none m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">Reserver</a>
         <a href="/cars/{{$car->id}}/edit" class="btn btn-success shadow-none">Editer</a>
         <a href="/cars/{{$car->id}}/delete" class="btn btn-danger shadow-none">delete</a>
     </div>
@@ -19,9 +20,10 @@
 @section('content')
    <div class="d-flex fw flex-column">
     @include('components.car.bio')
-    @include('components.car.stats')
-    @include('components.car.pastReservation')
-
+    @auth
+        @include('components.car.stats')
+        @include('components.car.pastReservation')
+    @endauth
    </div>
 
 @endsection

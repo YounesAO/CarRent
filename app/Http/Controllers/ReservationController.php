@@ -30,8 +30,8 @@ class ReservationController extends Controller
      * ajouter la voiture a la reservation encours
      */
     public function send(Request $request ,$id)
-    {
-        $request->merge(['idVoiture' => $id]);
+    {   $request->merge(['idVoiture' => $id]);
+        
         return $this->prepare($request,$id);        
     }
 
@@ -90,13 +90,13 @@ class ReservationController extends Controller
         //information sur la periode de reservation req => ## premiere request ##
         $info =$request->req_;
         //si le prix est null 
-        if($info['prix']==null)
+        if(!isset($info['prix']))
         $info['prix']=$request->prix;
         ##mise ajour des information de client et son permis 
         $client=Client::where('CIN',$info['cin'])->first();
         $permis=Permis::where('idPermis',$client->idPermis)->first();
-        $permis->update(['datePermis'=>$request->datePermis,'villePermis'=>$request->villePermis,'photoPermis'=>$request->imagePermis]);
-        $client->update($request->all());
+        $permis->update(['datePermis'=>$request->datePermis,'villePermis'=>$request->villePermis]);
+        $client->update($request->except(['photoCIN']));
         $client->CIN=$info['cin'];
         $client->idPermis = $permis->idPermis;
         $client->save();
@@ -141,11 +141,28 @@ class ReservationController extends Controller
      */
     public function filter(Request $request )
     {
-        $date1 = $request->input('dateDebut');
-        $date2 = $request->input('dateRetour');
+        $request->validate([
+            'cin'=>'required|regex:/(^([a-zA-z]+)(\d+)?$)/u',
+            'dateDebut' => 'required|date|after_or_equal:today',
+            'dateRetour' => 'required|date|after:dateDebut',
+        ],
+        //messages des erreurs de saisie
+        [
+            'cin.regex'=>"le numéro de cin doit etre de la forme AB12345",
+            'cin.required'=>'le numéro de CIN est oblogatoire',
+            'dateDebut.required'=>'la date de debut est obligatoire',
+            'dateDebut.date'=>'le champ doit etre de la format  d\'une date',
+            'dateDebut.after_or_equal'=>'la date de debut doit etre égale au supérieure à la date aujourd\'huit',
+            'dateRetour.required'=>'la date de debut est obligatoire',
+            'dateRetour.after'=>'la date de retour est date doit etre inférieure à la date de debut',
+            
+        ]);
+        $date1 =date("Y-m-d", strtotime($request->input('dateDebut')));
+        $date2 = date("Y-m-d", strtotime($request->input('dateRetour')));
         $voitures = Voiture::whereRaw('id not IN( SELECT idVoiture from reservation where dateRetour >? and dateDebut<? )',[$date1,$date2])->get();
         return (view('Pages.Reservation.selectCar',['voitures'=>$voitures,'req'=>$request]));
 
+        
     }
 
     /**
@@ -154,7 +171,7 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         $reservation->update($request->all());
-        return redirect('dashboard/reservation');  
+        return redirect('dashboard/reservation')->with('status',"la reservation a été mise à jour  par succès");  
     }
     /*
         afficher les reservations par date //mois//annes choisié 
@@ -202,7 +219,7 @@ class ReservationController extends Controller
         return view('components.reservation.slider',['reservations'=>$reservations]);
     }
     /**
-     * supremer la reservation par son identifiant
+     * supprimer la reservation par son identifiant
      */
     public function destroy(Reservation $reservation)
     {

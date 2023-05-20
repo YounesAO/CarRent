@@ -25,7 +25,7 @@
                 <td>{{$c->nomClient}}</td>
                 <td>{{$c->prenomClient}}</td>
                 <td>{{$c->nbReservation}}</td>
-                <td><a class="col-5 btn btn-outline-primary  m-1" href="/profile/client?client={{$c->idClient}}">view</a></td>
+                <td><a class=" btn btn-outline-primary  m-1" href="/profile/client?client={{$c->idClient}}">Voir</a></td>
             </tr>
         @endforeach
         </tbody>

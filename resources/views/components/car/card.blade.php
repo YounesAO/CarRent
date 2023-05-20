@@ -19,7 +19,7 @@
     </div>
     @if(isset($stat))
     <style>.card{height: 100% !important;}</style>
-    <div class="d-flex ">
+    <div class="d-flex flex-column ">
         <span>Etat des pieces :</span>
         <ul class="m-1 pieces">
         @foreach ($pieces as $item)
@@ -42,7 +42,7 @@
         <a class="fw btn btn-outline-primary  m-1" href="{{ asset('cars')}}/{{$car->id}}">view</a>
             @auth
                 @if(isset($req))
-                    <a class="fw btn btn-outline-warning m-1" href="{{ asset('new/reservation')}}/{{$car->id}}/?req={{$req}}">Reserver</a>
+                    <a class="fw btn btn-outline-warning m-1" href="{{ asset('new/reservation')}}/car/{{$car->id}}?cin={{$req->cin}}&dateDebut={{$req->dateDebut}}&dateRetour={{$req->dateRetour}}">Reserver</a>
                 @else
                     <a class="fw btn btn-outline-warning m-1" href="{{ asset('add/reservation')}}/{{$car->id}}">Reserver</a>
                 @endif

@@ -3,7 +3,7 @@
 @extends('dashboard')
 @section('header')
 <div class="d-flex justify-content-between m-3 p-1">
-    <h3>Charge</h3> 
+    <h3>Gestion des charges</h3> 
 </div>
 @endsection
 @section('content')

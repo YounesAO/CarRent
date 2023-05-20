@@ -1,7 +1,7 @@
 .card{
     height: fit-content!important;
     width: 300px;
-    
+    z-index: 1;
 
     .card-info{
         
@@ -28,16 +28,40 @@
     .buttons{
         display: none !important;
         opacity: 0;
-        height: 0;
         transition: opacity 1s ease-out;
     }
+    transition: all ease-in-out 500ms;
+    .card-info .options{
+        opacity: 1;
+        height: 100%;
+        transition: all ease-in-out 500ms;
+
+    }
+
     &:hover{
-        .buttons{
-            display: flex !important;
-            opacity: 1;
-            height: 100%;
+        .card-info
+        img{
+            animation: scale 500ms ease-in-out forwards;
+        }
+        @keyframes scale {
+          to {
+            transform: scale(1.05);
+          }
+        }
+        .options{
+            display: none!important;
+            opacity: 0;
+            height: 0;
+            transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
 
         }
+        .buttons{
+            transition: all ease-in-out 500ms;
+
+            display: flex !important;
+            opacity: 1;
+        }
+
     }
 }
 }
@@ -75,6 +99,7 @@ display: flex;
     border :1px #213243 solid;
     background-color: #eee;
 &:hover{
+    
     background: #213243;
     color :#eee;
 }
@@ -105,14 +130,18 @@ display: flex;
     .reserv{
         color :rgb(34, 56, 117);
         &::after{
-        content: 'Rev'!important;
+        content: 'Res'!important;
     }}
     transition: all ease-in 500ms ;
     &:hover{
+
         background-color:#213243;
         color: #eee;
         .num{
             font-size: 30px;
+        }
+        .reserv{
+            color: #eee;
         }
     }
         .desc{

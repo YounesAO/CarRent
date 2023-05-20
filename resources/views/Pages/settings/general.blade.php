@@ -43,7 +43,7 @@
             <tr>
                 <td>{{$marque->idMarque}}</td>
                 <td>{{$marque->marque}}</td>
-                <td><a href="edite/marque/{{$marque->idMarque}}" class="btn shadow-none  btn-warning">Edite</a></td>
+                <td><a href="edite/marque/{{$marque->idMarque}}" class="btn shadow-none  btn-warning">ModifIer</a></td>
                 <td><a href="/delete/marque/{{$marque->idMarque}}" class="btn btn-danger">Supprimer</a></td>
             </tr>
             
@@ -70,7 +70,7 @@
                     <td>{{$model->idModel}}</td>
                     <td>{{$model->model}}</td>
                     <td>{{$model->annee}}</td>
-                    <td><a href="edite/model/{{$model->idModel}}" class="btn shadow-none  btn-warning">Edite</a></td>
+                    <td><a href="edite/model/{{$model->idModel}}" class="btn shadow-none  btn-warning">Modifier</a></td>
                     <td><a href="/delete/model/{{$model->idModel}}" class="btn btn-danger">Supprimer</a></td>
                 </tr>
                 
@@ -114,7 +114,7 @@
                 <td>{{$p->description==null?'---':$p->description}}</td>
                 <td>{{$p->maxKilo==null?'---':$p->maxKilo." km"}} </td>
                 <td>{{$p->maxDurre==null?'---':$p->maxDurre}}</td>
-                <td><a href="edite/piece/{{$p->idPiece}}" class="btn shadow-none  btn-warning">Edite</a></td>
+                <td><a href="edite/piece/{{$p->idPiece}}" class="btn shadow-none  btn-warning">Modifier</a></td>
                 <td><a href="/delete/piece/{{$p->idPiece}}" class="btn btn-danger">Supprimer</a></td>
             </tr>
             

@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div>
         <img src="{{ asset('icon.ico') }}" alt="" style="height: 50px;">
-        <span>Car rent</span>
+        <span class="fs-20">Car Rent</span>
         </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,20 +10,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="{{ asset('cars') }}">Catalogue</a>
+            <a class="nav-link fs-10" href="{{ asset('cars') }}">Catalogue</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ asset('dashboard') }}">Dashboard</a>
+            <a class="nav-link fs-10" href="{{ asset('dashboard') }}">Dashboard</a>
           </li>
         </ul>
         @if(Auth::check())
         <ul class="navbar-nav fw d-flex justify-content-end" >
           <li class="nav-item m-1 ">
-            <a title="Profile"  class= "nav-link" href="{{ asset('settings/user') }}"><i class="fa-solid fa-user"></i>{{Auth::user()->nomComplet}}</a>
+            <a title="Profile"  class= "nav-link" href="{{ asset('settings/user') }}"><i class="fa-solid fa-user"></i> {{Auth::user()->nomComplet}}</a>
           </li>
           <li class="nav-item  m-1 dropdown">
             <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fas fa-bell"></i>
-                  <span class="badge rounded-pill badge-notification bg-danger">1</span></a>
+                  <span class="badge rounded-pill badge-notification bg-danger text-danger " style="font-size: 8px;">1</span></a>
                 <ul class="dropdown-menu nofitication">
                   <iframe src="/notification" frameborder="0"></iframe>
                 </ul>

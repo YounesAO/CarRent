@@ -9,6 +9,11 @@
     <a class="btn btn-success m-1"href="/new/reservation">Ajouter Réservation</a>
   </div>
 </div>
+@if(session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+    @endif
 @endsection
 @section('content')
 <style>

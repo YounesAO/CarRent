@@ -36,7 +36,7 @@
                 <td>{{$r->dateDebut}}</td>
                 <td>{{$r->dateRetour}}</td>
                 <td>{{$r->client->nomClient}} {{$r->client->prenomClient}}</td>
-                <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('/check/reservation')}}/{{$r->idReservation}}">view</a></td>
+                <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('/check/reservation')}}/{{$r->idReservation}}">Voir</a></td>
             </tr>
         @endforeach
         </tbody>

@@ -21,6 +21,6 @@ class ChargeEntrepriseController extends Controller
         $chargeEntreprise->save();
         $charge = new Charge(['categorieCharge'=>"Entreprise",'dateCharge'=>$request->dateCharge,'montant'=>$request->montant,'idChargeEntreprise'=>($chargeEntreprise->idChargeEntreprise)]);
         $charge->save();
-        return redirect('dashboard');
+        return redirect('/dashboard/analyse');
     }
 }

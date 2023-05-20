@@ -50,6 +50,10 @@ class VoitureController extends Controller
         $totalChargeVoiture = RevenueController::chargeVoiture('2020-02-09',date('Y-m-d'),$id)->pluck('montant')->sum();
         return view('Pages.Voiture.info',['car'=>$voiture,'reservations'=>$reservations,'data'=>$data,'totalChargeVoiture'=>$totalChargeVoiture]);
     }  
+    public function slide($id){
+        $reservations = reservation::where('idVoiture',$id)->get();
+        return view('components.reservation.slider',['reservations'=>$reservations]);
+    }
     /*
         Modifier une voiture par identifiant 
     */
@@ -78,7 +82,6 @@ class VoitureController extends Controller
         }
         //creation de la voiture
         $car =new Voiture($request->all());
-
         //importer les images s'elles existent
         if($request->hasFile('image')){
             $fileName = 'cars/'.$marque->marque.'_'.time() .'.' . $request->image->extension();
@@ -89,7 +92,7 @@ class VoitureController extends Controller
         $car->idModel = $model->idModel;
         $car->save();
         //redirect to the catalogue 
-        return redirect('/cars');
+        return redirect('/cars')->with('status',"la voiture a été Ajoutée par succès");
     }
     /*
         mise a jour des information de voiture donnée 
@@ -109,8 +112,15 @@ class VoitureController extends Controller
         $model=new Modele(['idMarque'=>$marque->idMarque,'model'=>$request->model,'annee'=>$request->anneeModel]);
             $model->save();
         }
+        if($request->FWD =="on")
+        $request["FWD"] = 1;
+        if($request->auto =="on")
+        $request["auto"] = 1;
+        if($request->AC =="on")
+        $request["AC"] = 1;
         //mise à jour des attributes voiture
         $voiture->update($request->all());
+
         //traitement des images s'elles existent
         if($request->image !=null){
             $fileName = 'cars/'.$marque->marque.'_'.time() .'.' . $request->image->extension();
@@ -120,14 +130,14 @@ class VoitureController extends Controller
         //enregister les modification sur la base de données
         $voiture->update(['idModel'=> $model->idModel]);
         //redirect to the catalogue
-        return redirect('/cars');
+        return redirect('/cars')->with('status',"la voiture a été modifiée par succès");
     }
     /*
         suprimmer une voiture par son identifiant 
     */
     public function delete(Request $request,Voiture $voiture){
         $voiture->delete();
-        return redirect('/cars');
+        return redirect('/cars')->with('status',"la voitures a été suprimmer par succès");
     }
     /*
         restaurer une voiture par son identifiant 

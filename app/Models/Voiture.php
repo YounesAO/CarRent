@@ -86,7 +86,7 @@ class Voiture extends Model
         return new Attribute(
             get: fn () => $this->marque->marque.' '.$this->model->model
             
-        );
+        );  
     }
    
 

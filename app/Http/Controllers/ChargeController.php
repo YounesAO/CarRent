@@ -56,7 +56,7 @@ class ChargeController extends Controller
     public function update(Request $request, Charge $charge)
     {
         $charge->update($request->all());
-        return redirect('/check/charge/'.$charge->idCharge);
+        return redirect('/check/charge/'.$charge->idCharge)->with('status',"la charge a été modifiée par succès");
     }
 
     /**
@@ -65,5 +65,6 @@ class ChargeController extends Controller
     public function destroy(Charge $charge)
     {
         $charge->delete();
+        return redirect('/dashboard/charge')->with('status',"la charge a été suprimmer par succès");
     }
 }

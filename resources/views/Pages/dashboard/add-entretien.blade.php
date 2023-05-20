@@ -2,6 +2,11 @@
 
 @extends('dashboard')
 @section('content')
+@if(session('status'))
+<div class="alert m-3   alert-success">
+    {{session('status')}}
+</div>
+@endif
 @if ($errors->any())
 @foreach ($errors->all() as $error)
     <div class="alert m-1 p-0 alert-danger">

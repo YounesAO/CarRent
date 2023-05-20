@@ -32,7 +32,7 @@
                 <input type="email" name="email" id="" class="form-control">
                 <label for="password" class="form-label">Mot de passe :</label>
                 <input type="password" name="password" id="" class="form-control">
-                <input class="btn btn-success m-1 " type="submit" value="Connecter">
+                <input class="btn  m-1 " style ='background-color: rgb(22, 16, 94);color:yellow;'type="submit" value="Connecter">
                 
             </form>
         </div>

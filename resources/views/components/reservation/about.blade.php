@@ -1,6 +1,6 @@
 <div class="d-flex flex-column  col-12 jusity-content-center align-items-center reservation-about">
     <div class="header ">
-        <section class="car col-11 col-md-4 m-1" onclick="window.location.href ='{{ route('voiture', ['id'=>$reservation->voiture->id]) }}'"> 
+        <section class="car  p-2 col-11 col-md-3 m-1" onclick="window.location.href ='{{ route('voiture', ['id'=>$reservation->voiture->id]) }}'"> 
              <div class="icon">
                 <i class="fa-solid fa-car"></i>
             </div>
@@ -10,7 +10,7 @@
             <span>{{$reservation->voiture->model->model}}</span>
         </div>
         </section>
-        <section class="client col-11 col-md-4 m-1" onclick="window.location.href ='{{ route('client', ['client'=>$reservation->Client->idClient]) }}'">
+        <section class="client  p-2 col-11 col-md-3 m-1" onclick="window.location.href ='{{ route('client', ['client'=>$reservation->Client->idClient]) }}'">
             <div class="icon">
                 <i class="fa-solid fa-user"></i>
             </div>
@@ -19,14 +19,14 @@
                 <span>{{$reservation->client->CIN}}</span>
             </div>
         </section>
-        <section class="stat col-11 col-md-3 m-1">
+        <section class="stat p-2 col-11 col-md-3 m-1">
             <div class="icon">
                 <i class="fa-solid fa-circle-info"></i>
             </div>
             <div>
                 <span>Etat</span>
                 <span>
-                    @if ($reservation->encours)
+                    @if ($reservation->dateRetour>date("Y-m-d"))
                     Encours...
                     @else
                     Terminée

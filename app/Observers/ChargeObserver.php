@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Charge;
 use App\Models\ChargeEntreprise;
 use App\Models\ChargeVoiture;
+use App\Models\Entretient;
 
 class ChargeObserver
 {
@@ -28,9 +29,12 @@ class ChargeObserver
      * Handle the Charge "deleted" event.
      */
     public function deleted(Charge $charge): void
-    {
-        ChargeVoiture::where('idChargeVoiture',$charge->idChargeVoiture)->delete();
-        ChargeVoiture::where('idChargeEntrepris',$charge->idChargeEntreprise)->delete();
+    {  
+        
+        $chargeVoiture = ChargeVoiture::where('idChargeVoiture',$charge->idChargeVoiture)->first();
+        Entretient::where('idEntretient',$chargeVoiture->idEntretient)->delete();
+        $chargeVoiture->delete();
+        ChargeEntreprise::where('idChargeEntreprise',$charge->idChargeEntreprise)->delete();
 
     }
 

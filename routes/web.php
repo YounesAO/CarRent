@@ -76,16 +76,18 @@ Route::get('/add/car',function () {
 });
 
 /*Gestion des reservation  #Create :*/
-Route::get('/new/reservation',function () {
-    return view('Pages.Reservation.new');
-});
-
-Route::get('/new/reservation/{client}',function (Client $client) {
+Route::get('/new/reservation',function (Request $request) {
+    if(isset($request->client)){
+    $client = Client::where('idClient',$request->client)->first();
     return view('Pages.Reservation.new',['client'=>$client]);
+
+    }
+    return view('Pages.Reservation.new');
+
 });
 
 Route::post('/new/reservation',[ReservationController::class,'filter']);
-Route::get('/new/reservation/{id}',[ReservationController::class,'send']);
+Route::get('/new/reservation/car/{id}',[ReservationController::class,'send']);
 
 Route::get('/add/reservation',function () {
     return view('Pages.Reservation.add');
@@ -139,6 +141,7 @@ Route::post('edite/reservation/{reservation}',[ReservationController::class,'upd
 Route::get('/delete/reservation/{reservation}',[ReservationController::class,'destroy']);
 
 Route::get('/slide/reservation',[ReservationController::class,'slide']);
+Route::get('slide/car/reservation/{id}',[VoitureController::class,'slide']);
 Route::get('/slide/reservation/unpaid',[ReservationController::class,'slideUpaid']);
 
 /*Gestion des paiement des reservation :*/

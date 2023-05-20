@@ -26,7 +26,7 @@ class Charge extends Model
     ];
     public function ChargesVoiture()
     {
-        return $this->belongsTo(ChargeVoiture::class);
+        return $this->hasOne(ChargeVoiture::class,'idChargeVoiture');
     }
     
     
@@ -45,6 +45,6 @@ class Charge extends Model
             
         );
     }
-   
+    
 
 }

@@ -51,7 +51,7 @@ class ClientController extends Controller
         $client->idPermis = $permis->idPermis;
         $client->save();
         //redirection vers la liste des clients
-        return redirect('dashboard/Clients');
+        return redirect('dashboard/Clients')->with('status','le client a été ajouter par succès');
     }
     /*
         enregistrer les information  de reservation d'un nouveau client sur la base de données 
@@ -181,7 +181,7 @@ class ClientController extends Controller
     public function drop(Client $client)
     {   
         $client->delete();
-        return redirect('/dashboard/client')->with("stats","le client a été suprimer par succès");
+        return redirect('/dashboard/client')->with("stats","le client a été suprimé par succès");
     }
     /*
         Resaturer un client par son identiifiant 
