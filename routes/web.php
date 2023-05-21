@@ -54,15 +54,16 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', [LoginController::class,'index'])->name('login');
 
 Route::post('/login',[LoginController::class,'login']);
+
+//middleware authetification group starts
+Route::group(['middleware' => 'auth'], function () {
+
 Route::get('/logout',[LoginController::class,'logout']);
 
 //catalogue des voitures
 Route::get('/cars', [VoitureController::class, 'index']);
 Route::get('/cars/{id}', [VoitureController::class, 'view'])->name('voiture');
 
-
-//middleware authetification group starts
-Route::group(['middleware' => 'auth'], function () {
 
 
 /*Gestion des Voitures  #Create #Update #delete :*/
