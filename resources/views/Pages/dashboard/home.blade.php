@@ -12,7 +12,8 @@
         <span class="desc">Total des voitures</span>
         </div>
     </div>
-    
+    @dd($reservations->where('idPaiement',null));
+
     <div class="m-1 mt-md-4 widget  " style="color :rgb(33 157 25);  background-color:rgba(43, 226, 119, 0.24)" onclick="window.location.href +='/reservation';">
         
         <div class="icon">
@@ -35,6 +36,7 @@
                 foreach($reservations as $reservation){
                     if($reservation->paiement!=null && $reservation->paiement->cheque!=null && $reservation->paiement->cheque->encours){
                     $nbPaiement++;
+                    
                     }
                 }
                 echo $nbPaiement;

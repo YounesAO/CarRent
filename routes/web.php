@@ -112,7 +112,7 @@ Route::get('/check/client/{client}', function($client){
 });
 
 /*Gestion des Entretiens :*/
-Route::get('/dashboard',[DashboardController::class,'index']);
+Route::get('/dashboard',[DashboardController::class,'index'])->name('home');
 Route::get('dashboard/entretient',[EntretientController::class,'index']);
 Route::get('add/entretient/{voiture}',[EntretientController::class,'fill']);
 Route::post('add/entretient/{voiture}',[EntretientController::class,'store']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\Return_;
@@ -36,7 +37,7 @@ class LoginController extends Controller
         ]);
         //attentation de login
         if(auth()->attempt($request->only(['email','password'])))
-        return redirect('cars');
+        return redirect(Route('home'));
         //cas de coordonée non validées
         return back()->withErrors("Adresse email ou mot de passe incorrect");
     }
