@@ -10,7 +10,7 @@ class ChequeController extends Controller
     public function index()
     {
         
-        $cheques = Cheque::where('dateCheque','>',date('Y-m-d'))->get();
+        $cheques = Cheque::where('dateCheque','>=',date('Y-m-d'))->get();
         return view('Pages.Reservation.cheques',['cheques'=>$cheques]);
     }
     public function all()
