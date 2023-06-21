@@ -6,7 +6,7 @@
             overflow: hidden;
         }
     </style>
-    <div class="m-5">
+    <div class="m-5 mt-0 mb-0">
         <div id="hidden" class=" reservation-unpaid ">
            @if($reservations->count()>0)
                 @foreach ($reservations as $reservation)

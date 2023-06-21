@@ -40,7 +40,7 @@
                 <td>{{$charge->categorieCharge}}</td>
                 <td>{{$charge->dateCharge}}</td>
                 <td>{{number_format($charge->montant, 2, ',', ' ')}} dh</td>
-                <td><a class="col-5 btn btn-outline-primary  m-1" href="{{ asset('/check/charge')}}/{{$charge->idCharge}}">view</a></td>
+                <td><a class=" btn btn-outline-primary  m-1" href="{{ asset('/check/charge')}}/{{$charge->idCharge}}">view</a></td>
             </tr>
         @endforeach
     </tbody>

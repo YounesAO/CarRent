@@ -1,14 +1,15 @@
-@php $title ="Bienvunue "@endphp
+@php $title ="Bienvenue "@endphp
 
 @include('layouts.head')
 @extends('layouts.app')
 @section('header')
-<div class="m-2 p-3">
-    <h3>Bienvunue Connectez-vous à votre espace</h3>
+<div style="background-color: rgb(198, 193, 255)">
+    <div class="m-2 p-3">
+        <h3 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Bienvenue Connectez-vous à votre espace</h3>
+    </div>
 </div>
 @endsection
 @section('content')
-
 
 <div class="d-flex col-12 flex-column align-items-center justify-content-center">
     
@@ -26,7 +27,7 @@
         </div>
         <div class="d-flex p-4 w-100 justify-content-around ">
             <img class="p-1  logo m-2" src="{{ asset('logo.png') }}" alt="logo" style="width:250px;">
-            <form class="d-flex flex-column justify-content-center" action="/login" method="post">
+            <form class="d-flex flex-column col-4 justify-content-center" action="/login" method="post">
                 @csrf
                 <label for="email" class="form-label">Nom utilisateur :</label>
                 <input type="email" name="email" id="" class="form-control">

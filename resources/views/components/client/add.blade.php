@@ -39,11 +39,14 @@
 
             <input class="form-control" type="file"  name="photoPermis"  >
             <br>
+            @if(isset($client->permis->photoPermis))
             <a href="{{ asset('images')}}/@yield('photoPermis') "><img src="{{ asset('images')}}/@yield('photoPermis') " alt="" style="width:100px;"></a><br>
+            @endif
             <label class="form-label" for="photoCIN">photo de la carte d'identite nationale</label>
             <input class="form-control" type="file"  name="photoCIN"  >
+            @if(isset($client->photoCIN))
             <a href="{{ asset('images')}}/@yield('photoCIN')"><img src="{{ asset('images')}}/@yield('photoCIN')" alt="" style="width:100px;"></a><br>
-            
+            @endif
             
         
         </div>

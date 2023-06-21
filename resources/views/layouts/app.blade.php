@@ -1,6 +1,8 @@
 
 <body>
+    @auth
     @include('layouts.nav')
+    @endauth
     @yield('header')
     @yield('bar')
     

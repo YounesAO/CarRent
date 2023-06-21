@@ -56,7 +56,7 @@ class EntretientController extends Controller
     public static function entretiens(Voiture $voiture)
     {
         $pieces = Piece::all();
-        //les pieces a changées selon les condition 
+        //les pieces a changées selon les conditions 
         $piecePerEnt = [];
         $pieces = Piece::all();
         foreach($pieces as $piece){
@@ -90,25 +90,6 @@ class EntretientController extends Controller
             }
 
             }
-
-        // $entretiens = ChargeVoiture::where('idVoiture',$voiture->id)->orderBy('idEntretient', 'desc')->get();       
-        // if($entretiens->isEmpty()){
-        //     foreach(Piece::all() as $p)
-        //     {()
-        //         $piecePerEnt[$p->idPiece]="warning";
-
-        //     }
-        //     return $piecePerEnt;
-
-        //         $conditions = DB::select('SELECT (v.kilometrage - e.kilometrage) as kilo, DATEDIFF(CURRENT_DATE, e.date) as date
-        //         FROM entretient e
-        //         JOIN chargeVoiture cv ON cv.idEntretient = e.idEntretient
-        //         JOIN voiture v ON v.id = cv.idVoiture
-        //         WHERE e.idEntretient =?  and v.id = ?', [$entretiens[$i],$voiture->id])->get();
-                        
-        //         }
-        //     }
-        // } 
         return $piecePerEnt ;
     }
 }
